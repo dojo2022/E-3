@@ -26,7 +26,7 @@
 
 	<table border="1">
 		<tr>
-			<th>日付</th><th>カテゴリ</th><th>メモ</th><th colspan="2">機能</th>
+			<th>日付</th><th>カテゴリ</th><th>メモ</th><th>機能</th>
 		</tr>
 	</table>
 

@@ -34,7 +34,7 @@ public class S_listServlet extends HttpServlet {
 			return;
 		}
 */
-				//検索処理を行う
+		//検索処理を行う
 		ScheduleDao sDao = new ScheduleDao();
 		List<Schedule> cardList = sDao.display();
 		//検索結果をリクエストスコープに格納する

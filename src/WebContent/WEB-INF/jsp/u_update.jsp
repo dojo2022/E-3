@@ -23,32 +23,80 @@
 
 	<hr>
 	</header>
-	<!--ヘッダーここまで-->
-<main>
-<form method="POST" action="/selfManagement/S_updateDeleteServlet">
-		<table border="1">
-				<tr>
-				    <td><input type="date" name="s_date" value="${card.s_date}"></input></td>
-				    <td>
-				    	<select name="s_category">
-				    		<option hidden>${userList[0]}</option>
-				    		<option>遊び</option>
-							<option>休み</option>
-							<option>デート</option>
-							<option>飲み会</option>
-							<option>旅行</option>
-							<option>支払期限</option>
-							<option>イベント</option>
-							<option>その他</option>
-						</select>
-				    </td>
-				    <td><input type="text" name="s_memo" value="${user.salary}"></td>
-				    <td><input type="submit" name="update" value="更新"></td>
-				    <td><input type="submit" name="delete" value="削除"></td>
-			    </tr>
-		</table>
-	</form>
 
+<!--ヘッダーここまで-->
+<main>
+<c:forEach var="user" items="${userList}">
+<form method="POST" action="/selfManagement/U_updateServlet">
+<input type="hidden" value="${user.user_id}">
+<table>
+	<tr>
+		<td><h2>貯金理由</h2></td>
+	</tr>
+	<tr>
+		<td><input type="text" value="${userList.reason}" readonly></td>
+		<td>&#9654;</td>
+		<td><input type="text" name="reason"></td>
+	</tr>
+	<tr>
+</table>
+<br>
+<table>
+	<tr>
+	<td><h2>達成期限</h2></td>
+	</tr>
+	<tr>
+		<td><input type="date" value="${user.deadline}" readonly></td>
+		<td>&#9654;</td>
+		<td><input type="date" name="deadline"></td>
+	</tr>
+	<tr>
+</table>
+<br>
+<table>
+	<tr>
+		<td><h2>目標金額</h2></td>
+	</tr>
+	<tr>
+		<td><input type="text" value="${user.goal}" readonly></td>
+		<td>&#9654;</td>
+		<td><input type="text" name="goal"></td>
+	</tr>
+	<tr>
+</table>
+<br>
+<table>
+	<tr>
+	<td><h2>給料</h2></td>
+	</tr>
+	<tr>
+		<td><input type="text" value="${user.salary}" readonly></td>
+		<td>&#9654;</td>
+		<td><input type="text" name="salary"></td>
+	</tr>
+	<tr>
+</table>
+<br>
+<table>
+	<tr>
+	<td><h2>暑がり寒がり</h2></td>
+	</tr>
+	<tr>
+		<td><input type="text" value="${user.constitution}" readonly></td>
+		<td>&#9654;</td>
+		<td>
+			<select name="constitution">
+				<option hidden> ${user.constitution}</option>
+				<option>普通</option>
+				<option>暑がり</option>
+				<option>寒がり</option>
+			</select>
+		</td>
+	</tr>
+</table>
+<input type="button" name="update" value="更新">
+</form>
+</c:forEach>
 </main>
 		<!--フッター-->
 		<hr>

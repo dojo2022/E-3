@@ -24,7 +24,7 @@ public class UsersDao {
 				conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/SM", "sa", "kawasaki");
 
 				// SQL文を準備する
-				String sql = "SELECT reason,goal,deadline,savings,salary,constitution FROM User";
+				String sql = "SELECT user_id,reason,goal,deadline,savings,salary,constitution FROM User WHERE user_id = ?";
 				PreparedStatement pStmt = conn.prepareStatement(sql);
 
 				// SQL文を実行し、結果表を取得する
@@ -33,10 +33,11 @@ public class UsersDao {
 				// 結果表をコレクションにコピーする
 				while(rs.next()) {
 					Users userl = new Users();
+					userl.getUser_id();
 					userl.setReason(rs.getString("reason"));
-					userl.setGoal(rs.getString("goal"));
+					userl.setGoal(rs.getInt("goal"));
 					userl.setDeadline(rs.getString("deadline"));
-					userl.setSalary(rs.getString("salary"));
+					userl.setSalary(rs.getInt("salary"));
 					userl.setConstitution(rs.getString("constitution"));
 
 
