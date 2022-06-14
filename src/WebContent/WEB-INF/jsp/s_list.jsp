@@ -24,44 +24,47 @@
 		<input type="submit" value="検索">
 	</form>
 
-	<!--  コメントアウト開始
-		<form method="POST" action="/selfManagement/S_updateDeleteServlet">
-		<table>
-			<tr>
-	 			<th>日付</th><th>カテゴリ</th><th>メモ</th><th>更新</th><th>削除</th>
-	 		</tr>
-			<tr>
-			    <td><input type="date" name="s_date"></input></td>
-			    <td>
-			    	<select name="s_category">
-			    		<option>遊び</option>
-						<option>休み</option>
-						<option>デート</option>
-						<option>飲み会</option>
-						<option>旅行</option>
-						<option>支払期限</option>
-						<option>イベント</option>
-						<option>その他</option>
-					</select>
-			    </td>
-			    <td><input type="text" name="s_memo"></td>
-			    <td><input type="submit" name="update" value="更新"></td>
-			    <td><input type="submit" name="delete" value="削除"></td>
-		    </tr>
+	<table border="1">
+		<tr>
+			<th>日付</th><th>カテゴリ</th><th>メモ</th><th colspan="2">機能</th>
+		</tr>
+	</table>
 
+	<form method="POST" action="/selfManagement/S_updateDeleteServlet">
+		<table border="1">
+	 		<c:forEach var="card" items="${cardList}">
+				<tr>
+				    <td><input type="date" name="s_date" value="${card.s_date}"></input></td>
+				    <td>
+				    	<select name="s_category">
+				    		<option hidden>${card.s_category}</option>
+				    		<option>遊び</option>
+							<option>休み</option>
+							<option>デート</option>
+							<option>飲み会</option>
+							<option>旅行</option>
+							<option>支払期限</option>
+							<option>イベント</option>
+							<option>その他</option>
+						</select>
+				    </td>
+				    <td><input type="text" name="s_memo" value="${card.s_memo}"></td>
+				    <td><input type="submit" name="update" value="更新"></td>
+				    <td><input type="submit" name="delete" value="削除"></td>
+			    </tr>
+		    </c:forEach>
 		</table>
 	</form>
+
+	<!--  コメントアウト開始
+
+			<tr>
+				<td>${card.s_date}</td>
+				<td>${card.s_memo}</td>
+				<td><button type="submit">詳細</button></td>
+			</tr>
+
 	-->
-<table>
-	<c:forEach var="card" items="${cardList}">
-		<tr>
-			<td>${card.s_date}</td>
-			<td>${card.s_category}</td>
-			<td>${card.s_memo}</td>
-			<td><button type="submit">詳細</button></td>
-		</tr>
-	</c:forEach>
-</table>
 
 		<button>予定登録</button>
 	<footer>

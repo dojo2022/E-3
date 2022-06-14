@@ -21,7 +21,7 @@ public class ScheduleDao {
 			Class.forName("org.h2.Driver");
 
 			// データベースに接続する
-			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/simpleBC", "sa", "");
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/SM", "sa", "kawasaki");
 
 			// SQL文を準備する
 			String sql = "SELECT s_date,s_category,s_memo FROM Schedule ORDER BY s_date";
