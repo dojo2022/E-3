@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,7 +24,8 @@
 		<input type="submit" value="検索">
 	</form>
 
-	<form method="POST" action="/selfManagement/S_updateDeleteServlet">
+	<!--  コメントアウト開始
+		<form method="POST" action="/selfManagement/S_updateDeleteServlet">
 		<table>
 			<tr>
 	 			<th>日付</th><th>カテゴリ</th><th>メモ</th><th>更新</th><th>削除</th>
@@ -49,6 +51,18 @@
 
 		</table>
 	</form>
+	-->
+<table>
+	<c:forEach var="card" items="${cardList}">
+		<tr>
+			<td>${card.s_date}</td>
+			<td>${card.s_category}</td>
+			<td>${card.s_memo}</td>
+			<td><button type="submit">詳細</button></td>
+		</tr>
+	</c:forEach>
+</table>
+
 		<button>予定登録</button>
 	<footer>
 

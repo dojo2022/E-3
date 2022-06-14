@@ -2,6 +2,7 @@ package servlet;
 
 import java.io.IOException;
 //import java.util.List;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,6 +10,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import dao.ScheduleDao;
+import model.Schedule;
 
 //import dao.BcDAO;
 //import model.Bc;
@@ -30,19 +34,16 @@ public class S_listServlet extends HttpServlet {
 			return;
 		}
 */
+				//検索処理を行う
+		ScheduleDao sDao = new ScheduleDao();
+		List<Schedule> cardList = sDao.display();
+		//検索結果をリクエストスコープに格納する
+		request.setAttribute("cardList", cardList);
+
 
 		// スケジュール一覧ページにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/s_list.jsp");
 		dispatcher.forward(request, response);
-
-
-// 検索処理を行う
-//BcDAO bDao = new BcDAO();
-//List<Bc> cardList0 = bDao.display();
-// 検索結果をリクエストスコープに格納する
-//request.setAttribute("cardList0", cardList0);
-
-
 	}
 
 	/**
