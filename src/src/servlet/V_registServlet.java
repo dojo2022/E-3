@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.VariableDao;
 import model.Result;
+import model.Variable;
 
 /**
  * Servlet implementation class V_registServlet

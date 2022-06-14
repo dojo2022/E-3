@@ -24,7 +24,7 @@ public class FixedDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/simpleBC", "sa", "");
 
 			// SQL文を準備する
-			String sql = "SELECT f_date, f_category, f_memo, f_cost FROM Fixed WHERE f_date LIKE ?";
+			String sql = "SELECT f_date, f_category, f_memo, f_cost FROM Fixed WHERE f_date LIKE ? ORDER BY f_date DESC";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
@@ -80,7 +80,7 @@ public class FixedDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/simpleBC", "sa", "");
 
 			// SQL文を準備する
-			String sql = "SELECT * FROM Fixed";
+			String sql = "SELECT * FROM Fixed ORDER BY f_date DESC";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を実行し、結果表を取得する
