@@ -21,7 +21,7 @@ public class VariableDao {
 				Class.forName("org.h2.Driver");
 
 				// データベースに接続する
-				conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/simpleBC", "sa", "");
+				conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/SM", "sa", "kawasaki");
 
 				// SQL文を準備する
 				String sql = "SELECT v_date, v_category, v_memo, v_cost FROM Varoable WHERE v_date LIKE ?";
@@ -77,7 +77,7 @@ public class VariableDao {
 				Class.forName("org.h2.Driver");
 
 				// データベースに接続する
-				conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/simpleBC", "sa", "");
+				conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/SM", "sa", "kawasaki");
 
 				// SQL文を準備する
 				String sql = "SELECT * FROM Variable";
@@ -127,7 +127,7 @@ public class VariableDao {
 				Class.forName("org.h2.Driver");
 
 				// データベースに接続する
-				conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/simpleBC", "sa", "");
+				conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/SM", "sa", "kawasaki");
 
 				// SQL文を準備する
 				String sql = "INSERT INTO Variable(v_date, v_category, v_memo, v_cost) VALUES(?,?,?,?)";
@@ -188,7 +188,7 @@ public class VariableDao {
 				Class.forName("org.h2.Driver");
 
 				// データベースに接続する
-				conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/simpleBC", "sa", "");
+				conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/SM", "sa", "kawasaki");
 
 				// SQL文を準備する
 				String sql = "UPDATE Variable SET v_date=?, v_category=?, v_memo=?,v_cost=? WHERE v_id=?";

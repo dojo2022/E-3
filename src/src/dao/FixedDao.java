@@ -21,7 +21,7 @@ public class FixedDao {
 			Class.forName("org.h2.Driver");
 
 			// データベースに接続する
-			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/simpleBC", "sa", "");
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/SM", "sa", "kawasaki");
 
 			// SQL文を準備する
 			String sql = "SELECT f_date, f_category, f_memo, f_cost FROM Fixed WHERE f_date LIKE ? ORDER BY f_date DESC";
@@ -77,7 +77,7 @@ public class FixedDao {
 			Class.forName("org.h2.Driver");
 
 			// データベースに接続する
-			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/simpleBC", "sa", "");
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/SM", "sa", "kawasaki");
 
 			// SQL文を準備する
 			String sql = "SELECT * FROM Fixed ORDER BY f_date DESC";
@@ -127,7 +127,7 @@ public class FixedDao {
 			Class.forName("org.h2.Driver");
 
 			// データベースに接続する
-			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/simpleBC", "sa", "");
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/SM", "sa", "kawasaki");
 
 			// SQL文を準備する
 			String sql = "INSERT INTO Fixed(f_date, f_category, f_memo, f_cost) VALUES(?,?,?,?)";
@@ -188,7 +188,7 @@ public class FixedDao {
 			Class.forName("org.h2.Driver");
 
 			// データベースに接続する
-			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/simpleBC", "sa", "");
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/SM", "sa", "kawasaki");
 
 			// SQL文を準備する
 			String sql = "UPDATE Fixed SET f_date=?, f_category=?, f_memo=?,f_cost=? WHERE f_id=?";
@@ -250,7 +250,7 @@ public class FixedDao {
 				Class.forName("org.h2.Driver");
 
 				// データベースに接続する
-				conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/simpleBC", "sa", "");
+				conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/SM", "sa", "kawasaki");
 
 				// SQL文を準備する
 				String sql = "delete from Fixed where f_id=?";

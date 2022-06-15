@@ -3,6 +3,7 @@ package model;
 import java.io.Serializable;
 
 public class Variable implements Serializable{
+	private int v_id;
 	private String v_date;
 	private String v_category;
 	private String v_memo;
@@ -13,6 +14,15 @@ public class Variable implements Serializable{
 	 * @param v_memo
 	 * @param v_cost
 	 */
+	public Variable(int v_id, String v_date, String v_category, String v_memo, int v_cost) {
+		super();
+		this.v_id = v_id;
+		this.v_date = v_date;
+		this.v_category = v_category;
+		this.v_memo = v_memo;
+		this.v_cost = v_cost;
+	}
+
 	public Variable(String v_date, String v_category, String v_memo, int v_cost) {
 		super();
 		this.v_date = v_date;
@@ -23,10 +33,21 @@ public class Variable implements Serializable{
 
 	public Variable() {
 		super();
+		this.v_id = 0;
 		this.v_date = "";
 		this.v_category = "";
 		this.v_memo = "";
 		this.v_cost = 0;
+	}
+
+
+
+	public int getV_id() {
+		return v_id;
+	}
+
+	public void setV_id(int v_id) {
+		this.v_id = v_id;
 	}
 
 	public String getV_date() {
