@@ -66,7 +66,7 @@ public class UsersDao {
 
 
 	//データ全件取得
-	public List<Users> display() {
+	public List<Users> display(int user_id) {
 		Connection conn = null;
 		List<Users> userList = new ArrayList<Users>();
 
@@ -80,6 +80,7 @@ public class UsersDao {
 		// SQL文を準備する
 		String sql = "SELECT user_id,reason,goal,deadline,savings,salary,constitution FROM User WHERE user_id = ?";
 		PreparedStatement pStmt = conn.prepareStatement(sql);
+		pStmt.setInt(1, user_id);
 
 		// SQL文を実行し、結果表を取得する
 		ResultSet rs = pStmt.executeQuery();
@@ -241,7 +242,7 @@ public class UsersDao {
 				pStmt.setString(6, null);
 			}
 
-			pStmt.setString(7, user.getUser_id());
+			pStmt.setInt(7, user.getUser_id());
 
 			// SQL文を実行する
 			if (pStmt.executeUpdate() == 1) {
@@ -270,10 +271,11 @@ public class UsersDao {
 	}
 
 	//user_id取得
-		public Users id(Users user_id) {
-			Connection conn = null;
+	public int id(String login_id, String password){
+		Connection conn = null;
+		int user_id = 0;
 
-			try {
+		try {
 			// JDBCドライバを読み込む
 			Class.forName("org.h2.Driver");
 
@@ -284,46 +286,36 @@ public class UsersDao {
 			String sql = "SELECT user_id FROM User WHERE login_id= ?, password= ?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
+			// SQL文を完成させる
+			pStmt.setString(1, login_id);
+
+			pStmt.setString(2, password);
+
 			// SQL文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();
 
 			Users userl = new Users();
-			userl.getUser_id();
+			user_id = userl.setUser_id(rs.getInt("user_id"));
 
-			// 結果表をコレクションにコピーする
-			/*while(rs.next()) {
-
-			userl.setReason(rs.getString("reason"));
-			userl.setGoal(rs.getInt("goal"));
-			userl.setDeadline(rs.getString("deadline"));
-			userl.setSalary(rs.getInt("salary"));
-			userl.setConstitution(rs.getString("constitution"));*/
-
-
-							}
-			}
-			catch (SQLException e) {
-				e.printStackTrace();
-				userList = null;
-			}
-			catch (ClassNotFoundException e) {
-				e.printStackTrace();
-				userList = null;
-			}
-			finally {
-				// データベースを切断
-				if (conn != null) {
-					try {
-						conn.close();
-					}
-					catch (SQLException e) {
-						e.printStackTrace();
-						userList = null;
-					}
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		finally {
+			// データベースを切断
+			if (conn != null) {
+				try {
+					conn.close();
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
 				}
 			}
-
-			// 結果を返す
-			return userList;
 		}
+
+
+		// 結果を返す
+		return user_id;
+	}
 }

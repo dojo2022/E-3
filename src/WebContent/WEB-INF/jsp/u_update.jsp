@@ -27,6 +27,8 @@
 <!--ヘッダーここまで-->
 <main>
 <c:forEach var="user" items="${userList}">
+<h1><%= request.getAttribute("userList[0]") %>a</h1>
+</c:forEach>
 <form method="POST" action="/selfManagement/U_updateServlet">
 <input type="hidden" value="${user.user_id}">
 <table>
@@ -34,7 +36,7 @@
 		<td><h2>貯金理由</h2></td>
 	</tr>
 	<tr>
-		<td><input type="text" value="${userList.reason}" readonly></td>
+		<td><input type="text" value="" readonly></td>
 		<td>&#9654;</td>
 		<td><input type="text" name="reason"></td>
 	</tr>
@@ -96,7 +98,7 @@
 </table>
 <input type="button" name="update" value="更新">
 </form>
-</c:forEach>
+
 </main>
 		<!--フッター-->
 		<hr>

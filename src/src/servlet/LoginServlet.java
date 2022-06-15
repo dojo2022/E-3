@@ -1,7 +1,6 @@
 package servlet;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -45,16 +44,14 @@ public class LoginServlet extends HttpServlet {
 		UsersDao UDao = new UsersDao();
 		if (UDao.isLoginOK(new Users(id, pw))) {	// ログイン成功
 
-			//検索処理
-			UsersDao uDao = new UsersDao();
-			List<Users> userList = uDao.display();
-
 			// セッションスコープにIDを格納する
 			HttpSession session = request.getSession();
 			session.setAttribute("id", new LoginUser(id));
-			//ユーザー情報をセッションスコープに格納する
+
+			// セッションスコープにUser_idを格納する
 			HttpSession sessionuser = request.getSession();
-			sessionuser.setAttribute("userList", userList);
+			sessionuser.setAttribute("user_id", UDao.id(id,pw));
+
 
 			// メニューサーブレットにリダイレクトする
 			response.sendRedirect("/selfManagement/MenuServlet");

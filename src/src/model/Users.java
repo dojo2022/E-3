@@ -1,7 +1,7 @@
 package model;
 
 public class Users {
-	private String user_id;
+	private int user_id;
 	private String login_id;
 	private String password;
 	private String reason;
@@ -28,7 +28,8 @@ public class Users {
 		this.constitution = constitution;
 	}
 
-	public Users(String user_id, String login_id, String password, String reason, int goal, String deadline, int savings,
+
+	public Users(int user_id, String login_id, String password, String reason, int goal, String deadline, int savings,
 			int salary,String constitution) {
 		super();
 		this.user_id = user_id;
@@ -44,7 +45,7 @@ public class Users {
 
 	public Users() {
 		super();
-		this.user_id = "";
+		this.user_id = 0;
 		this.login_id = "";
 		this.password = "";
 		this.reason = "";
@@ -55,6 +56,16 @@ public class Users {
 		this.constitution = "";
 	}
 
+	//user_id
+	public int getUser_id() {
+		return user_id;
+	}
+
+	public int setUser_id(int i) {
+		return this.user_id = i;
+	}
+
+	//login_id
 	public String getLogin_id() {
 		return login_id;
 	}
@@ -63,6 +74,7 @@ public class Users {
 		this.login_id = login_id;
 	}
 
+	//password
 	public String getPassword() {
 		return password;
 	}
@@ -70,15 +82,6 @@ public class Users {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-	public String getUser_id() {
-		return user_id;
-	}
-
-	public void setUser_id(String user_id) {
-		this.user_id = user_id;
-	}
-
 
 	public String getReason() {
 		return reason;

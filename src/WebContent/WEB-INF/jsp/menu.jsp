@@ -10,7 +10,7 @@
 		<!--ヘッダー-->
 		<header class="header">
 		<h1 class="title"><a href="/selfManagement/MenuServlet">Self Management</a></h1>
-		ユーザー更新
+		トップページ
 		<hr>
 		<!--カテゴリー-->
 
