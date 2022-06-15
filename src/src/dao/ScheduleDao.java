@@ -70,7 +70,7 @@ public class ScheduleDao {
 			Class.forName("org.h2.Driver");
 
 			// データベースに接続する
-			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/simpleBC", "sa", "");
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/SM", "sa", "kawasaki");
 
 			// SQL文を準備する
 			String sql = "INSERT INTO Schedule(s_date, s_category, s_memo) VALUES(?,?,?)";
@@ -125,7 +125,8 @@ public class ScheduleDao {
 			Class.forName("org.h2.Driver");
 
 			// データベースに接続する
-			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/simpleBC", "sa", "");
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/SM", "sa", "kawasaki");
+
 
 			// SQL文を準備する
 			String sql = "UPDATE Schedule SET s_date=?, s_category=?, s_memo=? WHERE s_id=?";
@@ -182,7 +183,8 @@ public class ScheduleDao {
 			Class.forName("org.h2.Driver");
 
 			// データベースに接続する
-			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/simpleBC", "sa", "");
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/SM", "sa", "kawasaki");
+
 
 			// SQL文を準備する
 			String sql = "delete from Schedule where s_id=?";
