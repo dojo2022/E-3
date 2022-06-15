@@ -15,10 +15,13 @@
 <form method="POST" action="/selfManagement/LoginServlet">
 <table>
 	<tr>
-	<td><input type="text" class="textbox" name="login_id"></td>
+	<td><input type="text" class="textbox" name="ID"></td>
 	</tr>
 	<tr>
-	<td><input type="password" class="textbox" name="password"></td>
+	<td><input type="password" class="textbox" name="PW"></td>
+	</tr>
+	<tr>
+	<td><input type="submit" name="login" value="ログイン"></td>
 	</tr>
 </table>
 <input type="button" name="login" value="ログイン">

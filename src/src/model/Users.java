@@ -13,6 +13,12 @@ public class Users {
 
 
 
+	public Users(String login_id, String password) {
+		super();
+		this.login_id = login_id;
+		this.password = password;
+	}
+
 	public Users(String user_id, String login_id, String password, String reason, int goal, String deadline, int savings,
 			int salary,String constitution) {
 		super();
