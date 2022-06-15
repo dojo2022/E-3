@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.UsersDao;
 import model.Users;
@@ -32,9 +33,12 @@ public class U_updateServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		HttpSession session = request.getSession();
+		
 		//検索処理を行う
 		UsersDao uDao = new UsersDao();
-		List<Users> userList = uDao.display();
+		List<Users> userList = uDao.display(user_id);
 		//検索結果をリクエストスコープに格納する
 		request.setAttribute("userList", userList);
 
