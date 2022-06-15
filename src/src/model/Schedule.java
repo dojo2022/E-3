@@ -26,6 +26,13 @@ public class Schedule implements Serializable{
 		this.s_memo = "";
 	}
 
+	public Schedule(String s_date, String s_category, String s_memo) {
+		super();
+		this.s_date = s_date;
+		this.s_category = s_category;
+		this.s_memo = s_memo;
+	}
+
 	public int getS_id() {
 		return s_id;
 	}

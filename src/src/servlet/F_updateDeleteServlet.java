@@ -60,11 +60,11 @@ public class F_updateDeleteServlet extends HttpServlet {
 	String f_date = request.getParameter("f_date");
 	String f_category = request.getParameter("f_category");
 	String f_memo = request.getParameter("f_memo");
-	String f_cost = request.getParameter("f_cost");
+	int f_cost = Integer.parseInt(request.getParameter("f_cost"));
 	// 更新または削除を行う
 	FixedDao fDao = new FixedDao();
 	if (request.getParameter("SUBMIT").equals("更新")) {
-		if (fDao.update(new Fixed(f_id, date, category, memo, cost))) {	// 更新成功
+		if (fDao.update(new Fixed(f_id, f_date, f_category, f_memo, f_cost))) {	// 更新成功
 			request.setAttribute("result",
 			new Result("更新成功！", "レコードを更新しました。", "/selfManagement/H_listServlet"));
 		}

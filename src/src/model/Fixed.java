@@ -14,6 +14,7 @@ public class Fixed implements Serializable {
 	 * @param f_cost
 	 */
 	public Fixed(int f_id, String f_date, String f_category, String f_memo, int f_cost) {
+		super();
 		this.f_id = f_id;
 		this.f_date = f_date;
 		this.f_category = f_category;
@@ -22,6 +23,7 @@ public class Fixed implements Serializable {
 	}
 
 	public Fixed() {
+		super();
 		this.f_id = 0;
 		this.f_date = "";
 		this.f_category = "";

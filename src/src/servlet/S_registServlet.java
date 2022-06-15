@@ -14,7 +14,7 @@ import model.Result;
 import model.Schedule;
 
 /**
- * Servlet implementation class V_registServlet
+ * Servlet implementation class S_registServlet
  */
 @WebServlet("/S_registServlet")
 public class S_registServlet extends HttpServlet {

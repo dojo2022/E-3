@@ -40,7 +40,7 @@ public class FixedDao {
 			// 結果表をコレクションにコピーする
 			while (rs.next()) {
 				Fixed list = new Fixed(
-						rs.getString("f_date"),
+						0, rs.getString("f_date"),
 						rs.getString("f_category"),
 						rs.getString("f_memo"),
 						rs.getInt("f_cost"));
@@ -89,7 +89,7 @@ public class FixedDao {
 			// 結果表をコレクションにコピーする
 			while (rs.next()) {
 				Fixed list = new Fixed(
-						rs.getString("f_date"),
+						0, rs.getString("f_date"),
 						rs.getString("f_category"),
 						rs.getString("f_memo"),
 						rs.getInt("f_cost"));
