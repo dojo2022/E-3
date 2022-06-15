@@ -148,7 +148,7 @@ public class ScheduleDao {
 			} else {
 				pStmt.setString(3, null);
 			}
-
+			pStmt.setInt(4, param.getS_id());
 			// SQL文を実行する
 			if (pStmt.executeUpdate() == 1) {
 				result = true;

@@ -33,6 +33,7 @@
 	<form method="POST" action="/selfManagement/S_updateDeleteServlet">
 		<table border="1">
 	 		<c:forEach var="card" items="${cardList}">
+
 				<tr>
 				    <td><input type="date" name="s_date" value="${card.s_date}"></input></td>
 				    <td>
