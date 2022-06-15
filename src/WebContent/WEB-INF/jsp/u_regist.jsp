@@ -22,8 +22,8 @@
     <option value="neither">どちらでもない</option>
    </select>
    <p>全項目入力してください</p>
-   <p><input type="button" value="登録">
-   <p><input type="button" value="ログインへ">
+   <p><input type="button" name="regist" value="登録">
+   <p><input type="button" name="login" value="ログインへ">
    </form>
  </main>
 </body>
