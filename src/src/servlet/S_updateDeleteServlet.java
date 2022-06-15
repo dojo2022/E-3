@@ -60,22 +60,22 @@ public class S_updateDeleteServlet extends HttpServlet {
 			if (sDao.update(new Schedule(s_id, date, category, memo))) {
 				// 更新成功
 				request.setAttribute("result",
-				new Result("更新成功！", "レコードを更新しました。", "/selfManagement/S_listServlet"));
+				new Result("更新失敗！", "/selfManagement/S_listServlet", "/selfManagement/S_listServlet"));
 			}
 			else {
 				// 更新失敗
 				request.setAttribute("result",
-				new Result("更新失敗！", "レコードを更新できませんでした。", "/selfManagement/S_listServlet"));
+				new Result("更新失敗！", "/selfManagement/S_listServlet", "/selfManagement/S_listServlet"));
 			}
 		}
 		else {
 			if (sDao.delete(s_id)) {	// 削除成功
 				request.setAttribute("result",
-				new Result("削除成功！", "レコードを削除しました。", "/selfManagement/S_listServlet"));
+				new Result("削除失敗！", "/selfManagement/S_listServlet", "/selfManagement/S_listServlet"));
 			}
 			else {						// 削除失敗
 				request.setAttribute("result",
-				new Result("削除失敗！", "レコードを削除できませんでした。", "/selfManagement/S_listServlet"));
+				new Result("削除失敗！", "/selfManagement/S_listServlet", "/selfManagement/S_listServlet"));
 			}
 		}
 
