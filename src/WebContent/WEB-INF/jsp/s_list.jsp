@@ -38,7 +38,7 @@
 				    <td><input type="date" name="s_date" value="${card.s_date}"></input></td>
 				    <td>
 				    	<select name="s_category">
-				    		<option hidden>${card.s_category}</option>
+				    		<option  value="${card.s_category}" hidden>${card.s_category}</option>
 				    		<option>遊び</option>
 							<option>休み</option>
 							<option>デート</option>
@@ -56,17 +56,6 @@
 		    </c:forEach>
 		</table>
 	</form>
-
-	<!--  コメントアウト開始
-
-			<tr>
-				<td>${card.s_date}</td>
-				<td>${card.s_memo}</td>
-				<td><button type="submit">詳細</button></td>
-			</tr>
-
-	-->
-
 		<button>予定登録</button>
 	<footer>
 

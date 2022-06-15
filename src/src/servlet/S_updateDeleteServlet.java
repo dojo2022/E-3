@@ -50,14 +50,14 @@ public class S_updateDeleteServlet extends HttpServlet {
 		// リクエストパラメータを取得する
 		request.setCharacterEncoding("UTF-8");
 		int s_id = Integer.parseInt(request.getParameter("s_id"));
-		String date = request.getParameter("s_date");
-		String category = request.getParameter("s_category");
-		String memo = request.getParameter("s_memo");
+		String s_date = request.getParameter("s_date");
+		String s_category = request.getParameter("s_category");
+		String s_memo = request.getParameter("s_memo");
 
 		// 更新または削除を行う
 		ScheduleDao sDao = new ScheduleDao();
 		if (request.getParameter("submit").equals("更新")) {
-			if (sDao.update(new Schedule(s_id, date, category, memo))) {
+			if (sDao.update(new Schedule(s_id, s_date, s_category, s_memo))) {
 				// 更新成功
 				request.setAttribute("result",
 				new Result("更新失敗！", "/selfManagement/S_listServlet", "/selfManagement/S_listServlet"));
