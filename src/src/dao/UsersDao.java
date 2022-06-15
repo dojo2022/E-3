@@ -132,5 +132,86 @@ public class UsersDao {
 			// 結果を返す
 			return result;
 		}
+	// 引数cardで指定されたレコードを更新し、成功したらtrueを返す
+	public boolean update(Users user) {
+		Connection conn = null;
+		boolean result = false;
 
+		try {
+			// JDBCドライバを読み込む
+			Class.forName("org.h2.Driver");
+
+			// データベースに接続する
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/SM", "sa", "kawasaki");
+
+			// SQL文を準備する
+			String sql = "UPDATE User SET reason=?, goal=?, deadline=? ,savings=? ,salary=? constitution=? WHERE user_id=?";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+
+			// SQL文を完成させる
+			if (user.getReason() != null && !user.getReason().equals("")) {
+				pStmt.setString(1, user.getReason());
+			}
+			else {
+				pStmt.setString(1, null);
+			}
+			if (user.getGoal() != 0) {
+				pStmt.setInt(2, user.getGoal());
+			}
+			else {
+				pStmt.setInt(2, 0);
+			}
+			if (user.getDeadline() != null && !user.getDeadline().equals("")) {
+				pStmt.setString(3, user.getDeadline());
+			}
+			else {
+				pStmt.setString(3, null);
+			}
+			if (user.getSavings() != 0) {
+				pStmt.setInt(4, user.getSavings());
+			}
+			else {
+				pStmt.setInt(4, 0);
+			}
+			if (user.getSalary() != 0) {
+				pStmt.setInt(5, user.getSalary());
+			}
+			else {
+				pStmt.setInt(5, 0);
+			}
+			if (user.getConstitution() != null && !user.getConstitution().equals("")) {
+				pStmt.setString(6, user.getConstitution());
+			}
+			else {
+				pStmt.setString(6, null);
+			}
+
+			pStmt.setString(7, user.getUser_id());
+
+			// SQL文を実行する
+			if (pStmt.executeUpdate() == 1) {
+				result = true;
+			}
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		finally {
+			// データベースを切断
+			if (conn != null) {
+				try {
+					conn.close();
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+
+		// 結果を返す
+			return result;
+		}
 }

@@ -7,13 +7,14 @@ public class Users {
 	private String reason;
 	private int goal;
 	private String deadline;
+	private int savings;
 	private int salary;
 	private String constitution;
 
 
 
-	public Users(String user_id, String login_id, String password, String reason, int goal, String deadline, int salary,
-			String constitution) {
+	public Users(String user_id, String login_id, String password, String reason, int goal, String deadline, int savings,
+			int salary,String constitution) {
 		super();
 		this.user_id = user_id;
 		this.login_id = login_id;
@@ -21,6 +22,7 @@ public class Users {
 		this.reason = reason;
 		this.goal = goal;
 		this.deadline = deadline;
+		this.savings = savings;
 		this.salary = salary;
 		this.constitution = constitution;
 	}
@@ -33,6 +35,7 @@ public class Users {
 		this.reason = "";
 		this.goal = 0;
 		this.deadline = "";
+		this.savings = 0;
 		this.salary = 0;
 		this.constitution = "";
 	}
@@ -84,6 +87,14 @@ public class Users {
 
 	public void setDeadline(String deadline) {
 		this.deadline = deadline;
+	}
+
+	public int getSavings() {
+		return savings;
+	}
+
+	public void setSavings(int savings) {
+		this.savings = savings;
 	}
 
 	public int getSalary() {
