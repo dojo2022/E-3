@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <html>
 <head>
 <meta charset="UTF-8">
@@ -17,8 +19,8 @@
  </ul>
 </nav>
 <div>
-<p><c:out value="${result.message}" /></p>
-<a href="${result.backTo}">画面へ</a>
+<p><c:out value="${result.title}" /></p>
+<a href="${result.message}">画面へ</a>
 <a href="${result.backTo}">戻る</a>
 </div>
 </body>
