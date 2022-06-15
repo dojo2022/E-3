@@ -12,11 +12,20 @@ public class Users {
 	private String constitution;
 
 
-
+	//ログインコンストラクタ
 	public Users(String login_id, String password) {
 		super();
 		this.login_id = login_id;
 		this.password = password;
+	}
+
+
+	//ユーザ新規登録コンストラクタ
+	public Users(String login_id, String password, String constitution) {
+		super();
+		this.login_id = login_id;
+		this.password = password;
+		this.constitution = constitution;
 	}
 
 	public Users(String user_id, String login_id, String password, String reason, int goal, String deadline, int savings,

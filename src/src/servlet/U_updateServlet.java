@@ -34,11 +34,12 @@ public class U_updateServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		HttpSession session = request.getSession();
+		HttpSession sessionuser = request.getSession();
+		sessionuser.getAttribute("id");
 
 		//検索処理を行う
 		UsersDao uDao = new UsersDao();
-		List<Users> userList = uDao.display();
+		List<Users> userList = uDao.display(id);
 		//検索結果をリクエストスコープに格納する
 		request.setAttribute("userList", userList);
 

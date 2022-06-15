@@ -21,10 +21,9 @@
 	<td><input type="password" class="textbox" name="PW"></td>
 	</tr>
 	<tr>
-	<td><input type="submit" name="login" value="ログイン"></td>
 	</tr>
 </table>
-<input type="button" name="login" value="ログイン">
+<input type="submit" name="login" value="ログイン">
 <p><a href="/selfManagement/U_registServlet">新規登録</a></p>
 </form>
 <footer>
