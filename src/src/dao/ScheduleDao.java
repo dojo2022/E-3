@@ -24,7 +24,7 @@ public class ScheduleDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/SM", "sa", "kawasaki");
 
 			// SQL文を準備する
-			String sql = "SELECT s_date,s_category,s_memo FROM Schedule ORDER BY s_date";
+			String sql = "SELECT s_id, s_date,s_category,s_memo FROM Schedule ORDER BY s_date";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を実行し、結果表を取得する
@@ -33,6 +33,7 @@ public class ScheduleDao {
 			// 結果表をコレクションにコピーする
 			while (rs.next()) {
 				Schedule card = new Schedule();
+				card.setS_id(rs.getInt("s_id"));
 				card.setS_date(rs.getString("s_date"));
 				card.setS_category(rs.getString("s_category"));
 				card.setS_memo(rs.getString("s_memo"));
@@ -132,6 +133,7 @@ public class ScheduleDao {
 			String sql = "UPDATE Schedule SET s_date=?, s_category=?, s_memo=? WHERE s_id=?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
+
 			// SQL文を完成させる
 			if (param.getS_date() != null && !param.getS_date().equals("")) {
 				pStmt.setString(1, param.getS_date());
@@ -149,6 +151,8 @@ public class ScheduleDao {
 				pStmt.setString(3, null);
 			}
 			pStmt.setInt(4, param.getS_id());
+
+
 			// SQL文を実行する
 			if (pStmt.executeUpdate() == 1) {
 				result = true;
