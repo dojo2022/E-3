@@ -2,6 +2,7 @@ package model;
 import java.io.Serializable;
 
 public class Fixed implements Serializable {
+	private int f_id;
 	private String f_date;
 	private String f_category;
 	private String f_memo;
@@ -12,7 +13,8 @@ public class Fixed implements Serializable {
 	 * @param f_memo
 	 * @param f_cost
 	 */
-	public Fixed(String f_date, String f_category, String f_memo, int f_cost) {
+	public Fixed(int f_id, String f_date, String f_category, String f_memo, int f_cost) {
+		this.f_id = f_id;
 		this.f_date = f_date;
 		this.f_category = f_category;
 		this.f_memo = f_memo;
@@ -20,10 +22,18 @@ public class Fixed implements Serializable {
 	}
 
 	public Fixed() {
+		this.f_id = 0;
 		this.f_date = "";
 		this.f_category = "";
 		this.f_memo = "";
 		this.f_cost = 0;
+	}
+
+	public int getF_id() {
+		return f_id;
+	}
+	public void setF_id(int f_id) {
+		this.f_id = f_id;
 	}
 
 	public String getF_date() {
