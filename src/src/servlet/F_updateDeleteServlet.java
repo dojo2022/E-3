@@ -9,9 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.FixedDao;
-import model.Fixed;
+import dao.VariableDao;
 import model.Result;
+import model.Variable;
 
 /**
  * Servlet implementation class F_updateDeleteServlet
@@ -61,31 +61,34 @@ public class F_updateDeleteServlet extends HttpServlet {
 	String f_category = request.getParameter("f_category");
 	String f_memo = request.getParameter("f_memo");
 	int f_cost = Integer.parseInt(request.getParameter("f_cost"));
-	// 更新または削除を行う
-	FixedDao fDao = new FixedDao();
-	if (request.getParameter("SUBMIT").equals("更新")) {
-		if (fDao.update(new Fixed(f_id, f_date, f_category, f_memo, f_cost))) {	// 更新成功
-			request.setAttribute("result",
-			new Result("更新成功！", "レコードを更新しました。", "/selfManagement/H_listServlet"));
-		}
-		else {												// 更新失敗
-			request.setAttribute("result",
-			new Result("更新失敗！", "レコードを更新できませんでした。", "/selfManagement/H_listServlet"));
-		}
-	}
-	else {
-		if (fDao.delete(f_id)) {	// 削除成功
-			request.setAttribute("result",
-			new Result("削除成功！", "レコードを削除しました。", "/selfManagement/H_listServlet"));
-		}
-		else {						// 削除失
-			request.setAttribute("result",
-			new Result("削除失敗！", "レコードを削除できませんでした。", "/selfManagement/H_listServlet"));
-		}
-	}
+	VariableDao vDao = new VariableDao();
 
-	// 結果ページにフォワードする
-	RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/result.jsp");
-	dispatcher.forward(request, response);
+	if (request.getParameter("submit").equals("更新")) {
+		if (vDao.update(new Variable(f_id,f_date,f_category,f_memo,f_cost))) { // 更新成功
+			request.setAttribute("result",
+					new Result("レコードを更新しました。", "", ""));
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/result.jsp");
+			dispatcher.forward(request, response);
+		} else { // 更新失敗
+			request.setAttribute("result",
+					new Result("レコードを更新できませんでした。", "", ""));
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/result.jsp");
+			dispatcher.forward(request, response);
+		}
+	} else {
+		if (vDao.delete(f_id)) { // 削除成功
+			request.setAttribute("result",
+					new Result("レコードを削除しました。", "", ""));
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/result.jsp");
+			dispatcher.forward(request, response);
+		} else { // 削除失敗
+			request.setAttribute("result",
+					new Result("レコードを削除できませんでした。", "", ""));
+			// 結果ページにフォワードする
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/result.jsp");
+			dispatcher.forward(request, response);
+		}
 	}
+}
+
 }
