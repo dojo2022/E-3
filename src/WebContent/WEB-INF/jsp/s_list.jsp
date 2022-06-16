@@ -61,7 +61,7 @@
 		    </c:forEach>
 		</table>
 	</form>
-	<button>予定登録</button>
+	<button onclick="OnRedirectClick();">予定登録</button>
 	<!--フッター-->
 	<hr>
 	<footer>
@@ -70,5 +70,10 @@
 		</p>
 	</footer>
 	<!--フッターここまで-->
+	<script type="text/javascript">
+    	function OnRedirectClick() {
+    		document.location.href = "/selfManagement/S_registServlet";
+		}
+  </script>
 </body>
 </html>
