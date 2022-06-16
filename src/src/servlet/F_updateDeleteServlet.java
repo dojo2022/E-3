@@ -9,14 +9,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.VariableDao;
+import dao.FixedDao;
+import model.Fixed;
 import model.Result;
-import model.Variable;
 
 /**
  * Servlet implementation class F_updateDeleteServlet
  */
-@WebServlet("/F_updateDelete")
+@WebServlet("/F_updateDeleteServlet")
 public class F_updateDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -41,54 +41,48 @@ public class F_updateDeleteServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
 		// もしもログインしていなかったらログインサーブレットにリダイレクトする
-/*
-		HttpSession session = request.getSession();
-		if (session.getAttribute("login_id") == null) {
-			response.sendRedirect("/selfManagement/LoginServlet");
-			return;
-		}
-*/
+		/*
+				HttpSession session = request.getSession();
+				if (session.getAttribute("login_id") == null) {
+					response.sendRedirect("/selfManagement/LoginServlet");
+					return;
+				}
+		*/
 
+		// リクエストパラメータを取得する
+		request.setCharacterEncoding("UTF-8");
+		int f_id = Integer.parseInt(request.getParameter("f_id"));
+		String f_date = request.getParameter("f_date");
+		String f_category = request.getParameter("f_category");
+		String f_memo = request.getParameter("f_memo");
+		int f_cost = Integer.parseInt(request.getParameter("f_cost"));
+		FixedDao fDao = new FixedDao();
 
-// リクエストパラメータを取得する
-	request.setCharacterEncoding("UTF-8");
-	int f_id = Integer.parseInt(request.getParameter("f_id"));
-	String f_date = request.getParameter("f_date");
-	String f_category = request.getParameter("f_category");
-	String f_memo = request.getParameter("f_memo");
-	int f_cost = Integer.parseInt(request.getParameter("f_cost"));
-	VariableDao vDao = new VariableDao();
-
-	if (request.getParameter("submit").equals("更新")) {
-		if (vDao.update(new Variable(f_id,f_date,f_category,f_memo,f_cost))) { // 更新成功
-			request.setAttribute("result",
-					new Result("レコードを更新しました。", "", ""));
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/result.jsp");
-			dispatcher.forward(request, response);
-		} else { // 更新失敗
-			request.setAttribute("result",
-					new Result("レコードを更新できませんでした。", "", ""));
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/result.jsp");
-			dispatcher.forward(request, response);
-		}
-	} else {
-		if (vDao.delete(f_id)) { // 削除成功
-			request.setAttribute("result",
-					new Result("レコードを削除しました。", "", ""));
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/result.jsp");
-			dispatcher.forward(request, response);
-		} else { // 削除失敗
-			request.setAttribute("result",
-					new Result("レコードを削除できませんでした。", "", ""));
-			// 結果ページにフォワードする
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/result.jsp");
-			dispatcher.forward(request, response);
+		if (request.getParameter("submit").equals("更新")) {
+			if (fDao.update(new Fixed(f_id, f_date, f_category, f_memo, f_cost))) { // 更新成功
+				response.sendRedirect( "/selfManagement/H_listServlet");
+			} else { // 更新失敗
+				request.setAttribute("result",
+						new Result("レコードを更新できませんでした。", "", "", "", ""));
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/result.jsp");
+				dispatcher.forward(request, response);
+			}
+		} else {
+			if (fDao.delete(f_id)) { // 削除成功
+				RequestDispatcher dispatcher = request.getRequestDispatcher( "/H_listServlet");
+				dispatcher.forward(request, response);
+			} else { // 削除失敗
+				request.setAttribute("result",
+						new Result("レコードを削除できませんでした。", "", "", "", ""));
+				// 結果ページにフォワードする
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/result.jsp");
+				dispatcher.forward(request, response);
+			}
 		}
 	}
-}
 
 }

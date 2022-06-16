@@ -47,12 +47,12 @@ public class F_registServlet extends HttpServlet {
 				FixedDao fDao = new FixedDao();
 				if (fDao.insert(new Fixed(f_date, f_category, f_memo, f_cost))) { // 登録成功
 					request.setAttribute("result",
-							new Result("登録成功しました", "/selfManagement/F_registServlet", "/selfManagement/H_listServlet"));
+							new Result("登録成功しました", "/selfManagement/F_registServlet", "固定費登録画面へ","/selfManagement/H_listServlet","家計簿一覧へ"));
 					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/result.jsp");
 					dispatcher.forward(request, response);
 				} else { // 登録失敗
 					request.setAttribute("result",
-							new Result("登録失敗しました", "/selfManagement/V_registServlet", "/selfManagement/H_listServlet"));
+							new Result("登録失敗しました", "/selfManagement/F_registServlet","固定費登録画面へ", "/selfManagement/H_listServlet","家計簿一覧へ"));
 					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/result.jsp");
 					dispatcher.forward(request, response);
 				}

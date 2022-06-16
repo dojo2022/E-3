@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.FixedDao;
 import dao.VariableDao;
+import model.Fixed;
 import model.Variable;
 
 /**
@@ -34,11 +36,17 @@ public class H_listServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		//検索処理を行う
+		//変動費検索処理を行う
 		VariableDao vDao = new VariableDao();
 		List<Variable> variableList = vDao.select();
 		//検索結果をリクエストスコープに格納する
 		request.setAttribute("variableList", variableList);
+
+		//固定費検索処理を行う
+		FixedDao fDao = new FixedDao();
+		List<Fixed> fixedList = fDao.select();
+		//検索結果をリクエストスコープに格納する
+		request.setAttribute("fixedList", fixedList);
 
 		// メニューページにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/h_list.jsp");

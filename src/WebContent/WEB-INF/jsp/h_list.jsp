@@ -81,7 +81,7 @@
 		<input type="button" value="検索">
 		<h2>固定費</h2>
 		<form method="POST" action="/selfManagement/F_updateDeleteServlet">
-			<c:forEach var="flist" items="${FixedList}">
+			<c:forEach var="flist" items="${fixedList}">
 				<table border="1">
 					<tr>
 						<th>日付</th>
@@ -92,9 +92,9 @@
 						<th>削除</th>
 					</tr>
 					<tr>
-						<td><input type="hidden" name="v_id" value="${flist.f_id}"><input
-							type="text" name="v_date" value="${flist.f_date}"></td>
-						<td><select name="v_category">
+						<td><input type="hidden" name="f_id" value="${flist.f_id}"><input
+							type="text" name="f_date" value="${flist.f_date}"></td>
+						<td><select name="f_category">
 								<option hidden>${flist.f_category}</option>
 								<option value="食費">食費</option>
 								<option value="日用品・衣服">日用品・衣服</option>
@@ -107,8 +107,8 @@
 								<option value="教育費">教育費</option>
 								<option value="その他">その他</option>
 						</select></td>
-						<td><input type="text" name="v_memo" value="${flist.f_memo}"></td>
-						<td><input type="text" name="v_cost" value="${flist.f_cost}"></td>
+						<td><input type="text" name="f_memo" value="${flist.f_memo}"></td>
+						<td><input type="text" name="f_cost" value="${flist.f_cost}"></td>
 						<td><input type="submit" name="submit" value="更新"></td>
 						<td><input type="submit" name="submit" value="削除"></td>
 					</tr>

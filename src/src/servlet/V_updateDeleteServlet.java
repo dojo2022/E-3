@@ -56,24 +56,24 @@ public class V_updateDeleteServlet extends HttpServlet {
 		if (request.getParameter("submit").equals("更新")) {
 			if (vDao.update(new Variable(v_id,v_date,v_category,v_memo,v_cost))) { // 更新成功
 				request.setAttribute("result",
-						new Result("レコードを更新しました。", "", ""));
+						new Result("レコードを更新しました。", "", "","",""));
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/result.jsp");
 				dispatcher.forward(request, response);
 			} else { // 更新失敗
 				request.setAttribute("result",
-						new Result("レコードを更新できませんでした。", "", ""));
+						new Result("レコードを更新できませんでした。", "", "","",""));
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/result.jsp");
 				dispatcher.forward(request, response);
 			}
 		} else {
 			if (vDao.delete(v_id)) { // 削除成功
 				request.setAttribute("result",
-						new Result("レコードを削除しました。", "", ""));
+						new Result("レコードを削除しました。", "", "","",""));
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/result.jsp");
 				dispatcher.forward(request, response);
 			} else { // 削除失敗
 				request.setAttribute("result",
-						new Result("レコードを削除できませんでした。", "", ""));
+						new Result("レコードを削除できませんでした。", "", "","",""));
 				// 結果ページにフォワードする
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/result.jsp");
 				dispatcher.forward(request, response);
