@@ -26,8 +26,8 @@
 		<!--ヘッダーここまで-->
 	<p>（例）2022/06/09</p>
 	<form method="POST" action="/selfManagement/S_listServlet">
-		<input type="text" name="day" placeholder="検索したい日付を入力してください">
-		<input type="submit" value="検索">
+		<input type="text" name="s_day" placeholder="検索したい日付を入力してください">
+		<input type="submit" name="surch" value="検索">
 	</form>
 
 	<table border="1">
@@ -70,10 +70,10 @@
 		</p>
 	</footer>
 	<!--フッターここまで-->
-	<script type="text/javascript">
+	<script>
     	function OnRedirectClick() {
     		document.location.href = "/selfManagement/S_registServlet";
 		}
-  </script>
+	</script>
 </body>
 </html>
