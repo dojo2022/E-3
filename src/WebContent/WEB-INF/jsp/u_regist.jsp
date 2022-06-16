@@ -5,26 +5,43 @@
 <head>
 <meta charset="UTF-8">
 <title>Self Managment</title>
+<link rel="stylesheet" type="text/css" href="/selfManagement/css/common.css">
 </head>
-<body>
-<h1>Self Managment</h1>
- <main>
-  <h2>新規登録してください</h2>
-   <form method="POST" action="/selfManagement/U_registServlet">
-   <p>ID:
-   <input type="text" name="login_id"></p>
-   <p>PW:
-   <input type="password" name="password"></p>
-   <label for="kind">暑がり・寒がり</label><br>
-   <select id="kind" name="constitution">
-    <option value="heat">暑がり</option>
-    <option value="cold">寒がり</option>
-    <option value="neither">どちらでもない</option>
-   </select>
-   <p>全項目入力してください</p>
-   <p><input type="submit" name="regist" value="登録">
-   <p><input type="button" onclick="location.href='/selfManagement/LoginServlet'" value="ログインへ">
-   </form>
- </main>
-</body>
+  <body>
+   <header class="header">
+     <h1 id="sm"><img src="/selfManagement/img/iii.png" width="400" height="130" alt="Self Managment" ></a></h1>
+	  <hr>
+	  </header>
+	  <main>
+	  <hr>
+	  <div class="container">
+	   <div class="contents">
+        <h2>新規登録してください</h2>
+         <form method="POST" action="/selfManagement/U_registServlet">
+         <div id="p">ID:
+          <input type="text" name="login_id"></div>
+         <div id="p">PW:
+          <input type="password" name="password"></div>
+          <label for="kind">暑がり・寒がり:</label>
+          <select id="kind" name="constitution">
+          <option value="heat">暑がり</option>
+          <option value="cold">寒がり</option>
+          <option value="neither">どちらでもない</option>
+          </select>
+         <div id="p">全項目入力してください</div>
+         <div class="button"><input type="submit" name="regist" value="登録">
+         <input type="button" onclick="location.href='/selfManagement/LoginServlet'" value="ログインへ"></div>
+         </form>
+         </div>
+         </div>
+        </main>
+
+
+     <hr>
+     <footer>
+		<div id="p">
+		&copy;Copyright 川崎.java. All rights reserved.
+		</div>
+	 </footer>
+  </body>
 </html>

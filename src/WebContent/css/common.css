@@ -1,1 +1,84 @@
 @charset "UTF-8";
+body {
+	background-color: white;
+
+}
+nav ul {
+	display: table;
+	margin: 0 auto;
+	padding: 0 ;
+	width: 80%;
+	text-align: center;
+	font-style: oblique;
+}
+nav li {
+	float: left;
+	width:  210px;
+	list-style-type: none;
+	text-align: center;
+}
+nav a {
+	display: block;
+	width: 100%;
+	text-decoration: none;
+	color: black;
+	padding-bottom: 5px;
+	font-style: oblique;
+}
+nav li.current {
+	border-bottom: 3px solid;
+	font-style: oblique;
+}
+
+nav li:hover {
+	color: block;
+	border-bottom: 3px solid #2f4f4f;
+	font-style: oblique;
+}
+.background-color {
+	position: absolute;
+        top: 50;
+        bottom: 600;
+        width: 1500px;
+        background: #dcdcdc;
+}
+h1{
+	text-align:center;
+}
+h2 {
+	text-align:center;
+	margin-top: 0px;
+}
+div p {
+	text-align: right;
+	margin-top: 0;
+	margin-bottom: 0;
+}
+h1#sm {
+	margin-bottom: 0px;
+}
+footer{
+	margin-top: 0;
+	text-align: center;
+}
+form {
+	text-align:center;
+	margin-bottom: 20px;
+}
+.button input:first-of-type{
+    margin-right: 60px;
+}
+.button {
+	text-align: center;
+	margin-bottom: 40px;
+	margin-top: 20px;
+}
+.container {
+  position: relative;
+  width: 1215px;
+  height: 225px;
+  background: #f5f5f5;
+}
+.contents {
+  position: relative;
+}
