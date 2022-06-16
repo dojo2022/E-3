@@ -35,10 +35,9 @@
 			<th>日付</th><th>カテゴリ</th><th>メモ</th><th>機能</th>
 		</tr>
 	</table>
-
-	<form method="POST" action="/selfManagement/S_updateDeleteServlet">
-		<table border="1">
-	 		<c:forEach var="slist" items="${scheduleList}">
+	<c:forEach var="slist" items="${scheduleList}">
+		<form method="POST" action="/selfManagement/S_updateDeleteServlet">
+			<table border="1">
 				<tr>
 					<td><input type="hidden" name="s_id" value="${slist.s_id}"></input></td>
 				    <td><input type="date" name="s_date" value="${slist.s_date}"></input></td>
@@ -58,9 +57,9 @@
 				    <td><input type="submit" name="submit" value="更新"></td>
 				    <td><input type="submit" name="submit" value="削除"></td>
 			    </tr>
-		    </c:forEach>
-		</table>
-	</form>
+			</table>
+		</form>
+	</c:forEach>
 	<button onclick="OnRedirectClick();">予定登録</button>
 	<!--フッター-->
 	<hr>
