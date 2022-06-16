@@ -50,7 +50,7 @@ public class S_updateDeleteServlet extends HttpServlet {
 			else {
 				// 更新失敗
 				request.setAttribute("result",
-						new Result("レコードを更新できませんでした。", "", ""));
+						new Result("レコードを更新できませんでした。", "", "", "/selfManagement/S_listServlet", "スケジュール一覧へ"));
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/result.jsp");
 				dispatcher.forward(request, response);
 			}
@@ -61,7 +61,7 @@ public class S_updateDeleteServlet extends HttpServlet {
 			}
 			else {						// 削除失敗
 				request.setAttribute("result",
-						new Result("レコードを削除できませんでした。", "", ""));
+						new Result("レコードを削除できませんでした。", "", "", "/selfManagement/S_listServlet", "スケジュール一覧へ"));
 				// 結果ページにフォワードする
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/result.jsp");
 				dispatcher.forward(request, response);
