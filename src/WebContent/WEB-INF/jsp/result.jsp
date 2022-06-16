@@ -20,8 +20,8 @@
 </nav>
 <div>
 <p><c:out value="${result.title}" /></p>
-<a href="${result.message}">画面へ</a>
-<a href="${result.backTo}">戻る</a>
+<p><a href="${result.backTo}"><c:out value="${result.backToWhere}" /></a></p>
+<p><a href="${result.back}"><c:out value="${result.backWhere}" /></a></p>
 </div>
 </body>
 <footer>

@@ -1,7 +1,6 @@
 package servlet;
 
 import java.io.IOException;
-//import java.util.List;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -50,8 +49,30 @@ public class S_listServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		// もしもログインしていなかったらログインサーブレットにリダイレクトする
+/*		HttpSession session = request.getSession();
+		if (session.getAttribute("id") == null) {
+			response.sendRedirect("/simpleBC/LoginServlet");
+			return;
+		}
+*/
+		if (request.getParameter("surch").equals("検索")) {
+		// リクエストパラメータを取得する
+		request.setCharacterEncoding("UTF-8");
+		String s_day = request.getParameter("s_day");
+
+		// 検索処理を行う
+		ScheduleDao sDao = new ScheduleDao();
+		List<Schedule> scheduleList = sDao.select(new Schedule(0, s_day, "", ""));
+
+		// 検索結果をリクエストスコープに格納する
+		request.setAttribute("scheduleList", scheduleList);
+
+		// スケジュール一覧ページにリダイレクトする
+		response.sendRedirect("/selfManagement/S_listServlet");
+		}
 	}
 
 }
+
+
