@@ -6,12 +6,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import model.Users;
+import model.User;
 
-public class UsersDao {
+public class UserDao {
 
 	// ログインできるならtrueを返す
-	public boolean isLoginOK(Users idpw) {
+	public boolean isLoginOK(User idpw) {
 		Connection conn = null;
 		boolean loginResult = false;
 
@@ -64,9 +64,9 @@ public class UsersDao {
 
 
 	//user取得
-	public Users display(int user_id) {
+	public User display(int user_id) {
 		Connection conn = null;
-		Users user = new Users();
+		User user = new User();
 
 		try {
 			// JDBCドライバを読み込む
@@ -123,7 +123,7 @@ public class UsersDao {
 
 
 	// 引数userで指定されたレコードを登録し、成功したらtrueを返す
-	public boolean insert(Users user) {
+	public boolean insert(User user) {
 		Connection conn = null;
 		boolean result = false;
 
@@ -187,7 +187,7 @@ public class UsersDao {
 	}
 
 	// 引数userで指定されたレコードを更新し、成功したらtrueを返す
-	public boolean update(Users user) {
+	public boolean update(User user) {
 		Connection conn = null;
 		boolean result = false;
 

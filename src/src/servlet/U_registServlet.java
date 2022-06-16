@@ -9,9 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.UsersDao;
+import dao.UserDao;
 import model.Result;
-import model.Users;
+import model.User;
 
 /**
  * Servlet implementation class RegistServlet
@@ -44,8 +44,8 @@ public class U_registServlet extends HttpServlet {
 		String constitution = request.getParameter("constitution");
 
 		// 登録処理を行う
-		UsersDao uDao = new UsersDao();
-		if (uDao.insert(new Users(login_id, password, constitution))) {	// 登録成功
+		UserDao uDao = new UserDao();
+		if (uDao.insert(new User(login_id, password, constitution))) {	// 登録成功
 			request.setAttribute("result",
 			new Result(login_id + "を登録しました", "","", "/selfManagement/LoginServlet","ログインへ"));
 			// 結果ページにフォワードする

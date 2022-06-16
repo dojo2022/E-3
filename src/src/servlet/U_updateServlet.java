@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dao.UsersDao;
-import model.Users;
+import dao.UserDao;
+import model.User;
 
 /**
  * Servlet implementation class U_updateServlet
@@ -37,8 +37,8 @@ public class U_updateServlet extends HttpServlet {
 		int user_id = (int)sessionuser.getAttribute("user_id");
 
 		//検索処理を行う
-		UsersDao uDao = new UsersDao();
-		Users user = uDao.display(user_id);
+		UserDao uDao = new UserDao();
+		User user = uDao.display(user_id);
 
 		//検索結果をリクエストスコープに格納する
 		request.setAttribute("user", user);

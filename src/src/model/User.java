@@ -1,6 +1,6 @@
 package model;
 
-public class Users {
+public class User {
 	private int user_id;
 	private String login_id;
 	private String password;
@@ -13,7 +13,7 @@ public class Users {
 
 
 	//ログインコンストラクタ
-	public Users(String login_id, String password) {
+	public User(String login_id, String password) {
 		super();
 		this.login_id = login_id;
 		this.password = password;
@@ -21,7 +21,7 @@ public class Users {
 
 
 	//ユーザ新規登録コンストラクタ
-	public Users(String login_id, String password, String constitution) {
+	public User(String login_id, String password, String constitution) {
 		super();
 		this.login_id = login_id;
 		this.password = password;
@@ -29,7 +29,7 @@ public class Users {
 	}
 
 
-	public Users(int user_id, String login_id, String password, String reason, int goal, String deadline, int savings,
+	public User(int user_id, String login_id, String password, String reason, int goal, String deadline, int savings,
 			int salary,String constitution) {
 		super();
 		this.user_id = user_id;
@@ -43,7 +43,7 @@ public class Users {
 		this.constitution = constitution;
 	}
 
-	public Users() {
+	public User() {
 		super();
 		this.user_id = 0;
 		this.login_id = "";

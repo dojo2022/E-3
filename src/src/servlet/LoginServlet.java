@@ -10,10 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dao.UsersDao;
+import dao.UserDao;
 import model.LoginUser;
 import model.Result;
-import model.Users;
+import model.User;
 
 /**
  * Servlet implementation class LoginServlet
@@ -41,8 +41,8 @@ public class LoginServlet extends HttpServlet {
 		String pw = request.getParameter("PW");
 
 		// ログイン処理を行う
-		UsersDao UDao = new UsersDao();
-		if (UDao.isLoginOK(new Users(id, pw))) {	// ログイン成功
+		UserDao UDao = new UserDao();
+		if (UDao.isLoginOK(new User(id, pw))) {	// ログイン成功
 
 			// セッションスコープにIDを格納する
 			HttpSession session = request.getSession();
