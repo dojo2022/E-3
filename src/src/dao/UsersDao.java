@@ -5,8 +5,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 import model.Users;
 
@@ -65,46 +63,46 @@ public class UsersDao {
 	}
 
 
-	//データ全件取得
-	public List<Users> display(int user_id) {
+	//user取得
+	public Users display(int user_id) {
 		Connection conn = null;
-		List<Users> userList = new ArrayList<Users>();
+		Users user = new Users();
 
 		try {
-		// JDBCドライバを読み込む
-		Class.forName("org.h2.Driver");
+			// JDBCドライバを読み込む
+			Class.forName("org.h2.Driver");
 
-		// データベースに接続する
-		conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/SM", "sa", "kawasaki");
+			// データベースに接続する
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/SM", "sa", "kawasaki");
 
-		// SQL文を準備する
-		String sql = "SELECT user_id,reason,goal,deadline,savings,salary,constitution FROM User WHERE user_id = ?";
-		PreparedStatement pStmt = conn.prepareStatement(sql);
-		pStmt.setInt(1, user_id);
+			// SQL文を準備する
+			String sql = "SELECT user_id,reason,goal,deadline,savings,salary,constitution FROM User WHERE user_id = ?";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+			pStmt.setInt(1, user_id);
 
-		// SQL文を実行し、結果表を取得する
-		ResultSet rs = pStmt.executeQuery();
-
-		// 結果表をコレクションにコピーする
-		while(rs.next()) {
-			Users userl = new Users();
-			userl.getUser_id();
-			userl.setReason(rs.getString("reason"));
-			userl.setGoal(rs.getInt("goal"));
-			userl.setDeadline(rs.getString("deadline"));
-			userl.setSalary(rs.getInt("salary"));
-			userl.setConstitution(rs.getString("constitution"));
+			// SQL文を実行し、結果表を取得する
+			ResultSet rs = pStmt.executeQuery();
 
 
-			userList.add(userl);			}
+
+			// 結果表をコレクションにコピーする
+			while(rs.next()) {
+				user.getUser_id();
+				user.setReason(rs.getString("reason"));
+				user.setGoal(rs.getInt("goal"));
+				user.setDeadline(rs.getString("deadline"));
+				user.setSalary(rs.getInt("salary"));
+				user.setConstitution(rs.getString("constitution"));
+
+			}
 		}
 		catch (SQLException e) {
 			e.printStackTrace();
-			userList = null;
+			user = null;
 		}
 		catch (ClassNotFoundException e) {
 			e.printStackTrace();
-			userList = null;
+			user = null;
 		}
 		finally {
 			// データベースを切断
@@ -114,13 +112,13 @@ public class UsersDao {
 				}
 				catch (SQLException e) {
 					e.printStackTrace();
-					userList = null;
+					user = null;
 				}
 			}
 		}
 
 		// 結果を返す
-		return userList;
+		return user;
 	}
 
 
@@ -275,6 +273,7 @@ public class UsersDao {
 		Connection conn = null;
 		int user_id = 0;
 
+
 		try {
 			// JDBCドライバを読み込む
 			Class.forName("org.h2.Driver");
@@ -283,19 +282,19 @@ public class UsersDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/SM", "sa", "kawasaki");
 
 			// SQL文を準備する
-			String sql = "SELECT user_id FROM User WHERE login_id= ?, password= ?";
+			String sql = "SELECT user_id FROM User WHERE login_id= ? and password= ?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
 			pStmt.setString(1, login_id);
-
 			pStmt.setString(2, password);
 
 			// SQL文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();
 
-			Users userl = new Users();
-			user_id = userl.setUser_id(rs.getInt("user_id"));
+			while(rs.next()) {
+				user_id = (rs.getInt("user_id"));
+			}
 
 		}catch (SQLException e) {
 			e.printStackTrace();

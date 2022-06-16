@@ -1,7 +1,6 @@
 package servlet;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -39,10 +38,10 @@ public class U_updateServlet extends HttpServlet {
 
 		//検索処理を行う
 		UsersDao uDao = new UsersDao();
-		List<Users> userList = uDao.display(user_id);
+		Users user = uDao.display(user_id);
 
 		//検索結果をリクエストスコープに格納する
-		request.setAttribute("userList", userList);
+		request.setAttribute("user", user);
 
 		// ユーザ更新ページにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/u_update.jsp");
