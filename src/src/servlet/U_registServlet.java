@@ -47,14 +47,14 @@ public class U_registServlet extends HttpServlet {
 		UsersDao uDao = new UsersDao();
 		if (uDao.insert(new Users(login_id, password, constitution))) {	// 登録成功
 			request.setAttribute("result",
-			new Result("登録しました",login_id + "を登録しました。", "/selfManagement/LoginServlet"));
+			new Result(login_id + "を登録しました", "","", "/selfManagement/LoginServlet","ログインへ"));
 			// 結果ページにフォワードする
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/result.jsp");
 			dispatcher.forward(request, response);
 		}
 		else {// 登録失敗
 			request.setAttribute("result",
-			new Result("登録失敗！", "会員登録できませんでした。", "/selfManagement/LoginServlet"));
+			new Result("会員登録失敗！", "","", "/selfManagement/LoginServlet","ログイン画面"));
 			// 結果ページにフォワードする
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/result.jsp");
 			dispatcher.forward(request, response);
