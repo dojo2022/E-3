@@ -7,17 +7,23 @@
 	<title>Self Management</title>
 </head>
 <body>
-	<header>
-		<h1>Self Management</h1>
-		<nav class="nav">
-            <ul id="nav">
-                <li>スケジュール</li>
-                <li>家計簿</li>
-                <li>ユーザ更新</li>
-                <li>ログアウト</li>
-            </ul>
-		</nav>
-	</header>
+		<!--ヘッダー-->
+		<header class="header">
+		<h1 class="title"><a href="/selfManagement/MenuServlet">Self Management</a></h1>
+		トップページ
+		<hr>
+		<!--カテゴリー-->
+
+		<ul>
+			<li><a href="/selfManagement/S_listServlet">スケジュール</a></li>
+			<li><a href="/selfManagement/H_listServlet">家計簿</a></li>
+			<li><a href="/selfManagement/U_updateServlet">ユーザー更新</a></li>
+			<li><a href="/selfManagement/LogoutServlet">ログアウト</a></li>
+		</ul>
+
+		<hr>
+		</header>
+		<!--ヘッダーここまで-->
 	<p>（例）2022/06/09</p>
 	<form method="POST" action="/selfManagement/S_listServlet">
 		<input type="text" name="day" placeholder="検索したい日付を入力してください">
@@ -55,9 +61,14 @@
 		    </c:forEach>
 		</table>
 	</form>
-		<button>予定登録</button>
+	<button>予定登録</button>
+	<!--フッター-->
+	<hr>
 	<footer>
-
+		<p>
+		&copy;Copyright 川崎.java. All rights reserved.
+		</p>
 	</footer>
+	<!--フッターここまで-->
 </body>
 </html>

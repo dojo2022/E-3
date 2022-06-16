@@ -45,10 +45,7 @@ public class S_updateDeleteServlet extends HttpServlet {
 		if (request.getParameter("submit").equals("更新")) {
 			if (sDao.update(new Schedule(s_id, s_date, s_category, s_memo))) {
 				// 更新成功
-				request.setAttribute("result",
-						new Result("レコードを更新しました。", "", ""));
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/result.jsp");
-				dispatcher.forward(request, response);
+				response.sendRedirect("/selfManagement/S_listServlet");
 			}
 			else {
 				// 更新失敗
@@ -60,10 +57,7 @@ public class S_updateDeleteServlet extends HttpServlet {
 		}
 		else {
 			if (sDao.delete(s_id)) {	// 削除成功
-				request.setAttribute("result",
-						new Result("レコードを削除しました。", "", ""));
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/result.jsp");
-				dispatcher.forward(request, response);
+				response.sendRedirect("/selfManagement/S_listServlet");
 			}
 			else {						// 削除失敗
 				request.setAttribute("result",
