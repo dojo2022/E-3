@@ -31,6 +31,16 @@
 	<footer>
 		<p>&copy;Copyright 川崎.java. All rights reserved.</p>
 	</footer>
-	<script src="selfManagement/js/login.js"></script>
+	<script>
+	var formObj = document.getElementById('login_form');
+	var errorMessageObj = document.getElementById('error_message');
+	formObj.onsubmit = function() {
+	  if (!formObj.ID.value || !formObj.PW.value) {
+	    errorMessageObj.textContent = '※IDとパスワードを入力してください！';
+	    return false;
+	  }
+	  errorMessageObj.textContent = null;
+	};
+	</script>
 </body>
 </html>
