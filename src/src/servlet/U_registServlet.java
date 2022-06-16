@@ -54,7 +54,7 @@ public class U_registServlet extends HttpServlet {
 		}
 		else {// 登録失敗
 			request.setAttribute("result",
-			new Result("会員登録失敗！", "","", "/selfManagement/LoginServlet","ログイン画面"));
+			new Result("会員登録失敗！", "","", "/selfManagement/LoginServlet","ログインへ"));
 			// 結果ページにフォワードする
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/result.jsp");
 			dispatcher.forward(request, response);

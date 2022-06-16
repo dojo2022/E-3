@@ -44,14 +44,14 @@ public class S_registServlet extends HttpServlet {
 
 		// 登録処理を行う
 		ScheduleDao sDao = new ScheduleDao();
-		if (sDao.insert(new Schedule(s_date, s_category, s_memo))) { // 登録成功
+		if (sDao.insert(new Schedule(0, s_date, s_category, s_memo))) { // 登録成功
 			request.setAttribute("result",
-					new Result("登録成功しました", "/selfManagement/S_registServlet", "/selfManagement/S_listServlet"));
+					new Result("登録成功しました", "/selfManagement/S_registServlet","続けて登録", "/selfManagement/S_listServlet","スケジュール一覧へ"));
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/result.jsp");
 			dispatcher.forward(request, response);
 		} else { // 登録失敗
 			request.setAttribute("result",
-					new Result("登録失敗しました", "/selfManagement/S_registServlet", "/selfManagement/S_listServlet"));
+					new Result("登録失敗しました", "/selfManagement/S_registServlet", "登録画面に戻る", "/selfManagement/S_listServlet", "スケジュール一覧へ"));
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/result.jsp");
 			dispatcher.forward(request, response);
 		}
