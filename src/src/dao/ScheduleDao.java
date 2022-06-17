@@ -24,7 +24,7 @@ public class ScheduleDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/SM", "sa", "kawasaki");
 
 			// SQL文を準備する
-			String sql = "SELECT s_id, s_date,s_category,s_memo FROM Schedule ORDER BY s_date";
+			String sql = "SELECT s_id, s_date,s_category,s_memo FROM Schedule WHERE s_date >= CURDATE() ORDER BY s_date";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を実行し、結果表を取得する
