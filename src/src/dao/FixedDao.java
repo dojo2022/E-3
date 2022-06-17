@@ -9,10 +9,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.Fixed;
+import model.Search;
 
 public class FixedDao {
 	// 引数paramで検索項目を指定し、検索結果のリストを返す
-	public List<Fixed> f_search(Fixed param) {
+	public List<Fixed> f_search(Search param) {
 		Connection conn = null;
 		List<Fixed> fixedList = new ArrayList<Fixed>();
 
@@ -24,12 +25,12 @@ public class FixedDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/SM", "sa", "kawasaki");
 
 			// SQL文を準備する
-			String sql = "SELECT f_id, f_date, f_category, f_memo, f_cost FROM Fixed WHERE f_search LIKE ? ORDER BY f_date DESC";
+			String sql = "SELECT f_id,f_date,f_category,f_memo,f_cost FROM Fixed WHERE f_date LIKE ? ORDER BY f_date DESC";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
-			if (param.getF_search() != null) {
-				pStmt.setString(1, "%" + param.getF_search() + "%");
+			if (param.getH_date() != null) {
+				pStmt.setString(1, "%" + param.getH_date() + "%");
 			} else {
 				pStmt.setString(1, "%");
 			}

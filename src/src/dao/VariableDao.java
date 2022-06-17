@@ -8,11 +8,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.Search;
 import model.Variable;
 
 public class VariableDao {
 	// 引数paramで検索項目を指定し、検索結果のリストを返す
-	public List<Variable> select(Variable param) {
+	public List<Variable> v_search(Search param) {
 		Connection conn = null;
 		List<Variable> variableList = new ArrayList<Variable>();
 
@@ -24,12 +25,12 @@ public class VariableDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/SM", "sa", "kawasaki");
 
 			// SQL文を準備する
-			String sql = "SELECT v_id,v_date, v_category, v_memo, v_cost FROM Varoable WHERE v_date LIKE ?";
+			String sql = "SELECT v_id,v_date, v_category, v_memo, v_cost FROM Variable WHERE v_date LIKE ?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
-			if (param.getV_date() != null) {
-				pStmt.setString(1, "%" + param.getV_date() + "%");
+			if (param.getH_date() != null) {
+				pStmt.setString(1, "%" + param.getH_date() + "%");
 			} else {
 				pStmt.setString(1, "%");
 			}

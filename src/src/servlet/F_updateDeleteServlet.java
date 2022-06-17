@@ -73,8 +73,7 @@ public class F_updateDeleteServlet extends HttpServlet {
 			}
 		} else {
 			if (fDao.delete(f_id)) { // 削除成功
-				RequestDispatcher dispatcher = request.getRequestDispatcher( "/H_listServlet");
-				dispatcher.forward(request, response);
+				response.sendRedirect( "/selfManagement/H_listServlet");
 			} else { // 削除失敗
 				request.setAttribute("result",
 						new Result("レコードを削除できませんでした。", "", "", "", ""));

@@ -47,12 +47,12 @@ public class V_registServlet extends HttpServlet {
 		VariableDao vDao = new VariableDao();
 		if (vDao.insert(new Variable(v_date, v_category, v_memo, v_cost))) { // 登録成功
 			request.setAttribute("result",
-					new Result("登録成功しました", "/selfManagement/V_registServlet", "/selfManagement/H_listServlet"));
+					new Result("登録成功しました", "/selfManagement/V_registServlet", "","/selfManagement/H_listServlet",""));
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/result.jsp");
 			dispatcher.forward(request, response);
 		} else { // 登録失敗
 			request.setAttribute("result",
-					new Result("登録失敗しました", "/selfManagement/V_registServlet", "/selfManagement/H_listServlet"));
+					new Result("登録失敗しました", "/selfManagement/V_registServlet","", "/selfManagement/H_listServlet",""));
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/result.jsp");
 			dispatcher.forward(request, response);
 		}

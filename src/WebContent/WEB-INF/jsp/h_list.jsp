@@ -16,16 +16,17 @@
 	<!-- メイン（ここから） -->
 	<div>
 		<p>目標</p>
+		<c:forEach var="user" items="${user}">
+		<p>${user.reason}</p>
+		</c:forEach>
 		<p>目標までの残り月</p>
 		<p>家計簿の現在の残高</p>
 		<p>貯金目安</p>
 		<p>使えるお金</p>
 	</div>
 
-	<input type="button" value="変動費登録"
-		onclick="/selfManagement/V_registServlet">
-	<input type="button" value="固定費登録"
-		onclick="/selfManagement/F_registServlet">
+	<input type="button" value="変動費登録" onclick="vRedirectClick();">
+	<input type="button" value="固定費登録" onclick="fRedirectClick();">
 
 	<br>
 	<br>
@@ -34,20 +35,25 @@
 
 	<!-- 変動費テーブル -->
 	<div>
-		(例)2022/06/13 <input type="text" placeholder="検索したい日付を入力してください">
-		<input type="button" value="検索">
+		(例)2022/06/13
+		<form method="POST" action="/selfManagement/H_listServlet">
+			<input type="text" name="h_date" placeholder="検索したい日付を入力してください">
+			<input type="submit" name="submit" value="検索">
+		</form>
 		<h2>変動費</h2>
-		<form method="POST" action="/selfManagement/V_updateDeleteServlet">
-			<c:forEach var="vlist" items="${variableList}">
-				<table border="1">
-					<tr>
-						<th>日付</th>
-						<th>カテゴリー</th>
-						<th>メモ</th>
-						<th>金額</th>
-						<th>更新</th>
-						<th>削除</th>
-					</tr>
+		<table border="1">
+			<tr>
+				<th>日付</th>
+				<th>カテゴリー</th>
+				<th>メモ</th>
+				<th>金額</th>
+				<th>更新</th>
+				<th>削除</th>
+			</tr>
+		</table>
+		<c:forEach var="vlist" items="${variableList}">
+			<form method="POST" action="/selfManagement/V_updateDeleteServlet">
+				<table>
 					<tr>
 						<td><input type="hidden" name="v_id" value="${vlist.v_id}"><input
 							type="text" name="v_date" value="${vlist.v_date}"></td>
@@ -70,30 +76,27 @@
 						<td><input type="submit" name="submit" value="削除"></td>
 					</tr>
 				</table>
-			</c:forEach>
-		</form>
+			</form>
+		</c:forEach>
 	</div>
 	<br>
 
 	<!-- 固定費テーブル -->
 	<div>
-		(例)2022/06/13
-		<form method="POST" action="/selfManagement/H_listServlet">
-		<input type="text" name="f_search" placeholder="検索したい日付を入力してください">
-		<input type="submit" name="submit" value="検索">
-		</form>
 		<h2>固定費</h2>
+		<table border="1">
+			<tr>
+				<th>日付</th>
+				<th>カテゴリー</th>
+				<th>メモ</th>
+				<th>金額</th>
+				<th>更新</th>
+				<th>削除</th>
+			</tr>
+		</table>
 		<form method="POST" action="/selfManagement/F_updateDeleteServlet">
 			<c:forEach var="flist" items="${fixedList}">
-				<table border="1">
-					<tr>
-						<th>日付</th>
-						<th>カテゴリー</th>
-						<th>メモ</th>
-						<th>金額</th>
-						<th>更新</th>
-						<th>削除</th>
-					</tr>
+				<table>
 					<tr>
 						<td><input type="hidden" name="f_id" value="${flist.f_id}"><input
 							type="text" name="f_date" value="${flist.f_date}"></td>
@@ -124,5 +127,13 @@
 	<!-- フッター（ここから） -->
 	<p>&copy;Copyright plusDOJO(SE plus). All rights reserved.</p>
 	<!-- フッター（ここまで） -->
+	<script>
+		function vRedirectClick() {
+			document.location.href = "/selfManagement/V_registServlet";
+		}
+		function fRedirectClick() {
+			document.location.href = "/selfManagement/F_registServlet";
+		}
+	</script>
 </body>
 </html>

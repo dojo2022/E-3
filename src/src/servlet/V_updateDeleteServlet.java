@@ -55,10 +55,7 @@ public class V_updateDeleteServlet extends HttpServlet {
 		VariableDao vDao = new VariableDao();
 		if (request.getParameter("submit").equals("更新")) {
 			if (vDao.update(new Variable(v_id,v_date,v_category,v_memo,v_cost))) { // 更新成功
-				request.setAttribute("result",
-						new Result("レコードを更新しました。", "", "","",""));
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/result.jsp");
-				dispatcher.forward(request, response);
+				response.sendRedirect( "/selfManagement/H_listServlet");
 			} else { // 更新失敗
 				request.setAttribute("result",
 						new Result("レコードを更新できませんでした。", "", "","",""));
@@ -67,10 +64,7 @@ public class V_updateDeleteServlet extends HttpServlet {
 			}
 		} else {
 			if (vDao.delete(v_id)) { // 削除成功
-				request.setAttribute("result",
-						new Result("レコードを削除しました。", "", "","",""));
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/result.jsp");
-				dispatcher.forward(request, response);
+				response.sendRedirect( "/selfManagement/H_listServlet");
 			} else { // 削除失敗
 				request.setAttribute("result",
 						new Result("レコードを削除できませんでした。", "", "","",""));

@@ -9,10 +9,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.FixedDao;
+import dao.UserDao;
 import dao.VariableDao;
 import model.Fixed;
+import model.Search;
+import model.User;
 import model.Variable;
 
 /**
@@ -35,6 +39,14 @@ public class H_listServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
+		//ユーザ情報を取得
+		HttpSession sessionuser = request.getSession();
+		int user_id = (int) sessionuser.getAttribute("user_id");
+		UserDao uDao = new UserDao();
+		User user = uDao.display(user_id);
+		//検索結果をリクエストスコープに格納する
+		request.setAttribute("user", user);
 
 		//変動費検索処理を行う
 		VariableDao vDao = new VariableDao();
@@ -61,10 +73,16 @@ public class H_listServlet extends HttpServlet {
 		//検索処理
 		//検索内容の取得
 		request.setCharacterEncoding("UTF-8");
-		String f_search = request.getParameter("f_search");
+		String h_date = request.getParameter("h_date");
+
+		//変動費検索処理を行う
+		VariableDao vDao = new VariableDao();
+		List<Variable> variableList = vDao.v_search(new Search(h_date));
+		//検索結果をリクエストスコープに格納する
+		request.setAttribute("variableList", variableList);
 
 		FixedDao fDao = new FixedDao();
-		List<Fixed> fixedList = fDao.f_search(new Fixed(f_search));
+		List<Fixed> fixedList = fDao.f_search(new Search(h_date));
 		//検索結果をリクエストスコープに格納する
 		request.setAttribute("fixedList", fixedList);
 
