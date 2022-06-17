@@ -16,9 +16,6 @@
 	<!-- メイン（ここから） -->
 	<div>
 		<p>目標</p>
-		<c:forEach var="user" items="${user}">
-		<p>${user.reason}</p>
-		</c:forEach>
 		<p>目標までの残り月</p>
 		<p>家計簿の現在の残高</p>
 		<p>貯金目安</p>

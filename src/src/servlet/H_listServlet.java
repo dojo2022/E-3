@@ -9,14 +9,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import dao.FixedDao;
-import dao.UserDao;
 import dao.VariableDao;
 import model.Fixed;
 import model.Search;
-import model.User;
 import model.Variable;
 
 /**
@@ -41,12 +38,12 @@ public class H_listServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		//ユーザ情報を取得
-		HttpSession sessionuser = request.getSession();
+		/*HttpSession sessionuser = request.getSession();
 		int user_id = (int) sessionuser.getAttribute("user_id");
 		UserDao uDao = new UserDao();
 		User user = uDao.display(user_id);
 		//検索結果をリクエストスコープに格納する
-		request.setAttribute("user", user);
+		request.setAttribute("user", user);*/
 
 		//変動費検索処理を行う
 		VariableDao vDao = new VariableDao();
