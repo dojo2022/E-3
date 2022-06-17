@@ -5,14 +5,29 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="/selfManagement/css/common.css">
 <title>Self Management</title>
 <link rel="" type="" href="">
 </head>
 <body>
-	<!-- ヘッダー（ここから） -->
-	<h1>Self Management</h1>
-	<!-- ヘッダー（ここまで） -->
-
+	<!--ヘッダー-->
+	<header class="header">
+	<h1 id="sm"><a href="/selfManagement/MenuServlet"><img src="/selfManagement/img/iii.png" width="400" height="130" alt="Self Managment" ></a></h1>
+	<div>
+		<p>家計簿一覧ページ</p>
+	</div>
+	<hr>
+	<!--カテゴリー-->
+		<nav class="nav">
+		<ul>
+			<li><a href="/selfManagement/S_listServlet">スケジュール</a></li>
+			<li><a href="/selfManagement/H_listServlet">家計簿</a></li>
+			<li><a href="/selfManagement/U_updateServlet">ユーザー更新</a></li>
+			<li><a href="/selfManagement/LogoutServlet">ログアウト</a></li>
+		</ul>
+       	</nav>
+		<hr>
+		</header>
 	<!-- メイン（ここから） -->
 	<div>
 		<p>目標</p>
@@ -120,10 +135,12 @@
 		</form>
 	</div>
 	<!-- メイン（ここまで） -->
-
-	<!-- フッター（ここから） -->
-	<p>&copy;Copyright plusDOJO(SE plus). All rights reserved.</p>
-	<!-- フッター（ここまで） -->
+	<!--フッター-->
+	<hr>
+	<footer>
+		<p>&copy;Copyright 川崎.java. All rights reserved.</p>
+	</footer>
+	<!--フッターここまで-->
 	<script>
 		function vRedirectClick() {
 			document.location.href = "/selfManagement/V_registServlet";
