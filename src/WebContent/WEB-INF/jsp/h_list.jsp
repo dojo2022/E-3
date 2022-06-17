@@ -77,8 +77,11 @@
 
 	<!-- 固定費テーブル -->
 	<div>
-		(例)2022/06/13 <input type="text" placeholder="検索したい日付を入力してください">
-		<input type="button" value="検索">
+		(例)2022/06/13
+		<form method="POST" action="/selfManagement/H_listServlet">
+		<input type="text" name="f_search" placeholder="検索したい日付を入力してください">
+		<input type="submit" name="submit" value="検索">
+		</form>
 		<h2>固定費</h2>
 		<form method="POST" action="/selfManagement/F_updateDeleteServlet">
 			<c:forEach var="flist" items="${fixedList}">

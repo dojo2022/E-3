@@ -58,8 +58,19 @@ public class H_listServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		//検索処理
+		//検索内容の取得
+		request.setCharacterEncoding("UTF-8");
+		String f_search = request.getParameter("f_search");
+
+		FixedDao fDao = new FixedDao();
+		List<Fixed> fixedList = fDao.f_search(new Fixed(f_search));
+		//検索結果をリクエストスコープに格納する
+		request.setAttribute("fixedList", fixedList);
+
+		// メニューページにフォワードする
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/h_list.jsp");
+		dispatcher.forward(request, response);
 	}
 
 }

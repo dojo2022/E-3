@@ -7,6 +7,7 @@ public class Fixed implements Serializable {
 	private String f_category;
 	private String f_memo;
 	private int f_cost;
+	private String f_search;
 	/**
 	 * @param f_date
 	 * @param f_category
@@ -37,6 +38,10 @@ public class Fixed implements Serializable {
 		this.f_category = "";
 		this.f_memo = "";
 		this.f_cost = 0;
+	}
+
+	public Fixed(String f_search) {
+		this.f_search = f_search;
 	}
 
 	public int getF_id() {
@@ -76,6 +81,14 @@ public class Fixed implements Serializable {
 
 	public void setF_cost(int f_cost) {
 		this.f_cost = f_cost;
+	}
+
+	public String getF_search() {
+		return f_search;
+	}
+
+	public void setF_search(String f_search) {
+		this.f_search = f_search;
 	}
 
 
