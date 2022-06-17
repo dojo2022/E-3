@@ -3,6 +3,7 @@ body {
 	background-color: white;
 
 }
+/*navタグのデザイン*/
 nav ul {
 	display: table;
 	margin: 0 auto;
@@ -35,6 +36,7 @@ nav li:hover {
 	border-bottom: 3px solid #2f4f4f;
 	font-style: oblique;
 }
+/*後ろの灰色*/
 .background-color {
 	position: absolute;
         top: 50;
@@ -42,6 +44,7 @@ nav li:hover {
         width: 1500px;
         background: #dcdcdc;
 }
+/*ロゴの位置*/
 h1{
 	text-align:center;
 }
@@ -81,4 +84,9 @@ form {
 }
 .contents {
   position: relative;
+}
+table,th,td {
+	text-align: right;
+	margin-top: 0;
+	margin-bottom: 0;
 }
