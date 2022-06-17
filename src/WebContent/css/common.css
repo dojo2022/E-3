@@ -39,9 +39,9 @@ nav li:hover {
 /*後ろの灰色*/
 .background-color {
 	position: absolute;
-        top: 50;
+        top: 40;
         bottom: 600;
-        width: 1500px;
+        width: 1250px;
         background: #dcdcdc;
 }
 /*ロゴの位置*/
@@ -50,43 +50,62 @@ h1{
 }
 h2 {
 	text-align:center;
-	margin-top: 0px;
+	margin-top: 30px;
+	margin-bottom: 0px;
 }
 div p {
 	text-align: right;
 	margin-top: 0;
 	margin-bottom: 0;
 }
+
 h1#sm {
-	margin-bottom: 0px;
+	margin-bottom: 0;/*ロゴの後ろの空白を詰める*/
 }
 footer{
-	margin-top: 0;
-	text-align: center;
+	margin-top: 0;/*フッターの上の空白を詰める*/
+	text-align: center;/*フッター中央詰め*/
 }
 form {
-	text-align:center;
-	margin-bottom: 20px;
+	text-align:center;/*フォーム全体を真ん中にする*/
+	margin-bottom: 0px;
 }
 .button input:first-of-type{
     margin-right: 60px;
 }
 .button {
-	text-align: center;
+	text-align: center;/*ボタンの位置*/
 	margin-bottom: 40px;
 	margin-top: 20px;
 }
-.container {
+.botton1 {
+	text-align: center;
+	margin-top: 30px;
+}
+.container {/*真ん中の色*/
   position: relative;
   width: 1215px;
-  height: 225px;
+  height: auto;
   background: #f5f5f5;
 }
 .contents {
   position: relative;
+  margin-top: 30px;
 }
 table,th,td {
 	text-align: right;
 	margin-top: 0;
 	margin-bottom: 0;
+}
+main {
+	text-align: center;
+}
+table,td,th {/*テーブルタグ真ん中にする*/
+  margin: auto;
+}
+td {
+	text-align: center;
+}
+th {
+	margin-bottom: 30;
 }
