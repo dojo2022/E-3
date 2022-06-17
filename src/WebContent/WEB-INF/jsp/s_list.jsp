@@ -5,26 +5,30 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Self Management</title>
+	<link rel="stylesheet" type="text/css"
+	href="/selfManagement/css/common.css">
 </head>
 <body>
 		<!--ヘッダー-->
 		<header class="header">
-		<h1 class="title"><a href="/selfManagement/MenuServlet">Self Management</a></h1>
-		トップページ
-		<hr>
-		<!--カテゴリー-->
-
-		<ul>
-			<li><a href="/selfManagement/S_listServlet">スケジュール</a></li>
-			<li><a href="/selfManagement/H_listServlet">家計簿</a></li>
-			<li><a href="/selfManagement/U_updateServlet">ユーザー更新</a></li>
-			<li><a href="/selfManagement/LogoutServlet">ログアウト</a></li>
-		</ul>
-
-		<hr>
+			<h1 id="sm"><a href="/selfManagement/MenuServlet"><img src="/selfManagement/img/iii.png" width="400" height="130" alt="Self Managment" ></a></h1>
+			<div>
+				<p>トップページ</p>
+			</div>
+			<hr>
+			<!--カテゴリー-->
+			<nav class="nav">
+				<ul>
+					<li><a href="/selfManagement/S_listServlet">スケジュール</a></li>
+					<li><a href="/selfManagement/H_listServlet">家計簿</a></li>
+					<li><a href="/selfManagement/U_updateServlet">ユーザー更新</a></li>
+					<li><a href="/selfManagement/LogoutServlet">ログアウト</a></li>
+				</ul>
+	       	</nav>
+			<hr>
 		</header>
-		<!--ヘッダーここまで-->
-	<p>（例）2022/06/09</p>
+	<!--ヘッダーここまで-->
+	<p>（例）日付で検索：2022-06-30 or 月で検索：2022-06</p>
 	<form method="POST" action="/selfManagement/S_listServlet">
 		<input type="text" name="s_day" placeholder="検索したい日付を入力してください">
 		<input type="submit" name="submit" value="検索">
@@ -39,8 +43,7 @@
 		<form method="POST" action="/selfManagement/S_updateDeleteServlet">
 			<table border="1">
 				<tr>
-					<td><input type="hidden" name="s_id" value="${slist.s_id}"></input></td>
-				    <td><input type="date" name="s_date" value="${slist.s_date}"></input></td>
+					<td><input type="hidden" name="s_id" value="${slist.s_id}"></input><input type="date" name="s_date" value="${slist.s_date}"></input></td>
 				    <td><select name="s_category">
 				    		<option  value="${slist.s_category}" hidden>${slist.s_category}</option>
 				    		<option value="遊び">遊び</option>
@@ -64,9 +67,7 @@
 	<!--フッター-->
 	<hr>
 	<footer>
-		<p>
-		&copy;Copyright 川崎.java. All rights reserved.
-		</p>
+		<p>&copy;Copyright 川崎.java. All rights reserved.</p>
 	</footer>
 	<!--フッターここまで-->
 	<script>

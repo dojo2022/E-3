@@ -80,7 +80,7 @@ public class ScheduleDao {
 
 				//SQL分を完成させる
 				if (param.getS_date() != null) {
-					pStmt.setString(1, "%" + param.getS_date() + "%");
+					pStmt.setString(1, param.getS_date() + "%");
 				}
 				else {
 					pStmt.setString(1, "%");
