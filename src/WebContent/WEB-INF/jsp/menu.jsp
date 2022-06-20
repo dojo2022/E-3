@@ -30,27 +30,33 @@
 		</header>
 		<!--ヘッダーここまで-->
         <main>
- 		  <div class="background-color">
+
+ 		  <div class="container">
+ 		  <div class="contents">
  		  <img src="/selfManagement/img/iii.png" width="400" height="130" alt="Self Managment" >
- 		   <c:forEach var="slist" items="${scheduleList}">
+			<c:forEach var="slist" items="${scheduleList}">
  		    <table>
  		     <tr>
  		      <th>日付</th>
  		      <th>予定</th>
  		     </tr>
  		     <tr>
- 		      <td>${slist.s_date} </td>
+ 		  	  <td>${slist.s_date} </td>
  		      <td>${slist.s_category} </td>
  		     </tr>
  		    </table>
- 		   </c:forEach>
- 		  <!--  ${today} -->
- 		   <!-- ${month} -->
- 		  <!--  ${date -1}-->
- 		   <!--  ${date1} -->
- 		   ${deadline - date}
+			</c:forEach>
+ 		    ${deadline}
+ 		    ${fixed}
+ 		    ${variable}
+
+ 		    <!-- ↓本当はsavings使って計算します -->
+			<c:out value="${user.goal / deadline}"/>
+
 
           </div>
+          </div>
+
         </main>
 		<!--フッター-->
 		<hr>

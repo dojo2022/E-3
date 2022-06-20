@@ -15,9 +15,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.FixedDao;
 import dao.ScheduleDao;
 import dao.UserDao;
+import dao.VariableDao;
+import model.Fixed;
 import model.Schedule;
+import model.User;
+import model.Variable;
 
 /**
  * Servlet implementation class MenuServlet
@@ -40,8 +45,10 @@ public class MenuServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//スケジュールテーブルからデータを取得
 		ScheduleDao SDao = new ScheduleDao();
-		List<Schedule> scheduleList = SDao.display();
-		request.setAttribute("slist", scheduleList);
+		List<Schedule> scheduleList = SDao.display5();
+		request.setAttribute("scheduleList", scheduleList);
+
+
 		//1つのデーブルからデータ取得
 		HttpSession sessionuser = request.getSession();
 		int user_id = (int)sessionuser.getAttribute("user_id");
@@ -63,13 +70,25 @@ public class MenuServlet extends HttpServlet {
 
 		//検索処理を行う
 		UserDao uDao = new UserDao();
-		Date deadline = uDao.deadline(user_id);
+		User user = uDao.display(user_id);
+
+		//残高を計算する
+		FixedDao fDao = new FixedDao();
+		List<Fixed> fixed = fDao.select();
+		VariableDao vDao = new VariableDao();
+		List<Variable> variable = vDao.select();
+
+		//日付取得
+		Date date1 = uDao.deadline(user_id);
+		int d1 = Integer.parseInt(df.format(date1));
+		int d2 = Integer.parseInt(df.format(date));
+		int deadline = d1 - d2;
 
 		//検索結果をリクエストスコープに格納する
-		//request.setAttribute("month",month);
-		request.setAttribute("deadline", Integer.parseInt(df.format(deadline)));
-		request.setAttribute("today", todaysDate);
-		request.setAttribute("date", Integer.parseInt(df.format(date)));
+		request.setAttribute("deadline", deadline);
+		request.setAttribute("user", user);
+		request.setAttribute("fixed", fixed);
+		request.setAttribute("variable", variable);
 
 		// メニューページにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/menu.jsp");
