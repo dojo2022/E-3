@@ -102,7 +102,6 @@
 		<h2>固定費</h2>
 		<table border="1">
 			<tr>
-				<th>日付</th>
 				<th>カテゴリー</th>
 				<th>メモ</th>
 				<th>金額</th>
