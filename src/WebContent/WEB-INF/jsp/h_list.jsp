@@ -75,6 +75,7 @@
 								<option hidden>${vlist.v_category}</option>
 								<option value="食費">食費</option>
 								<option value="日用品・衣服">日用品・衣服</option>
+								<option value="通信費">通信費</option>
 								<option value="交際費">交際費</option>
 								<option value="交通費">交通費</option>
 								<option value="水道・光熱費">水道・光熱費</option>
@@ -101,7 +102,6 @@
 		<h2>固定費</h2>
 		<table border="1">
 			<tr>
-				<th>日付</th>
 				<th>カテゴリー</th>
 				<th>メモ</th>
 				<th>金額</th>
@@ -115,21 +115,16 @@
 			<c:set var="fTotal" value="${fTotal + flist.f_cost}" />
 				<table>
 					<tr>
-						<td><input type="hidden" name="f_id" value="${flist.f_id}"><input
-							type="text" name="f_date" value="${flist.f_date}"></td>
+						<td><input type="hidden" name="f_id" value="${flist.f_id}">
+							<input type="hidden" name="f_date" value="${flist.f_date}"></td>
 						<td><select name="f_category">
 								<option hidden>${flist.f_category}</option>
-								<option value="食費">食費</option>
-								<option value="日用品・衣服">日用品・衣服</option>
-								<option value="交際費">交際費</option>
-								<option value="交通費">交通費</option>
-								<option value="水道・光熱費">水道・光熱費</option>
-								<option value="美容">美容</option>
-								<option value="趣味">趣味</option>
-								<option value="医療費">医療費</option>
-								<option value="教育費">教育費</option>
-								<option value="その他">その他</option>
-						</select></td>
+						<option value="家賃">家賃</option>
+						<option value="保険">保険</option>
+						<option value="通信費">サブスク</option>
+						<option value="定期代">定期代</option>
+						<option value="ローン">ローン</option>
+						<option value="その他">その他</option>						</select></td>
 						<td><input type="text" name="f_memo" value="${flist.f_memo}"></td>
 						<td><input type="text" name="f_cost" value="${flist.f_cost}"></td>
 						<td><input type="submit" name="submit" value="更新"></td>
