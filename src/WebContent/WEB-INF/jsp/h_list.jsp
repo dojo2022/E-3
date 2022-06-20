@@ -69,17 +69,15 @@
 			<form method="POST" action="/selfManagement/V_updateDeleteServlet">
 				<table>
 					<tr>
-						<td><input type="hidden" name="v_id" value="${vlist.v_id}"><input
-							type="text" name="v_date" value="${vlist.v_date}"></td>
+						<td><input type="hidden" name="v_id" value="${vlist.v_id}">
+							<input type="date" name="v_date" value="${vlist.v_date}"></td>
 						<td>
 							<select name="v_category">
 								<option hidden>${vlist.v_category}</option>
-								<option value="食費" selected>食費</option>
+								<option value="食費">食費</option>
 								<option value="日用品・衣服">日用品・衣服</option>
-								<option value="通信費">通信費</option>
 								<option value="交際費">交際費</option>
 								<option value="交通費">交通費</option>
-								<option value="水道・光熱費">水道・光熱費</option>
 								<option value="美容">美容</option>
 								<option value="趣味">趣味</option>
 								<option value="医療費">医療費</option>
@@ -113,9 +111,9 @@
 			</tr>
 		</table>
 		<c:set var="fTotal" value="${0}" />
-		<form method="POST" action="/selfManagement/F_updateDeleteServlet">
 			<c:forEach var="flist" items="${fixedList}">
 			<c:set var="fTotal" value="${fTotal + flist.f_cost}" />
+				<form method="POST" action="/selfManagement/F_updateDeleteServlet">
 				<table>
 					<tr>
 						<td><input type="hidden" name="f_id" value="${flist.f_id}">
@@ -123,11 +121,13 @@
 						<td>
 							<select name="f_category">
 								<option hidden>${flist.f_category}</option>
-								<option value="家賃" selected>家賃</option>
-								<option value="保険">保険</option>
-								<option value="サブスク">サブスク</option>
-								<option value="定期代">定期代</option>
-								<option value="ローン">ローン</option>
+								<option value="住居費">住居費</option>
+								<option value="水道光熱費">水道光熱費</option>
+								<option value="通信費">通信費</option>
+								<option value="生命保険">生命保険</option>
+								<option value="自動車関係費">自動車関係費</option>
+								<option value="サブフリクション">サブフリクション</option>
+								<option value="習い事等">習い事等</option>
 								<option value="その他">その他</option>
 							</select>
 						</td>
@@ -137,8 +137,9 @@
 						<td><input type="submit" name="submit" value="削除"></td>
 					</tr>
 				</table>
-			</c:forEach>
-		</form>
+			</form>
+		</c:forEach>
+
 		固定費合計： ${fTotal}
 	</div>
 	合計支出: ${vTotal + fTotal}
