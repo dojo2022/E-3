@@ -63,7 +63,9 @@
 				<th>削除</th>
 			</tr>
 		</table>
+		<c:set var="vTotal" value="${0}" />
 		<c:forEach var="vlist" items="${variableList}">
+			<c:set var="vTotal" value="${vTotal + vlist.v_cost}" />
 			<form method="POST" action="/selfManagement/V_updateDeleteServlet">
 				<table>
 					<tr>
@@ -90,6 +92,7 @@
 				</table>
 			</form>
 		</c:forEach>
+		変動費合計： ${vTotal}
 	</div>
 	<br>
 
@@ -106,8 +109,10 @@
 				<th>削除</th>
 			</tr>
 		</table>
+		<c:set var="fTotal" value="${0}" />
 		<form method="POST" action="/selfManagement/F_updateDeleteServlet">
 			<c:forEach var="flist" items="${fixedList}">
+			<c:set var="fTotal" value="${fTotal + flist.f_cost}" />
 				<table>
 					<tr>
 						<td><input type="hidden" name="f_id" value="${flist.f_id}"><input
@@ -133,7 +138,9 @@
 				</table>
 			</c:forEach>
 		</form>
+		固定費合計： ${fTotal}
 	</div>
+	合計支出: ${vTotal + fTotal}
 	<!-- メイン（ここまで） -->
 	<!--フッター-->
 	<hr>
