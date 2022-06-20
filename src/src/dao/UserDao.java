@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 
 import model.User;
 
@@ -121,6 +122,53 @@ public class UserDao {
 		return user;
 	}
 
+	//deadline取得
+		public Date deadline(int user_id) {
+			Connection conn = null;
+			Date deadline = new Date();
+
+			try {
+				// JDBCドライバを読み込む
+				Class.forName("org.h2.Driver");
+
+				// データベースに接続する
+				conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/SM", "sa", "kawasaki");
+
+				// SQL文を準備する
+				String sql = "SELECT deadline FROM User WHERE user_id = ?";
+				PreparedStatement pStmt = conn.prepareStatement(sql);
+				pStmt.setInt(1, user_id);
+
+				// SQL文を実行し、結果表を取得する
+				ResultSet rs = pStmt.executeQuery();
+
+
+				// 結果表をコレクションにコピーする
+				while(rs.next()) {
+					deadline = (rs.getDate("deadline"));
+				}
+			}
+			catch (SQLException e) {
+				e.printStackTrace();
+			}
+			catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+			finally {
+				// データベースを切断
+				if (conn != null) {
+					try {
+						conn.close();
+					}
+					catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+
+			// 結果を返す
+			return deadline;
+		}
 
 	// 引数userで指定されたレコードを登録し、成功したらtrueを返す
 	public boolean insert(User user) {

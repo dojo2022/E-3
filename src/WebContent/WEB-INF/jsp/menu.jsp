@@ -44,8 +44,12 @@
  		     </tr>
  		    </table>
  		   </c:forEach>
- 		   ${today}
- 		   ${month}
+ 		  <!--  ${today} -->
+ 		   <!-- ${month} -->
+ 		  <!--  ${date -1}-->
+ 		   <!--  ${date1} -->
+ 		   ${deadline - date}
+
           </div>
         </main>
 		<!--フッター-->

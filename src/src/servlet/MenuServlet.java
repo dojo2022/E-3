@@ -1,8 +1,10 @@
 package servlet;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -16,7 +18,6 @@ import javax.servlet.http.HttpSession;
 import dao.ScheduleDao;
 import dao.UserDao;
 import model.Schedule;
-import model.User;
 
 /**
  * Servlet implementation class MenuServlet
@@ -40,22 +41,36 @@ public class MenuServlet extends HttpServlet {
 		//スケジュールテーブルからデータを取得
 		ScheduleDao SDao = new ScheduleDao();
 		List<Schedule> scheduleList = SDao.display();
-		request.setAttribute("scheduleList", scheduleList);
+		request.setAttribute("slist", scheduleList);
 		//1つのデーブルからデータ取得
 		HttpSession sessionuser = request.getSession();
 		int user_id = (int)sessionuser.getAttribute("user_id");
 		LocalDate todaysDate = LocalDate.now();
+
+		//デフォルトのカレンダークラスを宣言、下のDateはセット
 		Calendar calendar = Calendar.getInstance();
-		int month = calendar.get(Calendar.MONTH) + 1;
+		Date date = new Date();
+
+		//値の書式を指定
+		SimpleDateFormat df = new SimpleDateFormat("MM");
+		SimpleDateFormat df2 = new SimpleDateFormat("yyyy/MM/dd");
+
+		//int month = calendar.get(Calendar.MONTH) + 1;
+		//calendar.add(Calendar.month, 4);
+		//カレンダークラスaddメソッド使用
+		calendar.add(Calendar.MONTH, +0);
+		 date = calendar.getTime();
 
 		//検索処理を行う
 		UserDao uDao = new UserDao();
-		User user = uDao.display(user_id);
+		Date deadline = uDao.deadline(user_id);
 
 		//検索結果をリクエストスコープに格納する
-		request.setAttribute("month",month);
-		request.setAttribute("user", user);
+		//request.setAttribute("month",month);
+		request.setAttribute("deadline", Integer.parseInt(df.format(deadline)));
 		request.setAttribute("today", todaysDate);
+		request.setAttribute("date", Integer.parseInt(df.format(date)));
+
 		// メニューページにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/menu.jsp");
 		dispatcher.forward(request, response);
