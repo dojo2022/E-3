@@ -12,7 +12,7 @@
 	<header class="header">
 		<h1 id="sm"><a href="/selfManagement/MenuServlet"><img src="/selfManagement/img/iii.png" width="400" height="130" alt="Self Managment" ></a></h1>
 		<div>
-		 <p>トップページ</p>
+		 <p>ユーザー更新ページ</p>
 		</div>
 	<hr>
 	<!--カテゴリー-->

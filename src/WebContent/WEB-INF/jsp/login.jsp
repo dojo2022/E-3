@@ -26,6 +26,7 @@
 	</form>
 	</div>
 	</div>
+	<hr>
 	<footer>
 		<p>&copy;Copyright 川崎.java. All rights reserved.</p>
 	</footer>

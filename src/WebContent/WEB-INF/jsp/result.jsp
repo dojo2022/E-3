@@ -6,10 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <title>自己管理アプリ</title>
+<link rel="stylesheet" type="text/css" href="/selfManagement/css/common.css">
 </head>
-<body>
-<h1>Self Managment</h1>
-<h2></h2>
+ <body>
+	<header class="header">
+	<h1 id="sm"><a href="/selfManagement/MenuServlet"><img src="/selfManagement/img/iii.png" width="400" height="130" alt="Self Managment" ></a></h1>
+    <hr>
 <nav>
  <ul>
    <li><a href="S_listServlet">スケジュール</a></li>
@@ -18,13 +20,18 @@
    <li><a href="LogoutServlet">ログアウト</a></li>
  </ul>
 </nav>
-<div>
-<p><c:out value="${result.title}" /></p>
-<p><a href="${result.backTo}"><c:out value="${result.backToWhere}" /></a></p>
-<p><a href="${result.back}"><c:out value="${result.backWhere}" /></a></p>
-</div>
+<hr>
+</header>
+  <div class="container">
+   <div class="contents">
+   <h2><c:out value="${result.title}" /><br>
+    <a href="${result.backTo}"><c:out value="${result.backToWhere}" /></a><br>
+    <a href="${result.back}"><c:out value="${result.backWhere}" /></a><br>
+   </h2>
+   </div>
+   </div>
 </body>
+<hr>
 <footer>
- <p>川崎.java</p>
- <p>&copy;Copyright plusDOJO(SE plus). All rights reserved.</p>
+ <p>&copy;Copyright 川崎.java. All rights reserved.</p>
 </footer>

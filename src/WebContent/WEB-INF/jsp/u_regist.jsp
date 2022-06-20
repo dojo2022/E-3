@@ -9,7 +9,7 @@
 </head>
   <body>
    <header class="header">
-     <h1 id="sm"><img src="/selfManagement/img/iii.png" width="400" height="130" alt="Self Managment" ></a></h1>
+     <h1 id="sm"><img src="/selfManagement/img/iii.png" width="400" height="130" alt="Self Managment" ></h1>
 	  <hr>
 	  </header>
 	  <main>
