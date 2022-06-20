@@ -46,13 +46,23 @@
  		     </tr>
  		    </table>
 			</c:forEach>
- 		    ${deadline}
- 		    ${fixed}
- 		    ${variable}
+			目標：${user.reason}
+ 		    残り${deadline}ヵ月
+ 		    <c:set var="vTotal" value="${0}" />
+			<c:forEach var="vlist" items="${variableList}">
+			<c:set var="vTotal" value="${vTotal + vlist.v_cost}" />
+			</c:forEach>
 
+			<c:set var="fTotal" value="${0}" />
+			<c:forEach var="flist" items="${fixedList}">
+			<c:set var="fTotal" value="${fTotal + flist.f_cost}" />
+			</c:forEach>
+			<c:set var="balance" value="${user.salary - fTotal - vTotal}"/>
+			現在の残高：<c:out value="${balance}"/>円
  		    <!-- ↓本当はsavings使って計算します -->
-			<c:out value="${user.goal / deadline}"/>
-
+			<c:set var="savings" value="${user.goal / deadline}"/>
+			貯金目標：<c:out value="${savings}"/>円
+			使用可能額：<c:out value="${balance - savings}"/>円
 
           </div>
           </div>

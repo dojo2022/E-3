@@ -289,5 +289,57 @@ public class VariableDao {
 		// 結果を返す
 		return result;
 	}
+	//今月のデータ取得
+			public List<Variable> variable(String date) {
+				Connection conn = null;
+				List<Variable> variableList = new ArrayList<Variable>();
+
+				try {
+					// JDBCドライバを読み込む
+					Class.forName("org.h2.Driver");
+
+					// データベースに接続する
+					conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/SM", "sa", "kawasaki");
+
+					// SQL文を準備する
+					String sql = "SELECT * FROM Variable WHERE v_date LIKE ?";
+					PreparedStatement pStmt = conn.prepareStatement(sql);
+					// SQL文を完成させる
+					pStmt.setString(1, "%" + date + "%");
+
+					// SQL文を実行し、結果表を取得する
+					ResultSet rs = pStmt.executeQuery();
+
+					// 結果表をコレクションにコピーする
+					while (rs.next()) {
+						Variable list = new Variable(
+								rs.getInt("v_id"),
+								rs.getString("v_date"),
+								rs.getString("v_category"),
+								rs.getString("v_memo"),
+								rs.getInt("v_cost"));
+						variableList.add(list);
+					}
+				} catch (SQLException e) {
+					e.printStackTrace();
+					variableList = null;
+				} catch (ClassNotFoundException e) {
+					e.printStackTrace();
+					variableList = null;
+				} finally {
+					// データベースを切断
+					if (conn != null) {
+						try {
+							conn.close();
+						} catch (SQLException e) {
+							e.printStackTrace();
+							variableList = null;
+						}
+					}
+				}
+
+				// 結果を返す
+				return variableList;
+			}
 
 }

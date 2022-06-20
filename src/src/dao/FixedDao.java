@@ -290,4 +290,56 @@ public class FixedDao {
 			return result;
 		}
 
+		//固定費合計取得
+		public List<Fixed> fixed(String date) {
+			Connection conn = null;
+			List<Fixed> fixedList = new ArrayList<Fixed>();
+
+			try {
+				// JDBCドライバを読み込む
+				Class.forName("org.h2.Driver");
+
+				// データベースに接続する
+				conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/SM", "sa", "kawasaki");
+
+				// SQL文を準備する
+				String sql = "SELECT * FROM Fixed WHERE f_date LIKE ?";
+				PreparedStatement pStmt = conn.prepareStatement(sql);
+				// SQL文を完成させる
+				pStmt.setString(1, "%" + date + "%");
+
+				// SQL文を実行し、結果表を取得する
+				ResultSet rs = pStmt.executeQuery();
+
+				// 結果表をコレクションにコピーする
+				while (rs.next()) {
+					Fixed list = new Fixed(
+							rs.getInt("f_id"),
+							rs.getString("f_date"),
+							rs.getString("f_category"),
+							rs.getString("f_memo"),
+							rs.getInt("f_cost"));
+					fixedList.add(list);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+				fixedList = null;
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+				fixedList = null;
+			} finally {
+				// データベースを切断
+				if (conn != null) {
+					try {
+						conn.close();
+					} catch (SQLException e) {
+						e.printStackTrace();
+						fixedList = null;
+					}
+				}
+			}
+
+			// 結果を返す
+			return fixedList;
+		}
 }

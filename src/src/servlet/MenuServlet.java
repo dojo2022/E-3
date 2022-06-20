@@ -60,10 +60,8 @@ public class MenuServlet extends HttpServlet {
 
 		//値の書式を指定
 		SimpleDateFormat df = new SimpleDateFormat("MM");
-		SimpleDateFormat df2 = new SimpleDateFormat("yyyy/MM/dd");
+		SimpleDateFormat df2 = new SimpleDateFormat("yyyy-MM");
 
-		//int month = calendar.get(Calendar.MONTH) + 1;
-		//calendar.add(Calendar.month, 4);
 		//カレンダークラスaddメソッド使用
 		calendar.add(Calendar.MONTH, +0);
 		 date = calendar.getTime();
@@ -72,23 +70,31 @@ public class MenuServlet extends HttpServlet {
 		UserDao uDao = new UserDao();
 		User user = uDao.display(user_id);
 
-		//残高を計算する
-		FixedDao fDao = new FixedDao();
-		List<Fixed> fixed = fDao.select();
-		VariableDao vDao = new VariableDao();
-		List<Variable> variable = vDao.select();
+
 
 		//日付取得
 		Date date1 = uDao.deadline(user_id);
-		int d1 = Integer.parseInt(df.format(date1));
-		int d2 = Integer.parseInt(df.format(date));
+		int d1 = Integer.parseInt(df.format(date1));	//達成期限
+		int d2 = Integer.parseInt(df.format(date));	//今月
 		int deadline = d1 - d2;
+		String d3 = df2.format(date);
+
+		//残高を計算する
+		//固定費検索処理を行う
+		FixedDao fDao = new FixedDao();
+		List<Fixed> fixedList = fDao.fixed(d3);
+		//検索結果をリクエストスコープに格納する
+		request.setAttribute("fixedList", fixedList);
+
+		//変動費検索処理を行う
+		VariableDao vDao = new VariableDao();
+		List<Variable> variableList = vDao.variable(d3);
+		//検索結果をリクエストスコープに格納する
+		request.setAttribute("variableList", variableList);
 
 		//検索結果をリクエストスコープに格納する
 		request.setAttribute("deadline", deadline);
 		request.setAttribute("user", user);
-		request.setAttribute("fixed", fixed);
-		request.setAttribute("variable", variable);
 
 		// メニューページにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/menu.jsp");
