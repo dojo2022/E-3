@@ -121,6 +121,7 @@
 								<option hidden>${flist.f_category}</option>
 								<option value="食費">食費</option>
 								<option value="日用品・衣服">日用品・衣服</option>
+								<option value="通信費">通信費</option>
 								<option value="交際費">交際費</option>
 								<option value="交通費">交通費</option>
 								<option value="水道・光熱費">水道・光熱費</option>

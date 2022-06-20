@@ -38,9 +38,8 @@
 				<td><select name="f_category">
 						<option value="家賃" selected>家賃</option>
 						<option value="保険">保険</option>
-						<option value="通信費">通信費</option>
+						<option value="サブスク">サブスク</option>
 						<option value="定期代">定期代</option>
-						<option value="税金">税金</option>
 						<option value="ローン">ローン</option>
 						<option value="その他">その他</option>
 				</select></td>
