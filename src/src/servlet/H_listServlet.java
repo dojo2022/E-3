@@ -77,11 +77,18 @@ public class H_listServlet extends HttpServlet {
 		List<Variable> variableList = vDao.v_search(new Search(h_date));
 		//検索結果をリクエストスコープに格納する
 		request.setAttribute("variableList", variableList);
-
+/*　固定費検索はなし
 		FixedDao fDao = new FixedDao();
 		List<Fixed> fixedList = fDao.f_search(new Search(h_date));
 		//検索結果をリクエストスコープに格納する
 		request.setAttribute("fixedList", fixedList);
+*/
+		//固定費検索処理を行う
+		FixedDao fDao = new FixedDao();
+		List<Fixed> fixedList = fDao.select();
+		//検索結果をリクエストスコープに格納する
+		request.setAttribute("fixedList", fixedList);
+
 
 		// メニューページにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/h_list.jsp");
