@@ -47,7 +47,7 @@
 				    		<option  value="${slist.s_category}" hidden>${slist.s_category}</option>
 				    		<option value="遊び">遊び</option>
 							<option value="休み">休み</option>
-							<option value="でーす">デート</option>
+							<option value="デート">デート</option>
 							<option value="飲み会">飲み会</option>
 							<option value="旅行">旅行</option>
 							<option value="支払">支払期限</option>
