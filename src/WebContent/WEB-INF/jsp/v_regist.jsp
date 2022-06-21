@@ -27,7 +27,7 @@
 		<hr>
 	</header>
 	<!--ヘッダーここまで-->
-	<form method="POST" action="/selfManagement/V_registServlet">
+	<form method="POST" action="/selfManagement/V_registServlet" id ="v_form">
 		<table>
 			<tr>
 				<td>日付</td>
@@ -62,6 +62,7 @@
 					<input type="reset" name="reset" value="リセット"></td>
 			</tr>
 		</table>
+		<span id="error_message"></span>
 	</form>
 	<!--フッター-->
 	<hr>
@@ -93,6 +94,17 @@
 
             document.getElementById("today").value = ymd;
         }
+        var formObj = document.getElementById('v_form');
+        var errorMessageObj = document.getElementById('error_message');
+        /* [実行]ボタンをクリックしたときの処理 */
+        formObj.onsubmit = function() {
+          /* 氏名を必須入力項目とします */
+          if (!formObj.v_cost.value) {
+            errorMessageObj.textContent = '※金額を入力してください！';
+            return false;
+          }
+          errorMessageObj.textContent = null;
+        };
 </script>
 </body>
 </html>
