@@ -12,7 +12,7 @@ import model.Schedule;
 
 public class ScheduleDao {
 	//データ全件取得
-	public List<Schedule> display() {
+	public List<Schedule> display(int user_id) {
 		Connection conn = null;
 		List<Schedule> scheduleList = new ArrayList<Schedule>();
 
@@ -24,8 +24,11 @@ public class ScheduleDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/SM", "sa", "kawasaki");
 
 			// SQL文を準備する
-			String sql = "SELECT s_id, s_date,s_category,s_memo FROM Schedule WHERE s_date >= CURDATE() ORDER BY s_date";
+			String sql = "SELECT s_id, s_date, s_category, s_memo FROM Schedule WHERE (s_date >= CURDATE()) AND (user_id = ?) ORDER BY s_date ";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
+
+			// SQL文を完成させる
+			pStmt.setInt(1, user_id);
 
 			// SQL文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();
@@ -37,7 +40,6 @@ public class ScheduleDao {
 				schedule.setS_date(rs.getString("s_date"));
 				schedule.setS_category(rs.getString("s_category"));
 				schedule.setS_memo(rs.getString("s_memo"));
-
 				scheduleList.add(schedule);
 			}
 		} catch (SQLException e) {

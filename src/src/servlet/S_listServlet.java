@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.ScheduleDao;
 import model.Schedule;
@@ -25,10 +26,19 @@ public class S_listServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		// もしもログインしていなかったらログインサーブレットにリダイレクトする
+		HttpSession sessionuser = request.getSession();
+		if (sessionuser.getAttribute("user_id") == null) {
+			response.sendRedirect("/selfManagement/LoginServlet");
+			return;
+		}
+		// リクエストパラメータを取得する
+		request.setCharacterEncoding("UTF-8");
+		int user_id = (int)sessionuser.getAttribute("user_id");
 
 		//検索処理を行う
 		ScheduleDao sDao = new ScheduleDao();
-		List<Schedule> scheduleList = sDao.display();
+		List<Schedule> scheduleList = sDao.display(user_id);
 		//検索結果をリクエストスコープに格納する
 		request.setAttribute("scheduleList", scheduleList);
 
@@ -42,20 +52,22 @@ public class S_listServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		// もしもログインしていなかったらログインサーブレットにリダイレクトする
-/*		HttpSession session = request.getSession();
-		if (session.getAttribute("id") == null) {
-			response.sendRedirect("/simpleBC/LoginServlet");
+		HttpSession sessionuser = request.getSession();
+		if (sessionuser.getAttribute("user_id") == null) {
+			response.sendRedirect("/selfManagement/LoginServlet");
 			return;
 		}
-*/
+		int user_id = (int)sessionuser.getAttribute("user_id");
+
 		// リクエストパラメータを取得する
 		request.setCharacterEncoding("UTF-8");
 		String s_day = request.getParameter("s_day");
 
 		// 検索処理を行う
 		ScheduleDao sDao = new ScheduleDao();
-		List<Schedule> scheduleList = sDao.select(new Schedule(0, s_day, "", ""));
+		List<Schedule> scheduleList = sDao.select(new Schedule(0, s_day, "", "", user_id));
 
 		// 検索結果をリクエストスコープに格納する
 		request.setAttribute("scheduleList", scheduleList);

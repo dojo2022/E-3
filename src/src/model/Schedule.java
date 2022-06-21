@@ -6,17 +6,19 @@ public class Schedule implements Serializable{
 	private String s_date;
 	private String s_category;
 	private String s_memo;
+	private int user_id;
 	/**
 	 * @param s_date
 	 * @param s_category
 	 * @param s_memo
 */
-	public Schedule(int s_id, String s_date, String s_category, String s_memo) {
+	public Schedule(int s_id, String s_date, String s_category, String s_memo, int user_id) {
 		super();
 		this.s_id = s_id;
 		this.s_date = s_date;
 		this.s_category = s_category;
 		this.s_memo = s_memo;
+		this.user_id = user_id;
 	}
 	public Schedule() {
 		super();
@@ -24,6 +26,7 @@ public class Schedule implements Serializable{
 		this.s_date = "";
 		this.s_category = "";
 		this.s_memo = "";
+		this.user_id = 0;
 	}
 
 	public int getS_id() {
@@ -55,4 +58,11 @@ public class Schedule implements Serializable{
 	public void setS_memo(String s_memo) {
 		this.s_memo = s_memo;
 	}
+	public int getUser_id() {
+		return user_id;
+	}
+	public void setUser_id(int user_id) {
+		this.user_id = user_id;
+	}
+
 }
