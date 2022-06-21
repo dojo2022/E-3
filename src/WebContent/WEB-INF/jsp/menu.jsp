@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
 <html>
@@ -34,20 +35,33 @@
  		  <div class="container">
  		  <div class="contents">
  		  <img src="/selfManagement/img/iii.png" width="400" height="130" alt="Self Managment" >
-			<c:forEach var="slist" items="${scheduleList}">
- 		    <table>
+		  <br>
+			<!-- スケジュール -->
+			<img src="/selfManagement/img/kari1.png" width="480" height="273" alt="仮イメージ1" >
+
+			<table>
  		     <tr>
  		      <th>日付</th>
  		      <th>予定</th>
  		     </tr>
+ 		    </table>
+			<c:forEach var="slist" items="${scheduleList}">
+ 		    <table>
  		     <tr>
  		  	  <td>${slist.s_date} </td>
  		      <td>${slist.s_category} </td>
  		     </tr>
  		    </table>
 			</c:forEach>
+			<a href="/selfManagement/S_listServlet">スケジュール管理へ</a>
+			<br>
+
+			<!-- 家計簿 -->
+			<img src="/selfManagement/img/copymaedauniverse.png" width="480" height="273" alt="仮イメージ2" >
 			目標：${user.reason}
+			<br>
  		    残り${deadline}ヵ月
+ 		    <br>
  		    <c:set var="vTotal" value="${0}" />
 			<c:forEach var="vlist" items="${variableList}">
 			<c:set var="vTotal" value="${vTotal + vlist.v_cost}" />
@@ -58,12 +72,15 @@
 			<c:set var="fTotal" value="${fTotal + flist.f_cost}" />
 			</c:forEach>
 			<c:set var="balance" value="${user.salary - fTotal - vTotal}"/>
-			現在の残高：<c:out value="${balance}"/>円
+			現在の残高：<fmt:formatNumber maxFractionDigits="0" value="${balance}"/>円
+			<br>
  		    <!-- ↓本当はsavings使って計算します -->
 			<c:set var="savings" value="${user.goal / deadline}"/>
-			貯金目標：<c:out value="${savings}"/>円
-			使用可能額：<c:out value="${balance - savings}"/>円
-
+			貯金目標：<fmt:formatNumber maxFractionDigits="0" value="${savings}"/>円
+			<br>
+			使用可能額：<fmt:formatNumber maxFractionDigits="0" value="${balance - savings}"/>円
+			<br>
+			<a href="/selfManagement/H_listServlet">家計簿管理へ</a>
           </div>
           </div>
 
