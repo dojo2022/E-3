@@ -28,6 +28,15 @@ public class User {
 		this.constitution = constitution;
 	}
 
+	//ユーザ更新コンストラクタ
+	public User(String reason,  String deadline,int goal, int salary, String constitution) {
+		super();
+		this.reason = reason;
+		this.deadline = deadline;
+		this.goal = goal;
+		this.salary = salary;
+		this.constitution = constitution;
+	}
 
 	public User(int user_id, String login_id, String password, String reason, int goal, String deadline, int savings,
 			int salary,String constitution) {
@@ -42,6 +51,7 @@ public class User {
 		this.salary = salary;
 		this.constitution = constitution;
 	}
+
 
 	public User() {
 		super();

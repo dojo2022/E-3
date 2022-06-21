@@ -45,7 +45,8 @@ public class VariableDao {
 						rs.getString("v_date"),
 						rs.getString("v_category"),
 						rs.getString("v_memo"),
-						rs.getInt("v_cost"));
+						rs.getInt("v_cost"),
+						rs.getInt("user_id"));
 				variableList.add(list);
 			}
 		} catch (SQLException e) {
@@ -70,7 +71,9 @@ public class VariableDao {
 		return variableList;
 	}
 
-	public List<Variable> select() {
+
+/*
+	public List<Variable> select(int user_id) {
 		Connection conn = null;
 		List<Variable> variableList = new ArrayList<Variable>();
 
@@ -95,7 +98,8 @@ public class VariableDao {
 						rs.getString("v_date"),
 						rs.getString("v_category"),
 						rs.getString("v_memo"),
-						rs.getInt("v_cost"));
+						rs.getInt("v_cost"),
+						rs.getInt("user_id"));
 				variableList.add(list);
 			}
 		} catch (SQLException e) {
@@ -119,6 +123,8 @@ public class VariableDao {
 		// 結果を返す
 		return variableList;
 	}
+*/
+
 
 	// 引数cardで指定されたレコードを登録し、成功したらtrueを返す
 	public boolean insert(Variable param) {
@@ -290,7 +296,7 @@ public class VariableDao {
 		return result;
 	}
 	//今月のデータ取得
-			public List<Variable> variable(String date) {
+			public List<Variable> variable(String date, int user_id) {
 				Connection conn = null;
 				List<Variable> variableList = new ArrayList<Variable>();
 
@@ -302,10 +308,11 @@ public class VariableDao {
 					conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/SM", "sa", "kawasaki");
 
 					// SQL文を準備する
-					String sql = "SELECT * FROM Variable WHERE v_date LIKE ?";
+					String sql = "SELECT * FROM Variable WHERE (v_date LIKE ?) AND (user_id = ?)";
 					PreparedStatement pStmt = conn.prepareStatement(sql);
 					// SQL文を完成させる
 					pStmt.setString(1, "%" + date + "%");
+					pStmt.setInt(2, user_id);
 
 					// SQL文を実行し、結果表を取得する
 					ResultSet rs = pStmt.executeQuery();
@@ -317,7 +324,8 @@ public class VariableDao {
 								rs.getString("v_date"),
 								rs.getString("v_category"),
 								rs.getString("v_memo"),
-								rs.getInt("v_cost"));
+								rs.getInt("v_cost"),
+								rs.getInt("user_id"));
 						variableList.add(list);
 					}
 				} catch (SQLException e) {

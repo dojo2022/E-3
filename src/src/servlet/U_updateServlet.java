@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.UserDao;
+import model.Result;
 import model.User;
 
 /**
@@ -33,6 +34,7 @@ public class U_updateServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		//user_idをスコープから呼び出す
 		HttpSession sessionuser = request.getSession();
 		int user_id = (int)sessionuser.getAttribute("user_id");
 
@@ -51,8 +53,34 @@ public class U_updateServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		//user_idをスコープから呼び出す
+		HttpSession sessionuser = request.getSession();
+		int user_id = (int)sessionuser.getAttribute("user_id");
+
+		// リクエストパラメータを取得する
+		request.setCharacterEncoding("UTF-8");
+		String reason = request.getParameter("reason");
+		String deadline = request.getParameter("deadline");
+		int goal = Integer.parseInt(request.getParameter("goal"));
+		int salary = Integer.parseInt(request.getParameter("salary"));
+		String constitution = request.getParameter("constitution");
+
+		// 更新を行う
+		UserDao uDao = new UserDao();
+		if (request.getParameter("submit").equals("更新")) {
+			if (uDao.update(new User(reason, deadline, goal, salary, constitution),user_id)) {	// 更新成功
+				request.setAttribute("result",
+				new Result("データの更新が完了しました！", "","", "/selfManagement/MenuServlet","メインメニューへ"));
+			}
+			else {												// 更新失敗
+				request.setAttribute("result",
+				new Result("データを更新できませんでした。", "", "", "/selfManagement/MenuServlet", "メインメニューへ"));
+			}
+		}
+
+		// 結果ページにフォワードする
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/result.jsp");
+		dispatcher.forward(request, response);
 	}
 
 }

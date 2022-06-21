@@ -1,6 +1,8 @@
 package servlet;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -9,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.FixedDao;
 import dao.VariableDao;
@@ -38,16 +41,25 @@ public class H_listServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		//ユーザ情報を取得
-		/*HttpSession sessionuser = request.getSession();
-		int user_id = (int) sessionuser.getAttribute("user_id");
-		UserDao uDao = new UserDao();
-		User user = uDao.display(user_id);
-		//検索結果をリクエストスコープに格納する
-		request.setAttribute("user", user);*/
+		// もしもログインしていなかったらログインサーブレットにリダイレクトする
+		HttpSession sessionuser = request.getSession();
+		if (sessionuser.getAttribute("user_id") == null) {
+			response.sendRedirect("/selfManagement/LoginServlet");
+			return;
+		}
+		// リクエストパラメータを取得する
+		request.setCharacterEncoding("UTF-8");
+		int user_id = (int)sessionuser.getAttribute("user_id");
+
+		//デフォルトのカレンダークラスを宣言、下のDateはセット
+		SimpleDateFormat df2 = new SimpleDateFormat("yyyy-MM");
+		//Calendar calendar = Calendar.getInstance();
+		Date date = new Date();
+		String d3 = df2.format(date);
 
 		//変動費検索処理を行う
 		VariableDao vDao = new VariableDao();
-		List<Variable> variableList = vDao.select();
+		List<Variable> variableList = vDao.variable(d3, user_id);
 		//検索結果をリクエストスコープに格納する
 		request.setAttribute("variableList", variableList);
 
