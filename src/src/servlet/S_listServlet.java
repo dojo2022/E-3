@@ -38,7 +38,7 @@ public class S_listServlet extends HttpServlet {
 
 		//検索処理を行う
 		ScheduleDao sDao = new ScheduleDao();
-		List<Schedule> scheduleList = sDao.display(user_id);
+		List<Schedule> scheduleList = sDao.display(new Schedule(0, "", "", "", user_id));
 		//検索結果をリクエストスコープに格納する
 		request.setAttribute("scheduleList", scheduleList);
 
