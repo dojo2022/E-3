@@ -26,8 +26,8 @@ public class UserDao {
 			// SELECT文を準備する
 			String sql = "select count(*) from User where login_id = ? and password = ?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
-			pStmt.setString(1,idpw.getLogin_id());
-			pStmt.setString(2,idpw.getPassword());
+			pStmt.setString(1, idpw.getLogin_id());
+			pStmt.setString(2, idpw.getPassword());
 
 			// SELECT文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();
@@ -37,22 +37,18 @@ public class UserDao {
 			if (rs.getInt("count(*)") == 1) {
 				loginResult = true;
 			}
-		}
-		catch (SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 			loginResult = false;
-		}
-		catch (ClassNotFoundException e) {
+		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 			loginResult = false;
-		}
-		finally {
+		} finally {
 			// データベースを切断
 			if (conn != null) {
 				try {
 					conn.close();
-				}
-				catch (SQLException e) {
+				} catch (SQLException e) {
 					e.printStackTrace();
 					loginResult = false;
 				}
@@ -62,7 +58,6 @@ public class UserDao {
 		// 結果を返す
 		return loginResult;
 	}
-
 
 	//user取得
 	public User display(int user_id) {
@@ -84,10 +79,8 @@ public class UserDao {
 			// SQL文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();
 
-
-
 			// 結果表をコレクションにコピーする
-			while(rs.next()) {
+			while (rs.next()) {
 				user.getUser_id();
 				user.setReason(rs.getString("reason"));
 				user.setGoal(rs.getInt("goal"));
@@ -96,22 +89,18 @@ public class UserDao {
 				user.setConstitution(rs.getString("constitution"));
 
 			}
-		}
-		catch (SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 			user = null;
-		}
-		catch (ClassNotFoundException e) {
+		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 			user = null;
-		}
-		finally {
+		} finally {
 			// データベースを切断
 			if (conn != null) {
 				try {
 					conn.close();
-				}
-				catch (SQLException e) {
+				} catch (SQLException e) {
 					e.printStackTrace();
 					user = null;
 				}
@@ -123,52 +112,90 @@ public class UserDao {
 	}
 
 	//deadline取得
-		public Date deadline(int user_id) {
-			Connection conn = null;
-			Date deadline = new Date();
+	public Date deadline(int user_id) {
+		Connection conn = null;
+		Date deadline = new Date();
 
-			try {
-				// JDBCドライバを読み込む
-				Class.forName("org.h2.Driver");
+		try {
+			// JDBCドライバを読み込む
+			Class.forName("org.h2.Driver");
 
-				// データベースに接続する
-				conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/SM", "sa", "kawasaki");
+			// データベースに接続する
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/SM", "sa", "kawasaki");
 
-				// SQL文を準備する
-				String sql = "SELECT deadline FROM User WHERE user_id = ?";
-				PreparedStatement pStmt = conn.prepareStatement(sql);
-				pStmt.setInt(1, user_id);
+			// SQL文を準備する
+			String sql = "SELECT deadline FROM User WHERE user_id = ?";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+			pStmt.setInt(1, user_id);
 
-				// SQL文を実行し、結果表を取得する
-				ResultSet rs = pStmt.executeQuery();
+			// SQL文を実行し、結果表を取得する
+			ResultSet rs = pStmt.executeQuery();
 
-
-				// 結果表をコレクションにコピーする
-				while(rs.next()) {
-					deadline = (rs.getDate("deadline"));
+			// 結果表をコレクションにコピーする
+			while (rs.next()) {
+				deadline = (rs.getDate("deadline"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} finally {
+			// データベースを切断
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
 				}
 			}
-			catch (SQLException e) {
-				e.printStackTrace();
-			}
-			catch (ClassNotFoundException e) {
-				e.printStackTrace();
-			}
-			finally {
-				// データベースを切断
-				if (conn != null) {
-					try {
-						conn.close();
-					}
-					catch (SQLException e) {
-						e.printStackTrace();
-					}
-				}
-			}
-
-			// 結果を返す
-			return deadline;
 		}
+
+		// 結果を返す
+		return deadline;
+	}
+
+	//deadline取得
+	public static String constitution (int user_id) {
+		Connection conn = null;
+		String constitution = "";
+
+		try {
+			// JDBCドライバを読み込む
+			Class.forName("org.h2.Driver");
+
+			// データベースに接続する
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/SM", "sa", "kawasaki");
+
+			// SQL文を準備する
+			String sql = "SELECT constitution FROM User WHERE user_id = ?";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+			pStmt.setInt(1, user_id);
+
+			// SQL文を実行し、結果表を取得する
+			ResultSet rs = pStmt.executeQuery();
+
+			// 結果表をコレクションにコピーする
+			while (rs.next()) {
+				constitution = (rs.getString("constitution"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} finally {
+			// データベースを切断
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+
+		// 結果を返す
+		return constitution;
+	}
 
 	// 引数userで指定されたレコードを登録し、成功したらtrueを返す
 	public boolean insert(User user) {
@@ -189,42 +216,34 @@ public class UserDao {
 			// SQL文を完成させる
 			if (user.getLogin_id() != null && !user.getLogin_id().equals("")) {
 				pStmt.setString(1, user.getLogin_id());
-			}
-			else {
+			} else {
 				pStmt.setString(1, null);
 			}
 			if (user.getPassword() != null && !user.getPassword().equals("")) {
 				pStmt.setString(2, user.getPassword());
-			}
-			else {
+			} else {
 				pStmt.setString(2, null);
 			}
 			if (user.getConstitution() != null && !user.getConstitution().equals("")) {
 				pStmt.setString(3, user.getConstitution());
-			}
-			else {
+			} else {
 				pStmt.setString(3, null);
 			}
-
 
 			// SQL文を実行する
 			if (pStmt.executeUpdate() == 1) {
 				result = true;
 			}
-		}
-		catch (SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
-		}
-		catch (ClassNotFoundException e) {
+		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
-		}
-		finally {
+		} finally {
 			// データベースを切断
 			if (conn != null) {
 				try {
 					conn.close();
-				}
-				catch (SQLException e) {
+				} catch (SQLException e) {
 					e.printStackTrace();
 				}
 			}
@@ -235,7 +254,7 @@ public class UserDao {
 	}
 
 	// 引数userで指定されたレコードを更新し、成功したらtrueを返す
-	public boolean update(User user,int user_id) {
+	public boolean update(User user, int user_id) {
 		Connection conn = null;
 		boolean result = false;
 
@@ -253,33 +272,28 @@ public class UserDao {
 			// SQL文を完成させる
 			if (user.getReason() != null && !user.getReason().equals("")) {
 				pStmt.setString(1, user.getReason());
-			}
-			else {
+			} else {
 				pStmt.setString(1, null);
 			}
 			if (user.getDeadline() != null && !user.getDeadline().equals("")) {
 				pStmt.setString(2, user.getDeadline());
-			}
-			else {
+			} else {
 				pStmt.setString(2, null);
 			}
 			if (user.getGoal() != 0) {
 				pStmt.setInt(3, user.getGoal());
-			}
-			else {
+			} else {
 				pStmt.setInt(3, 0);
 			}
 
 			if (user.getSalary() != 0) {
 				pStmt.setInt(4, user.getSalary());
-			}
-			else {
+			} else {
 				pStmt.setInt(4, 0);
 			}
 			if (user.getConstitution() != null && !user.getConstitution().equals("")) {
 				pStmt.setString(5, user.getConstitution());
-			}
-			else {
+			} else {
 				pStmt.setString(5, null);
 			}
 
@@ -289,20 +303,16 @@ public class UserDao {
 			if (pStmt.executeUpdate() == 1) {
 				result = true;
 			}
-		}
-		catch (SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
-		}
-		catch (ClassNotFoundException e) {
+		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
-		}
-		finally {
+		} finally {
 			// データベースを切断
 			if (conn != null) {
 				try {
 					conn.close();
-				}
-				catch (SQLException e) {
+				} catch (SQLException e) {
 					e.printStackTrace();
 				}
 			}
@@ -312,10 +322,9 @@ public class UserDao {
 	}
 
 	//user_id取得
-	public int id(String login_id, String password){
+	public int id(String login_id, String password) {
 		Connection conn = null;
 		int user_id = 0;
-
 
 		try {
 			// JDBCドライバを読み込む
@@ -335,27 +344,24 @@ public class UserDao {
 			// SQL文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();
 
-			while(rs.next()) {
+			while (rs.next()) {
 				user_id = (rs.getInt("user_id"));
 			}
 
-		}catch (SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
-		}catch (ClassNotFoundException e) {
+		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
-		}
-		finally {
+		} finally {
 			// データベースを切断
 			if (conn != null) {
 				try {
 					conn.close();
-				}
-				catch (SQLException e) {
+				} catch (SQLException e) {
 					e.printStackTrace();
 				}
 			}
 		}
-
 
 		// 結果を返す
 		return user_id;

@@ -72,6 +72,9 @@ public class MenuServlet extends HttpServlet {
 		int deadline = d1 - d2;
 		String d3 = df2.format(date);
 
+		//体質取得
+		//String constitution = UserDao.constitution(user_id);
+
 		//残高を計算する
 		//固定費検索処理を行う
 		FixedDao fDao = new FixedDao();
@@ -88,6 +91,7 @@ public class MenuServlet extends HttpServlet {
 		//検索結果をリクエストスコープに格納する
 		request.setAttribute("deadline", deadline);
 		request.setAttribute("user", user);
+		//request.setAttribute(constitution, constitution);
 
 		// メニューページにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/menu.jsp");
