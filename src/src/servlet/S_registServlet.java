@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -31,6 +32,11 @@ public class S_registServlet extends HttpServlet {
 			return;
 		}
 		int user_id = (int)sessionuser.getAttribute("user_id");
+		//検索処理を行う
+				ScheduleDao sDao = new ScheduleDao();
+				List<Schedule> scheduleList = sDao.display(user_id);
+				//検索結果をリクエストスコープに格納する
+				request.setAttribute("scheduleList", scheduleList);
 
 		// 登録ページにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/s_regist.jsp");
@@ -44,14 +50,14 @@ public class S_registServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// リクエストパラメータを取得する
 		request.setCharacterEncoding("UTF-8");
-
+		String user_id = request.getParameter("user_id");
 		String s_date = request.getParameter("s_date");
 		String s_category = request.getParameter("s_category");
 		String s_memo = request.getParameter("s_memo");
 
 		// 登録処理を行う
 		ScheduleDao sDao = new ScheduleDao();
-		if (sDao.insert(new Schedule(0, s_date, s_category, s_memo))) { // 登録成功
+		if (sDao.insert(new Schedule(user_id, 0, s_date, s_category, s_memo))) { // 登録成功
 			request.setAttribute("result",
 					new Result("登録成功しました", "/selfManagement/S_registServlet","続けて登録", "/selfManagement/S_listServlet","スケジュール一覧へ"));
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/result.jsp");
