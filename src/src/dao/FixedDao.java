@@ -11,7 +11,7 @@ import java.util.List;
 import model.Fixed;
 
 public class FixedDao {
-
+/*
 	public List<Fixed> select(Fixed param) {
 		Connection conn = null;
 		List<Fixed> fixedList = new ArrayList<Fixed>();
@@ -65,6 +65,7 @@ public class FixedDao {
 		// 結果を返す
 		return fixedList;
 	}
+*/
 
 	// 引数cardで指定されたレコードを登録し、成功したらtrueを返す
 	public boolean insert(Fixed param) {
@@ -236,8 +237,8 @@ public class FixedDao {
 			return result;
 		}
 
-		//固定費合計取得
-		public List<Fixed> fixed(String date, int user_id) {
+		//検索兼月固定費合計取得
+		public List<Fixed> fixed(Fixed param) {
 			Connection conn = null;
 			List<Fixed> fixedList = new ArrayList<Fixed>();
 
@@ -252,8 +253,8 @@ public class FixedDao {
 				String sql = "SELECT * FROM Fixed WHERE (f_date LIKE ?) AND user_id = ?";
 				PreparedStatement pStmt = conn.prepareStatement(sql);
 				// SQL文を完成させる
-				pStmt.setString(1, "%" + date + "%");
-				pStmt.setInt(2, user_id);
+				pStmt.setString(1, "%" + param.getF_date() + "%");
+				pStmt.setInt(2, param.getUser_id());
 
 				// SQL文を実行し、結果表を取得する
 				ResultSet rs = pStmt.executeQuery();

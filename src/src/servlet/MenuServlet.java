@@ -78,13 +78,13 @@ public class MenuServlet extends HttpServlet {
 		//残高を計算する
 		//固定費検索処理を行う
 		FixedDao fDao = new FixedDao();
-		List<Fixed> fixedList = fDao.fixed(d3, user_id);
+		List<Fixed> fixedList = fDao.fixed(new Fixed(0, d3, "", "", 0, user_id));
 		//検索結果をリクエストスコープに格納する
 		request.setAttribute("fixedList", fixedList);
 
 		//変動費検索処理を行う
 		VariableDao vDao = new VariableDao();
-		List<Variable> variableList = vDao.variable(d3, user_id);
+		List<Variable> variableList = vDao.variable(new Variable(0, d3, "", "", 0, user_id));
 		//検索結果をリクエストスコープに格納する
 		request.setAttribute("variableList", variableList);
 

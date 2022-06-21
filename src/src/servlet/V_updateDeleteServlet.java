@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.VariableDao;
 import model.Result;
@@ -43,6 +44,15 @@ public class V_updateDeleteServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
+		// もしもログインしていなかったらログインサーブレットにリダイレクトする
+		HttpSession sessionuser = request.getSession();
+		if (sessionuser.getAttribute("user_id") == null) {
+			response.sendRedirect("/selfManagement/LoginServlet");
+			return;
+		}
+		//int user_id = (int)sessionuser.getAttribute("user_id");
+
 		// リクエストパラメータを取得する
 		request.setCharacterEncoding("UTF-8");
 		int v_id = Integer.parseInt(request.getParameter("v_id"));
@@ -54,7 +64,7 @@ public class V_updateDeleteServlet extends HttpServlet {
 		// 更新または削除を行う
 		VariableDao vDao = new VariableDao();
 		if (request.getParameter("submit").equals("更新")) {
-			if (vDao.update(new Variable(v_id,v_date,v_category,v_memo,v_cost))) { // 更新成功
+			if (vDao.update(new Variable(v_id,v_date,v_category,v_memo,v_cost, 0))) { // 更新成功
 				response.sendRedirect( "/selfManagement/H_listServlet");
 			} else { // 更新失敗
 				request.setAttribute("result",

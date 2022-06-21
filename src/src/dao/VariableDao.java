@@ -5,15 +5,13 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import model.Search;
 import model.Variable;
 
 public class VariableDao {
+/*
 	// 引数paramで検索項目を指定し、検索結果のリストを返す
 	public List<Variable> v_search(Search param) {
 		Connection conn = null;
@@ -79,7 +77,7 @@ public class VariableDao {
 		// 結果を返す
 		return variableList;
 	}
-
+*/
 	// 引数cardで指定されたレコードを登録し、成功したらtrueを返す
 	public boolean insert(Variable param) {
 		Connection conn = null;
@@ -249,7 +247,7 @@ public class VariableDao {
 		// 結果を返す
 		return result;
 	}
-	//今月のデータ取得
+	//検索兼今月のデータ取得
 			public List<Variable> variable(Variable param) {
 				Connection conn = null;
 				List<Variable> variableList = new ArrayList<Variable>();

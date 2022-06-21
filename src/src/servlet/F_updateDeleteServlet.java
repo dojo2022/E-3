@@ -51,7 +51,7 @@ public class F_updateDeleteServlet extends HttpServlet {
 			response.sendRedirect("/selfManagement/LoginServlet");
 			return;
 		}
-		int user_id = (int)sessionuser.getAttribute("user_id");
+		//int user_id = (int)sessionuser.getAttribute("user_id");
 
 		// リクエストパラメータを取得する
 		request.setCharacterEncoding("UTF-8");
@@ -63,7 +63,7 @@ public class F_updateDeleteServlet extends HttpServlet {
 		FixedDao fDao = new FixedDao();
 
 		if (request.getParameter("submit").equals("更新")) {
-			if (fDao.update(new Fixed(f_id, f_date, f_category, f_memo, f_cost))) { // 更新成功
+			if (fDao.update(new Fixed(f_id, f_date, f_category, f_memo, f_cost, 0))) { // 更新成功
 				response.sendRedirect( "/selfManagement/H_listServlet");
 			} else { // 更新失敗
 				request.setAttribute("result",

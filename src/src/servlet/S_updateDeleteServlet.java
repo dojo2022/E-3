@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.ScheduleDao;
 import model.Result;
@@ -24,13 +25,12 @@ public class S_updateDeleteServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		// もしもログインしていなかったらログインサーブレットにリダイレクトする
-/*
-		HttpSession session = request.getSession();
-		if (session.getAttribute("login_id") == null) {
+		HttpSession sessionuser = request.getSession();
+		if (sessionuser.getAttribute("user_id") == null) {
 			response.sendRedirect("/selfManagement/LoginServlet");
 			return;
 		}
-*/
+		//int user_id = (int)sessionuser.getAttribute("user_id");
 
 		// リクエストパラメータを取得する
 
@@ -43,7 +43,7 @@ public class S_updateDeleteServlet extends HttpServlet {
 		// 更新または削除を行う
 		ScheduleDao sDao = new ScheduleDao();
 		if (request.getParameter("submit").equals("更新")) {
-			if (sDao.update(new Schedule(s_id, s_date, s_category, s_memo))) {
+			if (sDao.update(new Schedule(s_id, s_date, s_category, s_memo, 0))) {
 				// 更新成功
 				response.sendRedirect("/selfManagement/S_listServlet");
 			}
