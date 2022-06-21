@@ -9,11 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.Fixed;
-import model.Search;
 
 public class FixedDao {
-	// 引数paramで検索項目を指定し、検索結果のリストを返す
-	public List<Fixed> f_search(Search param) {
+
+	public List<Fixed> select(Fixed param) {
 		Connection conn = null;
 		List<Fixed> fixedList = new ArrayList<Fixed>();
 
@@ -25,66 +24,11 @@ public class FixedDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/SM", "sa", "kawasaki");
 
 			// SQL文を準備する
-			String sql = "SELECT f_id,f_date,f_category,f_memo,f_cost FROM Fixed WHERE f_date LIKE ? ORDER BY f_date DESC";
+			String sql = "SELECT * FROM Fixed WHERE user_id = ? ORDER BY f_date DESC";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
-			if (param.getH_date() != null) {
-				pStmt.setString(1, "%" + param.getH_date() + "%");
-			} else {
-				pStmt.setString(1, "%");
-			}
-
-			// SQL文を実行し、結果表を取得する
-			ResultSet rs = pStmt.executeQuery();
-
-			// 結果表をコレクションにコピーする
-			while (rs.next()) {
-				Fixed list = new Fixed(
-						rs.getInt("f_id"),
-						rs.getString("f_date"),
-						rs.getString("f_category"),
-						rs.getString("f_memo"),
-						rs.getInt("f_cost"),
-						rs.getInt("user_id"));
-				fixedList.add(list);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-			fixedList = null;
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-			fixedList = null;
-		} finally {
-			// データベースを切断
-			if (conn != null) {
-				try {
-					conn.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-					fixedList = null;
-				}
-			}
-		}
-
-		// 結果を返す
-		return fixedList;
-	}
-
-	public List<Fixed> select() {
-		Connection conn = null;
-		List<Fixed> fixedList = new ArrayList<Fixed>();
-
-		try {
-			// JDBCドライバを読み込む
-			Class.forName("org.h2.Driver");
-
-			// データベースに接続する
-			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/SM", "sa", "kawasaki");
-
-			// SQL文を準備する
-			String sql = "SELECT * FROM Fixed ORDER BY f_date DESC";
-			PreparedStatement pStmt = conn.prepareStatement(sql);
+			pStmt.setInt(1, param.getUser_id());
 
 			// SQL文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();

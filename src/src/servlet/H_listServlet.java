@@ -16,7 +16,6 @@ import javax.servlet.http.HttpSession;
 import dao.FixedDao;
 import dao.VariableDao;
 import model.Fixed;
-import model.Search;
 import model.Variable;
 
 /**
@@ -59,13 +58,13 @@ public class H_listServlet extends HttpServlet {
 
 		//変動費検索処理を行う
 		VariableDao vDao = new VariableDao();
-		List<Variable> variableList = vDao.variable(d3, user_id);
+		List<Variable> variableList = vDao.variable(new Variable(0, d3, "", "", 0, user_id));
 		//検索結果をリクエストスコープに格納する
 		request.setAttribute("variableList", variableList);
 
 		//固定費検索処理を行う
 		FixedDao fDao = new FixedDao();
-		List<Fixed> fixedList = fDao.select();
+		List<Fixed> fixedList = fDao.select(new Fixed(0, "", "", "", 0, user_id));
 		//検索結果をリクエストスコープに格納する
 		request.setAttribute("fixedList", fixedList);
 
@@ -79,25 +78,30 @@ public class H_listServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		//ユーザ情報を取得
+		// もしもログインしていなかったらログインサーブレットにリダイレクトする
+		HttpSession sessionuser = request.getSession();
+		if (sessionuser.getAttribute("user_id") == null) {
+			response.sendRedirect("/selfManagement/LoginServlet");
+			return;
+		}
+		int user_id = (int)sessionuser.getAttribute("user_id");
+
 		//検索処理
 		//検索内容の取得
 		request.setCharacterEncoding("UTF-8");
 		String h_date = request.getParameter("h_date");
 
+
 		//変動費検索処理を行う
 		VariableDao vDao = new VariableDao();
-		List<Variable> variableList = vDao.v_search(new Search(h_date));
+		List<Variable> variableList = vDao.variable(new Variable(0, h_date, "", "", 0, user_id));
 		//検索結果をリクエストスコープに格納する
 		request.setAttribute("variableList", variableList);
-/*　固定費検索はなし
+
+		//固定費一覧の表示
 		FixedDao fDao = new FixedDao();
-		List<Fixed> fixedList = fDao.f_search(new Search(h_date));
-		//検索結果をリクエストスコープに格納する
-		request.setAttribute("fixedList", fixedList);
-*/
-		//固定費検索処理を行う
-		FixedDao fDao = new FixedDao();
-		List<Fixed> fixedList = fDao.select();
+		List<Fixed> fixedList = fDao.select(new Fixed(0, "", "", "", 0, user_id));
 		//検索結果をリクエストスコープに格納する
 		request.setAttribute("fixedList", fixedList);
 

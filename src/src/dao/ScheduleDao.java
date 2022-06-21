@@ -5,14 +5,16 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import model.Schedule;
 
 public class ScheduleDao {
 	//データ全件取得
-	public List<Schedule> display(int user_id) {
+	public List<Schedule> display(Schedule param) {
 		Connection conn = null;
 		List<Schedule> scheduleList = new ArrayList<Schedule>();
 
@@ -28,7 +30,7 @@ public class ScheduleDao {
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
-			pStmt.setInt(1, user_id);
+			pStmt.setInt(1, param.getUser_id());
 
 			// SQL文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();
@@ -120,6 +122,11 @@ public class ScheduleDao {
 		public List<Schedule> select(Schedule param) {
 			Connection conn = null;
 			List<Schedule> cardList = new ArrayList<Schedule>();
+			//デフォルトのカレンダークラスを宣言、下のDateはセット
+			SimpleDateFormat df2 = new SimpleDateFormat("yyyy-MM");
+			//Calendar calendar = Calendar.getInstance();
+			Date date = new Date();
+			String d3 = df2.format(date);
 
 			try {
 				// JDBCドライバを読み込む
@@ -137,9 +144,9 @@ public class ScheduleDao {
 					pStmt.setString(1, param.getS_date() + "%");
 				}
 				else {
-					pStmt.setString(1, "%");
+					pStmt.setString(1, d3 + "%");
 				}
-				pStmt.setString(1, param.getS_date() + "%");
+				pStmt.setInt(2, param.getUser_id());
 
 				// SQL文を実行し、結果表を取得する
 				ResultSet rs = pStmt.executeQuery();
