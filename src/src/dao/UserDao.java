@@ -235,7 +235,7 @@ public class UserDao {
 	}
 
 	// 引数userで指定されたレコードを更新し、成功したらtrueを返す
-	public boolean update(User user) {
+	public boolean update(User user,int user_id) {
 		Connection conn = null;
 		boolean result = false;
 
@@ -247,7 +247,7 @@ public class UserDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/SM", "sa", "kawasaki");
 
 			// SQL文を準備する
-			String sql = "UPDATE User SET reason=?, goal=?, deadline=? ,savings=? ,salary=? constitution=? WHERE user_id=?";
+			String sql = "UPDATE User SET reason=?, deadline=?, goal=? ,salary=?, constitution=? WHERE user_id=?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
@@ -257,38 +257,33 @@ public class UserDao {
 			else {
 				pStmt.setString(1, null);
 			}
-			if (user.getGoal() != 0) {
-				pStmt.setInt(2, user.getGoal());
-			}
-			else {
-				pStmt.setInt(2, 0);
-			}
 			if (user.getDeadline() != null && !user.getDeadline().equals("")) {
-				pStmt.setString(3, user.getDeadline());
+				pStmt.setString(2, user.getDeadline());
 			}
 			else {
-				pStmt.setString(3, null);
+				pStmt.setString(2, null);
 			}
-			if (user.getSavings() != 0) {
-				pStmt.setInt(4, user.getSavings());
+			if (user.getGoal() != 0) {
+				pStmt.setInt(3, user.getGoal());
+			}
+			else {
+				pStmt.setInt(3, 0);
+			}
+
+			if (user.getSalary() != 0) {
+				pStmt.setInt(4, user.getSalary());
 			}
 			else {
 				pStmt.setInt(4, 0);
 			}
-			if (user.getSalary() != 0) {
-				pStmt.setInt(5, user.getSalary());
-			}
-			else {
-				pStmt.setInt(5, 0);
-			}
 			if (user.getConstitution() != null && !user.getConstitution().equals("")) {
-				pStmt.setString(6, user.getConstitution());
+				pStmt.setString(5, user.getConstitution());
 			}
 			else {
-				pStmt.setString(6, null);
+				pStmt.setString(5, null);
 			}
 
-			pStmt.setInt(7, user.getUser_id());
+			pStmt.setInt(6, user_id);
 
 			// SQL文を実行する
 			if (pStmt.executeUpdate() == 1) {

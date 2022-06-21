@@ -30,49 +30,47 @@
 <!--ヘッダーここまで-->
   <main>
 	<div class="container">
-	 <div class="contents">
-      <form method="POST" action="/selfManagement/U_updateServlet">
-      <input type="hidden" value="${user.user_id}">
+ 		<div class="contents">
+	    <form method="POST" action="/selfManagement/U_updateServlet">
+		    <input type="hidden" value="${user.user_id}">
 
-		<h2>貯金理由</h2>
-		<input type="text" value="" readonly>
-		&#9654;
-		<input type="text" name="reason">
+			<h2>貯金理由</h2>
+			<input type="text" value="${user.reason}" readonly>
+			&#9654;
+			<input type="text" name="reason">
+		     <br>
 
-      <br>
-     <h2>達成期限</h2>
+		     <h2>達成期限</h2>
+		     <input type="date" value="${user.deadline}" readonly>
+		     &#9654;
+		     <input type="date" name="deadline">
+		     <br>
 
-     <input type="date" value="${user.deadline}" readonly>
-     &#9654;
-     <input type="date" name="deadline">
+			<h2>目標金額</h2>
+			<input type="text" value="${user.goal}" readonly>
+			&#9654;
+			<input type="text" name="goal">
+		    <br>
 
-      <br>
-		<h2>目標金額</h2>
-		<input type="text" value="${user.goal}" readonly>
-		&#9654;
-		<input type="text" name="goal">
+			<h2>給料</h2>
+			<input type="text" value="${user.salary}" readonly>
+			&#9654;
+			<input type="text" name="salary">
+		    <br>
 
-      <br>
-	    <h2>給料</h2>
-		<input type="text" value="${user.salary}" readonly>
-		&#9654;
-		<input type="text" name="salary">
-      <br>
-	   <h2>暑がり寒がり</h2>
-		<input type="text" value="${user.constitution}" readonly>
-		&#9654;
-
+		   	<h2>暑がり寒がり</h2>
+			<input type="text" value="${user.constitution}" readonly>
+			&#9654;
 			<select name="constitution">
 				<option hidden> ${user.constitution}</option>
 				<option>普通</option>
 				<option>暑がり</option>
 				<option>寒がり</option>
 			</select>
-
-      <div class="button1"><input type="button" name="update" value="更新"></div>
-     </form>
-   </div>
-  </div>
+	    	<div class="button1"><input type=submit name="submit" value="更新"></div>
+ 		</form>
+	   </div>
+  	</div>
  </main>
 		<!--フッター-->
 		<hr>
