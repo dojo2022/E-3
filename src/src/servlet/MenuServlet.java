@@ -43,16 +43,19 @@ public class MenuServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//スケジュールテーブルからデータを取得
-		ScheduleDao SDao = new ScheduleDao();
-		List<Schedule> scheduleList = SDao.display5();
-		request.setAttribute("scheduleList", scheduleList);
-
-
 		//1つのデーブルからデータ取得
 		HttpSession sessionuser = request.getSession();
+		if (sessionuser.getAttribute("user_id") == null) {
+			response.sendRedirect("/selfManagement/LoginServlet");
+			return;
+		}
 		int user_id = (int)sessionuser.getAttribute("user_id");
 		LocalDate todaysDate = LocalDate.now();
+
+		//スケジュールテーブルからデータを取得
+		ScheduleDao SDao = new ScheduleDao();
+		List<Schedule> scheduleList = SDao.display5(user_id);
+		request.setAttribute("scheduleList", scheduleList);
 
 		//デフォルトのカレンダークラスを宣言、下のDateはセット
 		Calendar calendar = Calendar.getInstance();

@@ -64,7 +64,7 @@ public class ScheduleDao {
 		return scheduleList;
 	}
 			//データ5件取得
-		public List<Schedule> display5() {
+		public List<Schedule> display5(int user_id) {
 			Connection conn = null;
 			List<Schedule> scheduleList = new ArrayList<Schedule>();
 
@@ -76,9 +76,11 @@ public class ScheduleDao {
 				conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/SM", "sa", "kawasaki");
 
 				// SQL文を準備する
-				String sql = "SELECT s_id, s_date,s_category,s_memo FROM Schedule WHERE s_date >= CURDATE() ORDER BY s_date LIMIT 5";
+				String sql = "SELECT s_id, s_date,s_category,s_memo FROM Schedule WHERE (s_date >= CURDATE()) AND (user_id = ?) ORDER BY s_date LIMIT 5";
 				PreparedStatement pStmt = conn.prepareStatement(sql);
 
+				// SQL文を完成させる
+				pStmt.setInt(1, user_id);
 				// SQL文を実行し、結果表を取得する
 				ResultSet rs = pStmt.executeQuery();
 
@@ -127,7 +129,7 @@ public class ScheduleDao {
 				conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/SM", "sa", "kawasaki");
 
 				// SQL文を準備する
-				String sql = "SELECT s_id, s_date,s_category,s_memo FROM Schedule WHERE s_date LIKE ? ORDER BY s_date";
+				String sql = "SELECT s_id, s_date,s_category,s_memo FROM Schedule WHERE (s_date LIKE ?) AND (user_id = ?) ORDER BY s_date";
 				PreparedStatement pStmt = conn.prepareStatement(sql);
 
 				//SQL分を完成させる
@@ -137,6 +139,7 @@ public class ScheduleDao {
 				else {
 					pStmt.setString(1, "%");
 				}
+				pStmt.setString(1, param.getS_date() + "%");
 
 				// SQL文を実行し、結果表を取得する
 				ResultSet rs = pStmt.executeQuery();
