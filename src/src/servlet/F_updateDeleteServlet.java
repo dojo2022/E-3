@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.FixedDao;
 import model.Fixed;
@@ -45,13 +46,12 @@ public class F_updateDeleteServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		// もしもログインしていなかったらログインサーブレットにリダイレクトする
-		/*
-				HttpSession session = request.getSession();
-				if (session.getAttribute("login_id") == null) {
-					response.sendRedirect("/selfManagement/LoginServlet");
-					return;
-				}
-		*/
+		HttpSession sessionuser = request.getSession();
+		if (sessionuser.getAttribute("user_id") == null) {
+			response.sendRedirect("/selfManagement/LoginServlet");
+			return;
+		}
+		int user_id = (int)sessionuser.getAttribute("user_id");
 
 		// リクエストパラメータを取得する
 		request.setCharacterEncoding("UTF-8");
