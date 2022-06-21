@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.FixedDao;
 import model.Fixed;
@@ -25,6 +26,11 @@ public class F_registServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		HttpSession sessionuser = request.getSession();
+		if (sessionuser.getAttribute("user_id") == null) {
+			response.sendRedirect("/selfManagement/LoginServlet");
+			return;
+		}
 		// 登録ページにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/f_regist.jsp");
 		dispatcher.forward(request, response);
