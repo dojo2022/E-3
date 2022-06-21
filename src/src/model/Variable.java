@@ -8,19 +8,21 @@ public class Variable implements Serializable{
 	private String v_category;
 	private String v_memo;
 	private int v_cost;
+	private int user_id;
 	/**
 	 * @param v_date
 	 * @param v_category
 	 * @param v_memo
 	 * @param v_cost
 	 */
-	public Variable(int v_id, String v_date, String v_category, String v_memo, int v_cost) {
+	public Variable(int v_id, String v_date, String v_category, String v_memo, int v_cost, int user_id) {
 		super();
 		this.v_id = v_id;
 		this.v_date = v_date;
 		this.v_category = v_category;
 		this.v_memo = v_memo;
 		this.v_cost = v_cost;
+		this.user_id = user_id;
 	}
 
 	public Variable(String v_date, String v_category, String v_memo, int v_cost) {
@@ -38,6 +40,7 @@ public class Variable implements Serializable{
 		this.v_category = "";
 		this.v_memo = "";
 		this.v_cost = 0;
+		this.user_id = 0;
 	}
 
 
@@ -80,6 +83,14 @@ public class Variable implements Serializable{
 
 	public void setV_cost(int v_cost) {
 		this.v_cost = v_cost;
+	}
+
+	public int getUser_id() {
+		return user_id;
+	}
+
+	public void setUser_id(int user_id) {
+		this.user_id = user_id;
 	}
 
 

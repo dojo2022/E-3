@@ -45,7 +45,8 @@ public class FixedDao {
 						rs.getString("f_date"),
 						rs.getString("f_category"),
 						rs.getString("f_memo"),
-						rs.getInt("f_cost"));
+						rs.getInt("f_cost"),
+						rs.getInt("user_id"));
 				fixedList.add(list);
 			}
 		} catch (SQLException e) {
@@ -95,7 +96,8 @@ public class FixedDao {
 						rs.getString("f_date"),
 						rs.getString("f_category"),
 						rs.getString("f_memo"),
-						rs.getInt("f_cost"));
+						rs.getInt("f_cost"),
+						rs.getInt("user_id"));
 				fixedList.add(list);
 			}
 		} catch (SQLException e) {
@@ -291,7 +293,7 @@ public class FixedDao {
 		}
 
 		//固定費合計取得
-		public List<Fixed> fixed(String date) {
+		public List<Fixed> fixed(String date, int user_id) {
 			Connection conn = null;
 			List<Fixed> fixedList = new ArrayList<Fixed>();
 
@@ -303,10 +305,11 @@ public class FixedDao {
 				conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/SM", "sa", "kawasaki");
 
 				// SQL文を準備する
-				String sql = "SELECT * FROM Fixed WHERE f_date LIKE ?";
+				String sql = "SELECT * FROM Fixed WHERE (f_date LIKE ?) AND user_id = ?";
 				PreparedStatement pStmt = conn.prepareStatement(sql);
 				// SQL文を完成させる
 				pStmt.setString(1, "%" + date + "%");
+				pStmt.setInt(2, user_id);
 
 				// SQL文を実行し、結果表を取得する
 				ResultSet rs = pStmt.executeQuery();
@@ -318,7 +321,8 @@ public class FixedDao {
 							rs.getString("f_date"),
 							rs.getString("f_category"),
 							rs.getString("f_memo"),
-							rs.getInt("f_cost"));
+							rs.getInt("f_cost"),
+							rs.getInt("user_id"));
 					fixedList.add(list);
 				}
 			} catch (SQLException e) {

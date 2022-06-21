@@ -2,7 +2,6 @@ package servlet;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -50,7 +49,9 @@ public class MenuServlet extends HttpServlet {
 			return;
 		}
 		int user_id = (int)sessionuser.getAttribute("user_id");
-		LocalDate todaysDate = LocalDate.now();
+
+		//使用されていないようですｂｙ森本
+		//LocalDate todaysDate = LocalDate.now();
 
 		//スケジュールテーブルからデータを取得
 		ScheduleDao SDao = new ScheduleDao();
@@ -85,13 +86,13 @@ public class MenuServlet extends HttpServlet {
 		//残高を計算する
 		//固定費検索処理を行う
 		FixedDao fDao = new FixedDao();
-		List<Fixed> fixedList = fDao.fixed(d3);
+		List<Fixed> fixedList = fDao.fixed(d3, user_id);
 		//検索結果をリクエストスコープに格納する
 		request.setAttribute("fixedList", fixedList);
 
 		//変動費検索処理を行う
 		VariableDao vDao = new VariableDao();
-		List<Variable> variableList = vDao.variable(d3);
+		List<Variable> variableList = vDao.variable(d3, user_id);
 		//検索結果をリクエストスコープに格納する
 		request.setAttribute("variableList", variableList);
 
