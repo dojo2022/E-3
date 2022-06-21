@@ -58,6 +58,7 @@
 
 			<!-- 家計簿 -->
 			<img src="/selfManagement/img/copymaedauniverse.png" width="480" height="273" alt="仮イメージ2" >
+			<br>
 			目標：${user.reason}
 			<br>
  		    残り${deadline}ヵ月

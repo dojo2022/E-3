@@ -2,7 +2,6 @@ package servlet;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -50,31 +49,21 @@ public class MenuServlet extends HttpServlet {
 		}
 		int user_id = (int)sessionuser.getAttribute("user_id");
 
-		//使用されていないようですｂｙ森本
-		//LocalDate todaysDate = LocalDate.now();
-
 		//スケジュールテーブルからデータを取得
 		ScheduleDao SDao = new ScheduleDao();
 		List<Schedule> scheduleList = SDao.display5(user_id);
 		request.setAttribute("scheduleList", scheduleList);
 
-		//デフォルトのカレンダークラスを宣言、下のDateはセット
-		Calendar calendar = Calendar.getInstance();
+		//今日の日付を取得
 		Date date = new Date();
 
 		//値の書式を指定
 		SimpleDateFormat df = new SimpleDateFormat("MM");
 		SimpleDateFormat df2 = new SimpleDateFormat("yyyy-MM");
 
-		//カレンダークラスaddメソッド使用
-		calendar.add(Calendar.MONTH, +0);
-		 date = calendar.getTime();
-
 		//検索処理を行う
 		UserDao uDao = new UserDao();
 		User user = uDao.display(user_id);
-
-
 
 		//日付取得
 		Date date1 = uDao.deadline(user_id);
