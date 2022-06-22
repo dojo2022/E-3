@@ -2,6 +2,9 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%
+session.setAttribute("date1","0001-01-01");
+%>
 
 <!DOCTYPE html>
 <html>
@@ -96,16 +99,31 @@
 				<!-- 家計簿 -->
 				<img src="/selfManagement/img/copymaedauniverse.png" width="480"
 					height="273" alt="仮イメージ2"> <br> 目標：${user.reason} <br>
+
+				<!-- 残り日数を表示する -->
+
+				<c:if test="${date1 == '0001-01-01'}" var="flg" />
+
+				<c:if test="${flg}" >
+				(日付データを更新してください) <br>
+				</c:if>
+
+				<c:if test="${!flg}" >
 				残り${deadline + 12 * year}ヵ月 <br>
+				</c:if>
+
+				<!-- 変動費合計を計算する  -->
 				<c:set var="vTotal" value="${0}" />
 				<c:forEach var="vlist" items="${variableList}">
 					<c:set var="vTotal" value="${vTotal + vlist.v_cost}" />
 				</c:forEach>
 
+				<!-- 固定費合計を計算する  -->
 				<c:set var="fTotal" value="${0}" />
 				<c:forEach var="flist" items="${fixedList}">
 					<c:set var="fTotal" value="${fTotal + flist.f_cost}" />
 				</c:forEach>
+
 				<c:set var="balance" value="${user.salary - fTotal - vTotal}" />
 				現在の残高：
 				<fmt:formatNumber maxFractionDigits="0" value="${balance}" />

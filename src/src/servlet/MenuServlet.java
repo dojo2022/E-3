@@ -95,9 +95,10 @@ public class MenuServlet extends HttpServlet {
 		request.setAttribute("variableList", variableList);
 
 		//検索結果をリクエストスコープに格納する
-		request.setAttribute("deadline", deadline);
-		request.setAttribute("user", user);
-		request.setAttribute("year", year);
+		request.setAttribute("deadline", deadline); //達成期限と今月の差
+		request.setAttribute("year", year);			//達成期限(年)
+		request.setAttribute("date1", date1);       //達成期限(月)
+		request.setAttribute("user", user);			//ユーザデータ
 		//request.setAttribute(constitution, constitution);
 
 		// メニューページにフォワードする
