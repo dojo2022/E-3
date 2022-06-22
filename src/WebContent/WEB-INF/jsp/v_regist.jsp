@@ -35,19 +35,19 @@
 			</tr>
 			<tr>
 				<td>カテゴリー</td>
-				<td><select name="v_category">
-						<option value="食費" selected>食費</option>
+				<td>
+					<select name="v_category">
+						<option value="食費">食費</option>
 						<option value="日用品・衣服">日用品・衣服</option>
-						<option value="通信費">通信費</option>
 						<option value="交際費">交際費</option>
 						<option value="交通費">交通費</option>
-						<option value="水道・光熱費">水道・光熱費</option>
 						<option value="美容">美容</option>
 						<option value="趣味">趣味</option>
 						<option value="医療費">医療費</option>
 						<option value="教育費">教育費</option>
 						<option value="その他">その他</option>
-				</select></td>
+					</select>
+				</td>
 			</tr>
 			<tr>
 				<td>メモ</td>

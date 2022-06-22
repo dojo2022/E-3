@@ -35,14 +35,18 @@
 			</tr>
 			<tr>
 				<td>カテゴリー</td>
-				<td><select name="f_category">
-						<option value="家賃" selected>家賃</option>
-						<option value="保険">保険</option>
-						<option value="サブスク">サブスク</option>
-						<option value="定期代">定期代</option>
-						<option value="ローン">ローン</option>
+				<td>
+					<select name="f_category">
+						<option value="住居費">住居費</option>
+						<option value="水道光熱費">水道光熱費</option>
+						<option value="通信費">通信費</option>
+						<option value="生命保険">生命保険</option>
+						<option value="自動車関係費">自動車関係費</option>
+						<option value="サブフリクション">サブフリクション</option>
+						<option value="習い事等">習い事等</option>
 						<option value="その他">その他</option>
-				</select></td>
+					</select>
+				</td>
 			</tr>
 			<tr>
 				<td>メモ</td>
