@@ -78,9 +78,6 @@ public class MenuServlet extends HttpServlet {
 
 		String d3 = df2.format(date);
 
-		//体質取得
-		//String constitution = UserDao.constitution(user_id);
-
 		//残高を計算する
 		//固定費検索処理を行う
 		FixedDao fDao = new FixedDao();

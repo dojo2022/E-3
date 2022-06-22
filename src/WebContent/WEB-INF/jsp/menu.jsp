@@ -45,6 +45,7 @@ session.setAttribute("date1","0001-01-01");
 	</header>
 	<!--ヘッダーここまで-->
 	<main>
+
 		<div class="city-wrap">
 			<h4 id="city-name" class="city-name"></h4>
 			<div id="weather-date" class="weather-date"></div>
@@ -67,9 +68,7 @@ session.setAttribute("date1","0001-01-01");
 			<div id="weather-discription" class="weather-discription"></div>
 			<img id="weather-icon" src="img/01d.png">
 			<div id="weather-cloth" class="weather-cloth"></div>
-			<div class="weather-reportWrap">
-				<div id="weather-report" class="weather-report"></div>
-			</div>
+			<div id="cons" title="${user.constitution }"></div>
 		</div>
 
 		<div class="container">
