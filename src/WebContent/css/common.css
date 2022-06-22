@@ -2,25 +2,26 @@
 body {
 	background-color: white;
 
+
 }
 /*navタグのデザイン*/
 nav ul {
 	display: table;
 	margin: 0 auto;
 	padding: 0 ;
-	width: 80%;
+	width: auto;
 	text-align: center;
 	font-style: oblique;
 }
 nav li {
 	float: left;
-	width:  210px;
+	width:  180px;
 	list-style-type: none;
 	text-align: center;
 }
 nav a {
 	display: block;
-	width: 100%;
+	width: auto;
 	text-decoration: none;
 	color: black;
 	padding-bottom: 5px;
@@ -62,7 +63,7 @@ div p {
 h1#sm {
 	margin-bottom: 0;/*ロゴの後ろの空白を詰める*/
 }
-footer{
+footer p{
 	margin-top: 0;/*フッターの上の空白を詰める*/
 	text-align: center;/*フッター中央詰め*/
 }
@@ -84,18 +85,13 @@ form {
 }
 .container {/*真ん中の色*/
   position: relative;
-  width: 1215px;
+  width: auto;
   height: auto;
-  background: #f5f5f5;
+  background:#f5f5f5;
 }
 .contents {
   position: relative;
   margin-top: 30px;
-}
-table,th,td {
-	text-align: right;
-	margin-top: 0;
-	margin-bottom: 0;
 }
 main {
 	text-align: center;
@@ -113,14 +109,86 @@ th {
 	text-align: center;
 	border: black 3px solid; /*境界線の指定*/
 	display :inline-block;
+	background: white;
 }
 .box p {
 	text-align:center;
 	margin:0;
 	padding:0;
 	margin: 20px;
+	font-weight: bold;
+	font-size:20px;
 }
 .botton2 {
 	margin-top: 30px;
 	margin-bottom: 30px;
+}
+#table2 {
+  height:300px;
+  width: auto;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+#table2#list th, #table2#list td {
+  border-bottom-width: 1px;	/* 黒色でドットの下線を付ける */
+  border-bottom-style: dotted;
+  border-bottom-color: black;
+  padding: 4px 16px 4px 0;
+  text-align: left;
+  white-space: nowrap;		/* 折り返さない */
+}
+#list th {
+  background-color: #2f4f4f;
+  color: #FFF;
+  text-align: center;
+  vertical-align: middle;
+}
+.wrapper {
+	margin: 0 auto 0 auto;	/* 中央揃え */
+    width: 750px;
+}
+.but1{
+  position: relative;
+  font-size: 18px;
+  width: 130px;
+  height: 50px;
+  display: inline-block;
+  padding: 0.25em 0.5em;
+  text-decoration: none;
+  color: #FFF;
+  background: #2f4f4f;/*色*/
+  border: solid 1px #2f4f4f;/*線色*/
+  border-radius: 4px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.2);
+  text-shadow: 0 1px 0 rgba(0,0,0,0.2);
+}
+.but1:active {
+  -webkit-transform: translateY(4px);
+  transform: translateY(4px);/*下に動く*/
+  box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2);/*影を小さく*/
+  border-bottom: none;
+}
+.but2 {
+  width: 130px;
+  height: 50px;
+  font-size: 18px;
+  position: relative;
+  display: inline-block;
+  padding: 0.25em 0.5em;
+  text-decoration: none;
+  color:  #FFF;
+  background: #2f4f4f;/*色*/
+  border: solid 3px #2f4f4f;/*線色*/
+  border-radius: 4px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.2);
+  text-shadow: 0 1px 0 rgba(0,0,0,0.2);
+}
+.but2:active {
+  -webkit-transform: translateY(4px);
+  transform: translateY(4px);/*下に動く*/
+  box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2);/*影を小さく*/
+  border-bottom: none;
+}
+.but1{
+    margin-right: 100px;
 }
