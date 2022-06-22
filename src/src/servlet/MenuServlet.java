@@ -78,7 +78,7 @@ public class MenuServlet extends HttpServlet {
 		//残高を計算する
 		//固定費検索処理を行う
 		FixedDao fDao = new FixedDao();
-		List<Fixed> fixedList = fDao.fixed(new Fixed(0, d3, "", "", 0, user_id));
+		List<Fixed> fixedList = fDao.fixed(new Fixed(0, "", "", "", 0, user_id));
 		//検索結果をリクエストスコープに格納する
 		request.setAttribute("fixedList", fixedList);
 

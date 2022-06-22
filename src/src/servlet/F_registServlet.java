@@ -41,17 +41,23 @@ public class F_registServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		// もしもログインしていなかったらログインサーブレットにリダイレクトする
+		HttpSession sessionuser = request.getSession();
+		if (sessionuser.getAttribute("user_id") == null) {
+			response.sendRedirect("/selfManagement/LoginServlet");
+			return;
+		}
 		// リクエストパラメータを取得する
 				request.setCharacterEncoding("UTF-8");
-
 				String f_date = request.getParameter("f_date");
 				String f_category = request.getParameter("f_category");
 				String f_memo = request.getParameter("f_memo");
 				int f_cost = Integer.parseInt(request.getParameter("f_cost"));
+				int user_id = (int)sessionuser.getAttribute("user_id");
 
 				// 登録処理を行う
 				FixedDao fDao = new FixedDao();
-				if (fDao.insert(new Fixed(f_date, f_category, f_memo, f_cost))) { // 登録成功
+				if (fDao.insert(new Fixed(0, f_date, f_category, f_memo, f_cost,user_id))) { // 登録成功
 					request.setAttribute("result",
 							new Result("登録成功しました", "/selfManagement/F_registServlet", "固定費登録画面へ","/selfManagement/H_listServlet","家計簿一覧へ"));
 					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/result.jsp");

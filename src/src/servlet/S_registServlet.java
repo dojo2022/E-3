@@ -49,10 +49,10 @@ public class S_registServlet extends HttpServlet {
 
 		// リクエストパラメータを取得する
 		request.setCharacterEncoding("UTF-8");
-		int user_id = (int)sessionuser.getAttribute("user_id");
 		String s_date = request.getParameter("s_date");
 		String s_category = request.getParameter("s_category");
 		String s_memo = request.getParameter("s_memo");
+		int user_id = (int)sessionuser.getAttribute("user_id");
 
 		// 登録処理を行う
 		ScheduleDao sDao = new ScheduleDao();

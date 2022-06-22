@@ -11,17 +11,13 @@ import java.util.List;
 import model.Variable;
 
 public class VariableDao {
-/*
-	// 引数paramで検索項目を指定し、検索結果のリストを返す
-	public List<Variable> v_search(Search param) {
-		Connection conn = null;
 
+	//日付検索
+	//メニューページのデータ取得で使用
+	//一覧ページに出力
+	public List<Variable> variable(Variable param) {
+		Connection conn = null;
 		List<Variable> variableList = new ArrayList<Variable>();
-		//デフォルトのカレンダークラスを宣言、下のDateはセット
-		SimpleDateFormat df2 = new SimpleDateFormat("yyyy-MM");
-		//Calendar calendar = Calendar.getInstance();
-		Date date = new Date();
-		String d3 = df2.format(date);
 
 		try {
 			// JDBCドライバを読み込む
@@ -31,15 +27,10 @@ public class VariableDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/SM", "sa", "kawasaki");
 
 			// SQL文を準備する
-			String sql = "SELECT v_id,v_date, v_category, v_memo, v_cost FROM Variable WHERE (v_date LIKE ?) AND (user_id = ?)";
+			String sql = "SELECT * FROM Variable WHERE (v_date LIKE ?) AND (user_id = ?) ORDER BY v_date";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
-
 			// SQL文を完成させる
-			if (param.getH_date() != null) {
-				pStmt.setString(1, "%" + param.getH_date() + "%");
-			} else {
-				pStmt.setString(1, d3 + "%");
-			}
+			pStmt.setString(1, "%" + param.getV_date() + "%");
 			pStmt.setInt(2, param.getUser_id());
 
 			// SQL文を実行し、結果表を取得する
@@ -77,7 +68,7 @@ public class VariableDao {
 		// 結果を返す
 		return variableList;
 	}
-*/
+
 	// 引数cardで指定されたレコードを登録し、成功したらtrueを返す
 	public boolean insert(Variable param) {
 		Connection conn = null;
@@ -91,7 +82,7 @@ public class VariableDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/SM", "sa", "kawasaki");
 
 			// SQL文を準備する
-			String sql = "INSERT INTO Variable(v_date, v_category, v_memo, v_cost) VALUES(?,?,?,?)";
+			String sql = "INSERT INTO Variable(v_date, v_category, v_memo, v_cost, user_id) VALUES(?,?,?,?,?)";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
@@ -115,6 +106,7 @@ public class VariableDao {
 			} else {
 				pStmt.setInt(4, 0);
 			}
+			pStmt.setInt(5, param.getUser_id());
 
 			// SQL文を実行する
 			if (pStmt.executeUpdate() == 1) {
@@ -247,10 +239,18 @@ public class VariableDao {
 		// 結果を返す
 		return result;
 	}
-	//検索兼今月のデータ取得
-			public List<Variable> variable(Variable param) {
+
+			/*日付検索で使ってたやつ
+			// 引数paramで検索項目を指定し、検索結果のリストを返す
+			public List<Variable> v_search(Search param) {
 				Connection conn = null;
+
 				List<Variable> variableList = new ArrayList<Variable>();
+				//デフォルトのカレンダークラスを宣言、下のDateはセット
+				SimpleDateFormat df2 = new SimpleDateFormat("yyyy-MM");
+				//Calendar calendar = Calendar.getInstance();
+				Date date = new Date();
+				String d3 = df2.format(date);
 
 				try {
 					// JDBCドライバを読み込む
@@ -260,10 +260,15 @@ public class VariableDao {
 					conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/SM", "sa", "kawasaki");
 
 					// SQL文を準備する
-					String sql = "SELECT * FROM Variable WHERE (v_date LIKE ?) AND (user_id = ?)";
+					String sql = "SELECT v_id,v_date, v_category, v_memo, v_cost FROM Variable WHERE (v_date LIKE ?) AND (user_id = ?)";
 					PreparedStatement pStmt = conn.prepareStatement(sql);
+
 					// SQL文を完成させる
-					pStmt.setString(1, "%" + param.getV_date() + "%");
+					if (param.getH_date() != null) {
+						pStmt.setString(1, "%" + param.getH_date() + "%");
+					} else {
+						pStmt.setString(1, d3 + "%");
+					}
 					pStmt.setInt(2, param.getUser_id());
 
 					// SQL文を実行し、結果表を取得する
@@ -301,5 +306,6 @@ public class VariableDao {
 				// 結果を返す
 				return variableList;
 			}
+		*/
 
 }

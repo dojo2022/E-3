@@ -25,13 +25,6 @@ public class Fixed implements Serializable {
 		this.user_id = user_id;
 	}
 
-	public Fixed(String f_date, String f_category, String f_memo, int f_cost) {
-		super();
-		this.f_date = f_date;
-		this.f_category = f_category;
-		this.f_memo = f_memo;
-		this.f_cost = f_cost;
-	}
 
 	public Fixed() {
 		super();

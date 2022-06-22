@@ -11,8 +11,11 @@ import java.util.List;
 import model.Fixed;
 
 public class FixedDao {
-/*
-	public List<Fixed> select(Fixed param) {
+
+	//日付検索
+	//月固定費合計取得
+	//一覧表示に出力
+	public List<Fixed> fixed(Fixed param) {
 		Connection conn = null;
 		List<Fixed> fixedList = new ArrayList<Fixed>();
 
@@ -24,11 +27,11 @@ public class FixedDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/SM", "sa", "kawasaki");
 
 			// SQL文を準備する
-			String sql = "SELECT * FROM Fixed WHERE user_id = ? ORDER BY f_date DESC";
+			String sql = "SELECT * FROM Fixed WHERE (f_date LIKE ?) AND (user_id = ?) ORDER BY f_cost ";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
-
 			// SQL文を完成させる
-			pStmt.setInt(1, param.getUser_id());
+			pStmt.setString(1, "%" + param.getF_date() + "%");
+			pStmt.setInt(2, param.getUser_id());
 
 			// SQL文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();
@@ -36,26 +39,31 @@ public class FixedDao {
 			// 結果表をコレクションにコピーする
 			while (rs.next()) {
 				Fixed list = new Fixed(
-						rs.getInt("f_id"),
-						rs.getString("f_date"),
-						rs.getString("f_category"),
-						rs.getString("f_memo"),
-						rs.getInt("f_cost"),
-						rs.getInt("user_id"));
-				fixedList.add(list);
+					rs.getInt("f_id"),
+					rs.getString("f_date"),
+					rs.getString("f_category"),
+					rs.getString("f_memo"),
+					rs.getInt("f_cost"),
+					rs.getInt("user_id"));
+
+					fixedList.add(list);
+				}
 			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-			fixedList = null;
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-			fixedList = null;
-		} finally {
+			catch (SQLException e) {
+				e.printStackTrace();
+				fixedList = null;
+			}
+			catch (ClassNotFoundException e) {
+				e.printStackTrace();
+				fixedList = null;
+			}
+			finally {
 			// データベースを切断
 			if (conn != null) {
 				try {
 					conn.close();
-				} catch (SQLException e) {
+				}
+				catch (SQLException e) {
 					e.printStackTrace();
 					fixedList = null;
 				}
@@ -65,7 +73,6 @@ public class FixedDao {
 		// 結果を返す
 		return fixedList;
 	}
-*/
 
 	// 引数cardで指定されたレコードを登録し、成功したらtrueを返す
 	public boolean insert(Fixed param) {
@@ -80,7 +87,7 @@ public class FixedDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/SM", "sa", "kawasaki");
 
 			// SQL文を準備する
-			String sql = "INSERT INTO Fixed(f_date, f_category, f_memo, f_cost) VALUES(?,?,?,?)";
+			String sql = "INSERT INTO Fixed(f_date, f_category, f_memo, f_cost, user_id) VALUES(?,?,?,?,?)";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
@@ -104,21 +111,26 @@ public class FixedDao {
 			} else {
 				pStmt.setInt(4, 0);
 			}
+			pStmt.setInt(5, param.getUser_id());
 
 			// SQL文を実行する
 			if (pStmt.executeUpdate() == 1) {
 				result = true;
 			}
-		} catch (SQLException e) {
+		}
+		catch (SQLException e) {
 			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
+		}
+		catch (ClassNotFoundException e) {
 			e.printStackTrace();
-		} finally {
+		}
+		finally {
 			// データベースを切断
 			if (conn != null) {
 				try {
 					conn.close();
-				} catch (SQLException e) {
+				}
+				catch (SQLException e) {
 					e.printStackTrace();
 				}
 			}
@@ -237,8 +249,9 @@ public class FixedDao {
 			return result;
 		}
 
-		//検索兼月固定費合計取得
-		public List<Fixed> fixed(Fixed param) {
+
+		/*検索で使ってたやつ
+		public List<Fixed> select(Fixed param) {
 			Connection conn = null;
 			List<Fixed> fixedList = new ArrayList<Fixed>();
 
@@ -250,11 +263,11 @@ public class FixedDao {
 				conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/SM", "sa", "kawasaki");
 
 				// SQL文を準備する
-				String sql = "SELECT * FROM Fixed WHERE (f_date LIKE ?) AND user_id = ?";
+				String sql = "SELECT * FROM Fixed WHERE user_id = ? ORDER BY f_date DESC";
 				PreparedStatement pStmt = conn.prepareStatement(sql);
+
 				// SQL文を完成させる
-				pStmt.setString(1, "%" + param.getF_date() + "%");
-				pStmt.setInt(2, param.getUser_id());
+				pStmt.setInt(1, param.getUser_id());
 
 				// SQL文を実行し、結果表を取得する
 				ResultSet rs = pStmt.executeQuery();
@@ -291,4 +304,5 @@ public class FixedDao {
 			// 結果を返す
 			return fixedList;
 		}
+	*/
 }
