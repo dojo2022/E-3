@@ -140,7 +140,7 @@ public class ScheduleDao {
 				PreparedStatement pStmt = conn.prepareStatement(sql);
 
 				//SQL分を完成させる
-				if (param.getS_date() != null) {
+				if (param.getS_date() != null && !param.getS_date().equals("")) {
 					pStmt.setString(1, param.getS_date() + "%");
 				}
 				else {

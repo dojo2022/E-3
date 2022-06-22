@@ -5,7 +5,9 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import model.Variable;
@@ -18,6 +20,11 @@ public class VariableDao {
 	public List<Variable> variable(Variable param) {
 		Connection conn = null;
 		List<Variable> variableList = new ArrayList<Variable>();
+		//デフォルトのカレンダークラスを宣言、下のDateはセット
+		SimpleDateFormat df2 = new SimpleDateFormat("yyyy-MM");
+		//Calendar calendar = Calendar.getInstance();
+		Date date = new Date();
+		String d3 = df2.format(date);
 
 		try {
 			// JDBCドライバを読み込む
@@ -30,7 +37,12 @@ public class VariableDao {
 			String sql = "SELECT * FROM Variable WHERE (v_date LIKE ?) AND (user_id = ?) ORDER BY v_date";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			// SQL文を完成させる
-			pStmt.setString(1, "%" + param.getV_date() + "%");
+			if (param.getV_date() != null && !param.getV_date().equals("")) {
+				pStmt.setString(1, param.getV_date() + "%");
+			}
+			else {
+				pStmt.setString(1, d3 + "%");
+			}
 			pStmt.setInt(2, param.getUser_id());
 
 			// SQL文を実行し、結果表を取得する
