@@ -37,25 +37,25 @@
 			<h2>貯金理由</h2>
 			<input type="text" value="${user.reason}" readonly>
 			&#9654;
-			<input type="text" name="reason">
+			<input type="text" name="reason" value="${user.reason}">
 		     <br>
 
 		     <h2>達成期限</h2>
 		     <input type="date" value="${user.deadline}" readonly>
 		     &#9654;
-		     <input type="date" name="deadline">
+		     <input type="date" name="deadline" value="${user.deadline}">
 		     <br>
 
 			<h2>目標金額</h2>
 			<input type="text" value="${user.goal}" readonly>
 			&#9654;
-			<input type="text" name="goal">
+			<input type="text" name="goal" value="${user.goal}">
 		    <br>
 
 			<h2>給料</h2>
 			<input type="text" value="${user.salary}" readonly>
 			&#9654;
-			<input type="text" name="salary">
+			<input type="text" name="salary" value="${user.salary}">
 		    <br>
 
 		   	<h2>暑がり寒がり</h2>
