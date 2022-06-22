@@ -43,7 +43,7 @@
 		     <h2>達成期限</h2>
 		     <input type="date" value="${user.deadline}" readonly>
 		     &#9654;
-		     <input type="date" name="deadline" value="${user.deadline}">
+		     <input type="date" name="deadline" value="${user.deadline}"id="today">
 		     <br>
 
 			<h2>目標金額</h2>
@@ -80,5 +80,30 @@
 		</p>
 		</footer>
 		<!--フッターここまで-->
+		<script>
+    //今日の日時を表示
+        window.onload = function () {
+            //今日の日時を表示
+            var date = new Date()
+            var year = date.getFullYear()
+            var month = date.getMonth() + 1
+            var day = date.getDate()
+
+            var toTwoDigits = function (num, digit) {
+              num += ''
+              if (num.length < digit) {
+                num = '0' + num
+              }
+              return num
+            }
+
+            var yyyy = toTwoDigits(year, 4)
+            var mm = toTwoDigits(month, 2)
+            var dd = toTwoDigits(day, 2)
+            var ymd = yyyy + "-" + mm + "-" + dd;
+
+            document.getElementById("today").value = ymd;
+        }
+    </script>
 </body>
 </html>
