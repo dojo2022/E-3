@@ -34,7 +34,7 @@ public class VariableDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/SM", "sa", "kawasaki");
 
 			// SQL文を準備する
-			String sql = "SELECT * FROM Variable WHERE (v_date LIKE ?) AND (user_id = ?) ORDER BY v_date";
+			String sql = "SELECT * FROM Variable WHERE (v_date LIKE ?) AND (user_id = ?) ORDER BY v_date DESC";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			// SQL文を完成させる
 			if (param.getV_date() != null && !param.getV_date().equals("")) {
