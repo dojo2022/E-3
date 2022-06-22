@@ -15,7 +15,7 @@
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
-<script src="weather.js"></script>
+<script src="/selfManagement/js/weather.js"></script>
 </head>
 <body>
 	<!--ヘッダー-->
