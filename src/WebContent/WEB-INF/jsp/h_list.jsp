@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,11 +35,31 @@
      <div class="contents">
 	  <div class="box">
 	<div>
-		<p>目標:</p>
-		<p>目標までの残り月:</p>
-		<p>家計簿の現在の残高:</p>
-		<p>貯金目安:</p>
-		<p>使えるお金:</p>
+			<p>目標:${user.reason}</p>
+
+			<c:if test="${date1 == '0001-01-01'}" var="flg" />
+			<c:if test="${flg}" >
+			<p>(日付データを更新してください) </p>
+			</c:if>
+			<c:if test="${!flg}" >
+			<p>残り${deadline + 12 * year}ヵ月 </p>
+			</c:if>
+
+			<c:set var="vTotal" value="${0}" />
+			<c:forEach var="vlist" items="${variableList}">
+			<c:set var="vTotal" value="${vTotal + vlist.v_cost}" />
+			</c:forEach>
+			<c:set var="fTotal" value="${0}" />
+			<c:forEach var="flist" items="${fixedList}">
+			<c:set var="fTotal" value="${fTotal + flist.f_cost}" />
+			</c:forEach>
+			<c:set var="balance" value="${user.salary - fTotal - vTotal}" />
+			<p>現在の残高:<fmt:formatNumber maxFractionDigits="0" value="${balance}" />円</p>
+
+			<!-- ↓本当はsavings使って計算します -->
+			<c:set var="savings" value="${user.goal / (deadline + 12 * year)}" />
+			<p>貯金目標:<fmt:formatNumber maxFractionDigits="0" value="${savings}" />円</p>
+			<p>使用可能額:<fmt:formatNumber maxFractionDigits="0" value="${balance - savings}" />円</p>
 	</div>
      </div>
      <div class="botton2">
@@ -115,6 +136,7 @@
 				  <th colspan="2">その他</th>
 				 </tr>
 					<tr>
+						<td><input type="hidden" name="v_id" value="${vlist.v_id}"></td>
 						<td>
 							<select name="f_category">
 								<option hidden>${flist.f_category}</option>
