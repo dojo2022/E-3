@@ -96,7 +96,7 @@
 				<!-- 家計簿 -->
 				<img src="/selfManagement/img/copymaedauniverse.png" width="480"
 					height="273" alt="仮イメージ2"> <br> 目標：${user.reason} <br>
-				残り${deadline}ヵ月 <br>
+				残り${deadline + 12 * year}ヵ月 <br>
 				<c:set var="vTotal" value="${0}" />
 				<c:forEach var="vlist" items="${variableList}">
 					<c:set var="vTotal" value="${vTotal + vlist.v_cost}" />
@@ -111,7 +111,7 @@
 				<fmt:formatNumber maxFractionDigits="0" value="${balance}" />
 				円 <br>
 				<!-- ↓本当はsavings使って計算します -->
-				<c:set var="savings" value="${user.goal / deadline}" />
+				<c:set var="savings" value="${user.goal / (deadline + 12 * year)}" />
 				貯金目標：
 				<fmt:formatNumber maxFractionDigits="0" value="${savings}" />
 				円 <br> 使用可能額：

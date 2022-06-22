@@ -60,6 +60,7 @@ public class MenuServlet extends HttpServlet {
 		//値の書式を指定
 		SimpleDateFormat df = new SimpleDateFormat("MM");
 		SimpleDateFormat df2 = new SimpleDateFormat("yyyy-MM");
+		SimpleDateFormat df3 = new SimpleDateFormat("yyyy");
 
 		//検索処理を行う
 		UserDao uDao = new UserDao();
@@ -69,7 +70,12 @@ public class MenuServlet extends HttpServlet {
 		Date date1 = uDao.deadline(user_id);
 		int d1 = Integer.parseInt(df.format(date1));	//達成期限
 		int d2 = Integer.parseInt(df.format(date));	//今月
+		int y1 = Integer.parseInt(df3.format(date1));	//達成年
+		int y2 = Integer.parseInt(df3.format(date));	//今年
+
 		int deadline = d1 - d2;
+		int year = y1 - y2;
+
 		String d3 = df2.format(date);
 
 		//体質取得
@@ -91,6 +97,7 @@ public class MenuServlet extends HttpServlet {
 		//検索結果をリクエストスコープに格納する
 		request.setAttribute("deadline", deadline);
 		request.setAttribute("user", user);
+		request.setAttribute("year", year);
 		//request.setAttribute(constitution, constitution);
 
 		// メニューページにフォワードする
