@@ -16,7 +16,7 @@
  <ul>
    <li><a href="S_listServlet">スケジュール</a></li>
    <li><a href="H_listServlet">家計簿</a></li>
-   <li><a href=U_updateDeleteServlet>ユーザー更新</a></li>
+   <li><a href=U_updateServlet>ユーザー更新</a></li>
    <li><a href="LogoutServlet">ログアウト</a></li>
  </ul>
 </nav>
