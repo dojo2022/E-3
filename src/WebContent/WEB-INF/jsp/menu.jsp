@@ -22,6 +22,7 @@ session.setAttribute("date1","0001-01-01");
 </head>
 <body>
 	<!--ヘッダー-->
+	<div class="wrapper">
 	<header class="header">
 		<h1 id="sm">
 			<a href="/selfManagement/MenuServlet"><img
@@ -45,7 +46,19 @@ session.setAttribute("date1","0001-01-01");
 	</header>
 	<!--ヘッダーここまで-->
 	<main>
-
+   	  <div class="container">
+		<div class="contents">
+		<div class="box1">
+	   <div class="pic0">
+	   	   <img src="/selfManagement/img/taiyou.png" width="160" height="100"
+		alt="仮イメージ1">
+		<img src="/selfManagement/img/ame.png" width="160" height="100"
+		alt="仮イメージ1">
+		<img src="/selfManagement/img/kaminari.png" width="160" height="100"
+		alt="仮イメージ1">
+		<img src="/selfManagement/img/yuki1.png" width="160" height="100"
+		alt="仮イメージ1">
+	  </div>
 		<div class="city-wrap">
 			<h4 id="city-name" class="city-name"></h4>
 			<div id="weather-date" class="weather-date"></div>
@@ -70,21 +83,14 @@ session.setAttribute("date1","0001-01-01");
 			<div id="weather-cloth" class="weather-cloth"></div>
 			<div id="cons" title="${user.constitution }"></div>
 		</div>
+        </div>
 
-		<div class="container">
-			<div class="contents">
-				<img src="/selfManagement/img/iii.png" width="400" height="130"
-					alt="Self Managment"> <br>
 				<!-- スケジュール -->
-				<img src="/selfManagement/img/kari1.png" width="480" height="273"
-					alt="仮イメージ1">
-
-				<table>
-					<tr>
-						<th>日付</th>
-						<th>予定</th>
-					</tr>
-				</table>
+			 <div class="suke2">
+				<img src="/selfManagement/img/suke1.png" width="230" height="180"
+					alt="仮イメージ1" class="image1">
+				<div class="box4">
+						<p>日付:予定</p>
 				<c:forEach var="slist" items="${scheduleList}">
 					<table>
 						<tr>
@@ -93,11 +99,16 @@ session.setAttribute("date1","0001-01-01");
 						</tr>
 					</table>
 				</c:forEach>
-				<a href="/selfManagement/S_listServlet">スケジュール管理へ</a> <br>
 
+				<a href="/selfManagement/S_listServlet">スケジュール管理へ</a> <br>
+              </div>
+            </div>
 				<!-- 家計簿 -->
-				<img src="/selfManagement/img/copymaedauniverse.png" width="480"
-					height="273" alt="仮イメージ2"> <br> 目標：${user.reason} <br>
+				<div class="kake3">
+				<img src="/selfManagement/img/kake3.png" width="230"
+					height="180" alt="仮イメージ2">
+				<div class="box4">
+				 目標：${user.reason} <br>
 
 				<!-- 残り日数を表示する -->
 
@@ -135,6 +146,8 @@ session.setAttribute("date1","0001-01-01");
 				<fmt:formatNumber maxFractionDigits="0" value="${balance - savings}" />
 				円 <br> <a href="/selfManagement/H_listServlet">家計簿管理へ</a>
 			</div>
+			</div>
+			</div>
 		</div>
 
 	</main>
@@ -143,6 +156,7 @@ session.setAttribute("date1","0001-01-01");
 	<footer>
 		<p>&copy;Copyright 川崎.java. All rights reserved.</p>
 	</footer>
+	</div>
 	<!--フッターここまで-->
 </body>
 </html>
