@@ -137,12 +137,17 @@ session.setAttribute("date1","0001-01-01");
 
 				<!-- 固定費合計を計算する  -->
 				<c:set var="fTotal" value="${0}" />
+
 				<c:forEach var="flist" items="${fixedList}">
 					<c:set var="fTotal" value="${fTotal + flist.f_cost}" />
+
 				</c:forEach>
 
 				<!-- deadline +1 する -->
-				<c:set var="deadline" value="${deadline + 1}" />
+				<c:if test="${deadline == 0}" var="p1" />
+				<c:if test="${p1}" >
+					<c:set var="deadline" value="${deadline + 1}" />
+				</c:if>
 
 				<!-- 現在の残高を表示する -->
 				<c:set var="balance" value="${user.salary - fTotal - vTotal}" />
@@ -151,8 +156,9 @@ session.setAttribute("date1","0001-01-01");
 				円 <br>
 
 				<!-- 貯金目標を表示する(↓本当はsavings使って計算します) -->
+				貯金目標：<fmt:formatNumber maxFractionDigits="0" value="${user.goal}"/>円<br>
 				<c:set var="savings" value="${user.goal / (deadline + 12 * year)}" />
-				貯金目標：
+				今月の貯金目安：
 				<fmt:formatNumber maxFractionDigits="0" value="${savings}" />
 				円 <br> 使用可能額：
 				<fmt:formatNumber maxFractionDigits="0" value="${balance - savings}" />
