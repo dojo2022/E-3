@@ -77,20 +77,20 @@ public class MenuServlet extends HttpServlet {
 		int year = y1 - y2;
 
 		String d3 = df2.format(date);
-	/*
-		FixedDao ffDao = new FixedDao();
-		List<Fixed> fixedUpList = ffDao.select(new Fixed(0, d3, "", "", 0, user_id));
-		//固定費の再登録
-		for(int i = 0; i < fixedUpList.size(); i++) {
-			ffDao.f_insert(fixedUpList.get(i));
-		}
-	*/
+
 		//残高を計算する
 		//固定費検索処理を行う
 		FixedDao fDao = new FixedDao();
-		List<Fixed> fixedList = fDao.fixed(new Fixed(0, d3, "", "", 0, user_id));
+		List<Fixed> fixedList = fDao.select(new Fixed(0, d3, "", "", 0, user_id));
 		//検索結果をリクエストスコープに格納する
 		request.setAttribute("fixedList", fixedList);
+		//固定費の再登録
+		if(fixedList != null) {
+			for(int i = 0; i < fixedList.size(); i++) {
+				fDao.f_insert(fixedList.get(i));
+			}
+		}
+
 
 
 

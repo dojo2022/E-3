@@ -8,7 +8,8 @@ public class Fixed implements Serializable {
 	private String f_memo;
 	private int f_cost;
 	private int user_id;
-	//private String f_search;
+	//private int f_sorting;
+
 	/**
 	 * @param f_date
 	 * @param f_category
@@ -23,6 +24,7 @@ public class Fixed implements Serializable {
 		this.f_memo = f_memo;
 		this.f_cost = f_cost;
 		this.user_id = user_id;
+		//this.f_sorting = f_sorting;
 	}
 
 
@@ -34,11 +36,8 @@ public class Fixed implements Serializable {
 		this.f_memo = "";
 		this.f_cost = 0;
 		this.user_id = 0;
+		//this.f_sorting = 0;
 	}
-
-	/*public Fixed(String f_search) {
-		this.f_search = f_search;
-	}*/
 
 	public int getF_id() {
 		return f_id;
@@ -87,13 +86,14 @@ public class Fixed implements Serializable {
 		this.user_id = user_id;
 	}
 
-	/*public String getF_search() {
-		return f_search;
+/*
+	public int getF_sorting() {
+		return f_sorting;
 	}
 
-	public void setF_search(String f_search) {
-		this.f_search = f_search;
-	}*/
 
-
+	public void setF_sorting(int f_sorting) {
+		this.f_sorting = f_sorting;
+	}
+*/
 }
