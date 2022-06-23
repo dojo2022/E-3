@@ -58,12 +58,12 @@ public class V_registServlet extends HttpServlet {
 		VariableDao vDao = new VariableDao();
 		if (vDao.insert(new Variable(0,v_date, v_category, v_memo, v_cost, user_id))) { // 登録成功
 			request.setAttribute("result",
-					new Result("登録成功しました", "/selfManagement/V_registServlet", "変動費登録画面へ","/selfManagement/H_listServlet","家計簿一覧へ"));
+					new Result("登録成功しました", "/selfManagement/V_registServlet", "続けて登録","/selfManagement/H_listServlet","家計簿一覧へ"));
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/result.jsp");
 			dispatcher.forward(request, response);
 		} else { // 登録失敗
 			request.setAttribute("result",
-					new Result("登録失敗しました", "/selfManagement/V_registServlet","", "/selfManagement/H_listServlet",""));
+					new Result("登録失敗しました", "/selfManagement/V_registServlet","登録画面へ", "/selfManagement/H_listServlet","家計簿一覧へ"));
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/result.jsp");
 			dispatcher.forward(request, response);
 		}
