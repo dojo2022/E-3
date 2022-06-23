@@ -85,6 +85,12 @@ public class MenuServlet extends HttpServlet {
 		//検索結果をリクエストスコープに格納する
 		request.setAttribute("fixedList", fixedList);
 
+		//固定費の再登録
+		for(int i = 0; i < fixedList.size(); i++) {
+			fDao.insert(fixedList.get(i));
+		}
+
+
 		//変動費検索処理を行う
 		VariableDao vDao = new VariableDao();
 		List<Variable> variableList = vDao.variable(new Variable(0, d3, "", "", 0, user_id));
