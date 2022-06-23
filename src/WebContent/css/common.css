@@ -51,7 +51,7 @@ h1{
 }
 h2 {
 	text-align:center;
-	margin-top: 30px;
+	margin-top: 0px;
 	margin-bottom: 0px;
 }
 div p {
@@ -81,7 +81,7 @@ form {
 }
 .botton1 {
 	text-align: center;
-	margin-top: 30px;
+	margin-top: 50px;
 }
 .container {/*真ん中の色*/
   position: relative;
@@ -91,7 +91,7 @@ form {
 }
 .contents {
   position: relative;
-  margin-top: 30px;
+  margin-top: 0px;
 }
 main {
 	text-align: center;
@@ -123,6 +123,10 @@ th {
 .botton2 {
 	margin-top: 30px;
 	margin-bottom: 30px;
+}
+.botton3 {
+	margin-top: 30px;
+	text-align: center;
 }
 #table2 {
   height:300px;
@@ -222,4 +226,11 @@ th {
 }
 .image1 {
 	margin-right: 20px;
+}
+.hiduke {
+	text-align: center;
+}
+.kennsaku {
+	margin-bottom: 30px;
+	font-weight: bold;
 }

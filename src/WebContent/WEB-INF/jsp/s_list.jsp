@@ -9,6 +9,7 @@
 </head>
 <body>
 	<!--ヘッダー-->
+	<div class="wrapper">
 	<header class="header">
 		<h1 id="sm"><a href="/selfManagement/MenuServlet"><img src="/selfManagement/img/iii.png" width="400" height="130" alt="Self Managment" ></a></h1>
 		<div>
@@ -27,23 +28,25 @@
 		<hr>
 	</header>
 	<!--ヘッダーここまで-->
-	<p>（例）日付で検索：2022-06-30 or 月で検索：2022-06</p>
-	<form method="POST" action="/selfManagement/S_listServlet">
+	<main>
+	 <div class="container">
+       <div class="contents">
+	<div class="kennsaku"><br>（例）日付で検索：2022-06-30 or 月で検索：2022-06
+	 <form method="POST" action="/selfManagement/S_listServlet">
 		<input type="text" name="s_day" placeholder="検索したい日付を入力してください">
 		<input type="submit" name="submit" value="検索">
-	</form>
-
-	<table border="1">
-		<tr>
-			<th>日付</th><th>カテゴリ</th><th>メモ</th><th>機能</th>
-		</tr>
-	</table>
+	 </form>
+   </div>
+    <div id="table2">
 	<c:forEach var="slist" items="${scheduleList}">
 		<form method="POST" action="/selfManagement/S_updateDeleteServlet">
-			<table border="1">
-				<tr>
-					<td><input type="hidden" name="s_id" value="${slist.s_id}"></input><input type="date" name="s_date" value="${slist.s_date}"></input></td>
-				    <td><select name="s_category">
+			<table id="list" border="1">
+			 <tr>
+			  <th>日付</th><th>カテゴリ</th><th>メモ</th><th colspan="2">機能</th>
+		     </tr>
+			 <tr>
+				<td><input type="hidden" name="s_id" value="${slist.s_id}"></input><input type="date" name="s_date" value="${slist.s_date}"></input></td>
+				<td><select name="s_category">
 				    		<option  value="${slist.s_category}" hidden>${slist.s_category}</option>
 				    		<option value="遊び">遊び</option>
 							<option value="休み">休み</option>
@@ -53,21 +56,28 @@
 							<option value="支払">支払期限</option>
 							<option value="イベント">イベント</option>
 							<option value="その他">その他</option>
-						</select>
-				    </td>
-				    <td><input type="text" name="s_memo" value="${slist.s_memo}"></td>
-				    <td><input type="submit" name="submit" value="更新"></td>
-				    <td><input type="submit" name="submit" value="削除"></td>
+					</select>
+				 </td>
+				 <td><input type="text" name="s_memo" value="${slist.s_memo}"></td>
+				 <td><input type="submit" name="submit" value="更新"></td>
+				 <td><input type="submit" name="submit" value="削除"></td>
 			    </tr>
 			</table>
 		</form>
 	</c:forEach>
+	<div class="botton3">
 	<button onclick="OnRedirectClick();">予定登録</button>
+	</div>
+	</div>
+	</div>
+	</div>
+	</main>
 	<!--フッター-->
 	<hr>
 	<footer>
 		<p>&copy;Copyright 川崎.java. All rights reserved.</p>
 	</footer>
+	</div>
 	<!--フッターここまで-->
 	<script>
     	function OnRedirectClick() {

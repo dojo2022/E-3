@@ -33,8 +33,10 @@
 	<main>
 	<div class="container">
      <div class="contents">
+     <br>
 	  <div class="box">
 	<div>
+
 			<p>目標:${user.reason}</p>
 
 			<c:if test="${date1 == '0001-01-01'}" var="flg" />
@@ -75,6 +77,7 @@
 			<input type="text" name="h_date" placeholder="検索したい日付を入力してください">
 			<input type="submit" name="submit" value="検索">
 		</form>
+
 		<h2>変動費</h2>
 		<div id="table2">
 		<c:set var="vTotal" value="${0}" />

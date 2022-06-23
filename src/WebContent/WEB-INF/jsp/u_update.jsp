@@ -9,6 +9,7 @@
 </head>
   <body>
 	<!--ヘッダー-->
+	<div class="wrapper">
 	<header class="header">
 		<h1 id="sm"><a href="/selfManagement/MenuServlet"><img src="/selfManagement/img/iii.png" width="400" height="130" alt="Self Managment" ></a></h1>
 		<div>
@@ -30,34 +31,34 @@
 <!--ヘッダーここまで-->
   <main>
 	<div class="container">
- 		<div class="contents">
+ 	  <div class="contents">
 	    <form method="POST" action="/selfManagement/U_updateServlet">
 		    <input type="hidden" value="${user.user_id}">
-
+            <br>
 			<h2>貯金理由</h2>
 			<input type="text" value="${user.reason}" readonly>
 			&#9654;
 			<input type="text" name="reason" value="${user.reason}">
 		     <br>
-
+             <br>
 		     <h2>達成期限</h2>
 		     <input type="date" value="${user.deadline}" readonly>
 		     &#9654;
 		     <input type="date" name="deadline" value="${user.deadline}"id="today">
 		     <br>
-
+             <br>
 			<h2>目標金額</h2>
 			<input type="text" value="${user.goal}" readonly>
 			&#9654;
 			<input type="text" name="goal" value="${user.goal}">
 		    <br>
-
+            <br>
 			<h2>給料</h2>
 			<input type="text" value="${user.salary}" readonly>
 			&#9654;
 			<input type="text" name="salary" value="${user.salary}">
 		    <br>
-
+            <br>
 		   	<h2>暑がり寒がり</h2>
 			<input type="text" value="${user.constitution}" readonly>
 			&#9654;
@@ -67,8 +68,13 @@
 				<option>暑がり</option>
 				<option>寒がり</option>
 			</select>
-	    	<div class="button1"><input type=submit name="submit" value="更新"></div>
+	    	<br>
+	    	<br>
+	    	<div class="button1">
+	    	 <input type=submit name="submit" value="更新">
+	    	</div>
  		</form>
+
 	   </div>
   	</div>
  </main>
@@ -79,6 +85,7 @@
 		&copy;Copyright 川崎.java. All rights reserved.
 		</p>
 		</footer>
+		</div>
 		<!--フッターここまで-->
 		<script>
     //今日の日時を表示
@@ -105,5 +112,6 @@
             document.getElementById("today").value = ymd;
         }
     </script>
+
 </body>
 </html>

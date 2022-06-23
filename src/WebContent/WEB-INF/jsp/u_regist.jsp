@@ -8,6 +8,7 @@
 <link rel="stylesheet" type="text/css" href="/selfManagement/css/common.css">
 </head>
   <body>
+  <div class="wrapper">
    <header class="header">
      <h1 id="sm"><img src="/selfManagement/img/iii.png" width="400" height="130" alt="Self Managment" ></h1>
 	  <hr>
@@ -39,9 +40,8 @@
 
      <hr>
      <footer>
-		<div id="p">
-		&copy;Copyright 川崎.java. All rights reserved.
-		</div>
+		<p>&copy;Copyright 川崎.java. All rights reserved.</p>
 	 </footer>
+	 </div>
   </body>
 </html>
