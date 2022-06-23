@@ -111,15 +111,22 @@ session.setAttribute("date1","0001-01-01");
 				 目標：${user.reason} <br>
 
 				<!-- 残り日数を表示する -->
-
 				<c:if test="${date1 == '0001-01-01'}" var="flg" />
 
 				<c:if test="${flg}" >
-				(日付データを更新してください) <br>
+					(日付データを更新してください) <br>
 				</c:if>
 
 				<c:if test="${!flg}" >
-				残り${deadline + 12 * year}ヵ月 <br>
+					<c:if test="${deadline + 12 * year > 0}">
+						<p>残り${deadline + 12 * year}ヵ月</p>
+					</c:if>
+					<c:if test="${deadline + 12 * year == 0}">
+						<p>達成予定は今月です</p>
+					</c:if>
+					<c:if test="${deadline + 12 * year < 0}">
+						<p>目標を更新してください</p>
+					</c:if>
 				</c:if>
 
 				<!-- 変動費合計を計算する  -->
@@ -134,11 +141,17 @@ session.setAttribute("date1","0001-01-01");
 					<c:set var="fTotal" value="${fTotal + flist.f_cost}" />
 				</c:forEach>
 
+				<c:if test="${deadline == 0}" var="p1" />
+				<c:if test="${p1}" >
+					<c:set var="deadline" value="${deadline + 1}" />
+				</c:if>
+				<!-- 現在の残高を表示する -->
 				<c:set var="balance" value="${user.salary - fTotal - vTotal}" />
 				現在の残高：
 				<fmt:formatNumber maxFractionDigits="0" value="${balance}" />
 				円 <br>
-				<!-- ↓本当はsavings使って計算します -->
+
+				<!-- 貯金目標を表示する(↓本当はsavings使って計算します) -->
 				<c:set var="savings" value="${user.goal / (deadline + 12 * year)}" />
 				貯金目標：
 				<fmt:formatNumber maxFractionDigits="0" value="${savings}" />
