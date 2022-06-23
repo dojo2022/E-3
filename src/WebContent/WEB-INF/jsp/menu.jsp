@@ -141,10 +141,9 @@ session.setAttribute("date1","0001-01-01");
 					<c:set var="fTotal" value="${fTotal + flist.f_cost}" />
 				</c:forEach>
 
-				<c:if test="${deadline == 0}" var="p1" />
-				<c:if test="${p1}" >
-					<c:set var="deadline" value="${deadline + 1}" />
-				</c:if>
+				<!-- deadline +1 する -->
+				<c:set var="deadline" value="${deadline + 1}" />
+
 				<!-- 現在の残高を表示する -->
 				<c:set var="balance" value="${user.salary - fTotal - vTotal}" />
 				現在の残高：
