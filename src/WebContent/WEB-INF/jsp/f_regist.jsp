@@ -9,6 +9,7 @@
 </head>
 <body>
 	<!--ヘッダー-->
+	<div class="wrapper">
 	<header class="header">
 		<h1 id="sm"><a href="/selfManagement/MenuServlet"><img src="/selfManagement/img/iii.png" width="400" height="130" alt="Self Managment" ></a></h1>
 		<div>
@@ -68,6 +69,7 @@
 	<footer>
 		<p>&copy;Copyright 川崎.java. All rights reserved.</p>
 	</footer>
+	</div>
 	<!--フッターここまで-->
 	<script type="text/javascript">
     //今日の日時を表示
