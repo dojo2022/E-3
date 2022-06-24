@@ -1,7 +1,7 @@
 //現在の天気を取得
 var API_KEY = 'd30875cfe39c9051933628199bc70315';
 var defaultCity = 'Tokyo';
-function currentWeather() {
+function currentWeather(cons) {
 	$.ajax({
 		url: '//api.openweathermap.org/data/2.5/weather?q=' + defaultCity + ',jp&units=metric&appid=' + API_KEY,
 		dataType: 'json',
@@ -11,7 +11,7 @@ function currentWeather() {
 			getWeatherData(data);
 			createDate(city.date);
 			getDiscription(city.description);
-			getCloth(city.temp);
+			getCloth(city.temp,cons);
 			getIcon(city.description);
 			domWeatherWrite();
 		})
@@ -140,16 +140,30 @@ function getDiscription(disc) {
 	}
 }
 
-function getCloth(temp) {
-	if (city.temp <= 10.0) {
-		$('#weather-cloth').html('コート');
-	} else if (city.temp <= 20.0) {
-		$('#weather-cloth').html('長袖');
-	} else if (city.temp <= 30.0) {
-		$('#weather-cloth').html('半袖');
-	} else if (city.temp <= 40.0) {
-		$('#weather-cloth').html('ノースリーブ');
+function getCloth(temp,cons) {
+var ctemp=0;
+if (cons === "寒がり") {
+	ctemp = -2;
+} else if (cons === "暑がり") {
+	ctemp = 2;
+} else if (cons === "どちらでもない") {
+    ctemp = 0;
+}
+
+	if (city.temp + ctemp <= 0) {
+		$('#weather-cloth').html('冬服＋コート・アウター＋手袋・マフラー');
+	} else if (city.temp+ ctemp <= 10) {
+		$('#weather-cloth').html('冬服＋コート・アウター');
+	} else if (city.temp+ ctemp <= 15) {
+		$('#weather-cloth').html('春用コート・セーター');
+	} else if (city.temp+ ctemp <= 20) {
+		$('#weather-cloth').html('薄手のジャケット・カーディガン');
+	} else if (city.temp+ ctemp <= 25) {
+		$('#weather-cloth').html('長袖・半袖＋羽織るもの');
+	} else if (city.temp+ ctemp >= 26) {
+		$('#weather-cloth').html('半袖・ノースリーブ');
 	}
+
 	return temp;
 }
 
@@ -200,13 +214,13 @@ function getIcon(disc) {
 			icon.src = "img/11d.png";
 			break;
 		case 'snow':
-			return $('#weather-discription').html('雪');
+			icon.src = "img/13d.png";
 			break;
 		case 'mist':
-			return $('#weather-discription').html('靄');
+			icon.src = "img/50d.png";
 			break;
 		case 'tornado':
-			return $('#weather-discription').html('強風');
+			icon.src = "img/50d.png";
 			break;
 		default:
 			return disc;
@@ -214,10 +228,9 @@ function getIcon(disc) {
 }
 
 
-function weatherInit() {
-	currentWeather();
+function weatherInit(cons) {
+	currentWeather(cons);
 	//threeWeather();
 }
 
-window.onload = weatherInit();
 
