@@ -35,7 +35,7 @@ public class FixedDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/SM", "sa", "kawasaki");
 
 			// SQL文を準備する
-			String sql = "SELECT * FROM Fixed WHERE (f_date LIKE ?) AND (user_id = ?) ORDER BY f_cost ";
+			String sql = "SELECT * FROM Fixed WHERE (f_date LIKE ?) AND (user_id = ?) ORDER BY f_date DESC ";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			// SQL文を完成させる
 			if (param.getF_date() != null && !param.getF_date().equals("")) {
