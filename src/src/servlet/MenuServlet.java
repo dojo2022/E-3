@@ -81,24 +81,31 @@ public class MenuServlet extends HttpServlet {
 		//残高を計算する
 		//固定費検索処理を行う
 		FixedDao fDao = new FixedDao();
-		List<Fixed> fixedList = fDao.select(new Fixed(0, d3, "", "", 0, user_id));
+		List<Fixed> fixedList = fDao.fixed(new Fixed(0, d3, "", "", 0, user_id));
 		//検索結果をリクエストスコープに格納する
 		request.setAttribute("fixedList", fixedList);
-		//固定費の再登録
-		if(fixedList != null) {
-			for(int i = 0; i < fixedList.size(); i++) {
-				fDao.f_insert(fixedList.get(i));
+
+		if(fixedList == null || fixedList.size() == 0) {
+			//固定費検索処理を行う
+			FixedDao ffDao = new FixedDao();
+			List<Fixed> fixedUpList = ffDao.select(new Fixed(0, d3, "", "", 0, user_id));
+			//固定費の再登録
+			if(fixedUpList != null) {
+				for(int i = 0; i < fixedUpList.size(); i++) {
+					ffDao.f_insert(fixedUpList.get(i));
+				}
 			}
+
 		}
-
-
-
 
 		//変動費検索処理を行う
 		VariableDao vDao = new VariableDao();
 		List<Variable> variableList = vDao.variable(new Variable(0, d3, "", "", 0, user_id));
 		//検索結果をリクエストスコープに格納する
 		request.setAttribute("variableList", variableList);
+
+
+
 
 		//検索結果をリクエストスコープに格納する
 		request.setAttribute("deadline", deadline); //達成期限と今月の差

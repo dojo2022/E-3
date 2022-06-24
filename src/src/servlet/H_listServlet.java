@@ -85,7 +85,7 @@ public class H_listServlet extends HttpServlet {
 
 		//固定費検索処理を行う
 		FixedDao fDao = new FixedDao();
-		List<Fixed> fixedList = fDao.fixed(new Fixed(0, "", "", "", 0, user_id));
+		List<Fixed> fixedList = fDao.fixed(new Fixed(0, d3, "", "", 0, user_id));
 		//検索結果をリクエストスコープに格納する
 		request.setAttribute("fixedList", fixedList);
 
@@ -128,7 +128,7 @@ public class H_listServlet extends HttpServlet {
 
 		//固定費一覧の表示
 		FixedDao fDao = new FixedDao();
-		List<Fixed> fixedList = fDao.fixed(new Fixed(0, "", "", "", 0, user_id));
+		List<Fixed> fixedList = fDao.fixed(new Fixed(0, h_date, "", "", 0, user_id));
 		//検索結果をリクエストスコープに格納する
 		request.setAttribute("fixedList", fixedList);
 

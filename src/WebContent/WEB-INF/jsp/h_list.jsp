@@ -117,8 +117,8 @@
 				</table>
 			</form>
 		</c:forEach>
-		変動費合計： ${vTotal}
 	</div>
+	変動費合計： ${vTotal}
 	<br>
 
 	<!-- 固定費テーブル -->
@@ -133,6 +133,7 @@
 
                 <table id="list" border="1">
 				 <tr>
+				  <th>日付</th>
 				  <th>カテゴリー</th>
 				  <th>メモ</th>
 				  <th>金額</th>
@@ -141,7 +142,9 @@
 					<tr>
 						<td>
 							<input type="hidden" name="f_id" value="${flist.f_id}">
-							<input type="hidden" name="f_date" value="${flist.f_date}">
+							<input type="date" name="f_date" value="${flist.f_date}">
+						</td>
+						<td>
 							<select name="f_category">
 								<option hidden>${flist.f_category}</option>
 								<option value="住居費">住居費</option>
@@ -149,7 +152,7 @@
 								<option value="通信費">通信費</option>
 								<option value="生命保険">生命保険</option>
 								<option value="自動車関係費">自動車関係費</option>
-								<option value="サブフリクション">サブフリクション</option>
+								<option value="サブスクリプション">サブスクリプション</option>
 								<option value="習い事等">習い事等</option>
 								<option value="その他">その他</option>
 							</select>

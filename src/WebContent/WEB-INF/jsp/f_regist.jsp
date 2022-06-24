@@ -43,7 +43,7 @@
 						<option value="通信費">通信費</option>
 						<option value="生命保険">生命保険</option>
 						<option value="自動車関係費">自動車関係費</option>
-						<option value="サブフリクション">サブフリクション</option>
+						<option value="サブスクリプション">サブスクリプション</option>
 						<option value="習い事等">習い事等</option>
 						<option value="その他">その他</option>
 					</select>

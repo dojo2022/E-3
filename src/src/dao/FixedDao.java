@@ -21,6 +21,11 @@ public class FixedDao {
 	public List<Fixed> fixed(Fixed param) {
 		Connection conn = null;
 		List<Fixed> fixedList = new ArrayList<Fixed>();
+		//デフォルトのカレンダークラスを宣言、下のDateはセット
+		SimpleDateFormat df2 = new SimpleDateFormat("yyyy-MM");
+		//Calendar calendar = Calendar.getInstance();
+		Date date = new Date();
+		String d3 = df2.format(date);
 
 		try {
 			// JDBCドライバを読み込む
@@ -33,7 +38,12 @@ public class FixedDao {
 			String sql = "SELECT * FROM Fixed WHERE (f_date LIKE ?) AND (user_id = ?) ORDER BY f_cost ";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			// SQL文を完成させる
-			pStmt.setString(1, "%" + param.getF_date() + "%");
+			if (param.getF_date() != null && !param.getF_date().equals("")) {
+				pStmt.setString(1, param.getF_date() + "%");
+			}
+			else {
+				pStmt.setString(1, d3 + "%");
+			}
 			pStmt.setInt(2, param.getUser_id());
 
 			// SQL文を実行し、結果表を取得する
