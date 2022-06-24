@@ -38,16 +38,19 @@
 	 </form>
    </div>
     <div id="table2">
+    		<table id="list" border="1">
+			 <tr>
+			  <th width="115px">日付</th><th width="97px">カテゴリ</th><th width="175px">メモ</th><th colspan="2" width="90px">機能</th>
+		     </tr>
+		    </table>
 	<c:forEach var="slist" items="${scheduleList}">
+
 		<form method="POST" action="/selfManagement/S_updateDeleteServlet">
 			<table id="list" border="1">
 			 <tr>
-			  <th>日付</th><th>カテゴリ</th><th>メモ</th><th colspan="2">機能</th>
-		     </tr>
-			 <tr>
-				<td><input type="hidden" name="s_id" value="${slist.s_id}"></input><input type="date" name="s_date" value="${slist.s_date}"></input></td>
-				<td><select name="s_category">
-				    		<option  value="${slist.s_category}" hidden>${slist.s_category}</option>
+				<td width="105px"><input type="hidden" name="s_id" value="${slist.s_id}"></input><input type="date" name="s_date" value="${slist.s_date}"></input></td>
+				<td width="97px"><select name="s_category">
+				    		<option value="${slist.s_category}" hidden>${slist.s_category}</option>
 				    		<option value="遊び">遊び</option>
 							<option value="休み">休み</option>
 							<option value="デート">デート</option>
@@ -58,19 +61,22 @@
 							<option value="その他">その他</option>
 					</select>
 				 </td>
-				 <td><input type="text" name="s_memo" value="${slist.s_memo}"></td>
+				 <td width="175px"><input type="text" name="s_memo" value="${slist.s_memo}"></td>
 				 <td><input type="submit" name="submit" value="更新"></td>
 				 <td><input type="submit" name="submit" value="削除"></td>
 			    </tr>
 			</table>
 		</form>
 	</c:forEach>
-	<div class="botton3">
-	<button onclick="OnRedirectClick();">予定登録</button>
+	</div>
+	<div class="botton2" class="but1">
+	 <button onclick="OnRedirectClick();" class="but3">予定登録</button>
+	</div>
+
+
 	</div>
 	</div>
-	</div>
-	</div>
+
 	</main>
 	<!--フッター-->
 	<hr>

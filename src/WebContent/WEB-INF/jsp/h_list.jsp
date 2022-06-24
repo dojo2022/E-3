@@ -65,9 +65,9 @@
 	</div>
      </div>
      <div class="botton2">
-	<input type="button" value="変動費登録" onclick="vRedirectClick();" class="but1">
-	<input type="button" value="固定費登録" onclick="fRedirectClick();" class="but2">
-    </div>
+	  <input type="button" value="変動費登録" onclick="vRedirectClick();" class="but1">
+	  <input type="button" value="固定費登録" onclick="fRedirectClick();" class="but2">
+     </div>
 
 
 	<!-- 変動費テーブル -->
@@ -81,21 +81,23 @@
 		<h2>変動費</h2>
 		<div id="table2">
 		<c:set var="vTotal" value="${0}" />
+		 <table id="list" border="1">
+		         <tr>
+				  <th width="122px">日付</th>
+				  <th width="106px">カテゴリー</th>
+				  <th width="170px">メモ</th>
+				  <th width="170px">金額</th>
+				  <th colspan="2" width="90px">その他</th>
+				 </tr>
+		 </table>
 		<c:forEach var="vlist" items="${variableList}">
 			<c:set var="vTotal" value="${vTotal + vlist.v_cost}" />
 			<form method="POST" action="/selfManagement/V_updateDeleteServlet">
 				<table id="list" border="1">
 				 <tr>
-				  <th>日付</th>
-				  <th>カテゴリー</th>
-				  <th>メモ</th>
-				  <th>金額</th>
-				  <th colspan="2">その他</th>
-				 </tr>
-				 <tr>
-						<td><input type="hidden" name="v_id" value="${vlist.v_id}">
+						<td width="122px"><input type="hidden" name="v_id" value="${vlist.v_id}">
 							<input type="date" name="v_date" value="${vlist.v_date}"></td>
-						<td>
+						<td width="106px">
 							<select name="v_category">
 								<option hidden>${vlist.v_category}</option>
 								<option value="食費">食費</option>
@@ -113,38 +115,41 @@
 						<td><input type="text" name="v_cost" value="${vlist.v_cost}"></td>
 						<td><input type="submit" name="submit" value="更新"></td>
 						<td><input type="submit" name="submit" value="削除"></td>
-				 </tr>
+				    </tr>
 				</table>
 			</form>
 		</c:forEach>
 	</div>
 	変動費合計： ${vTotal}
 	<br>
-
+    <br>
+    <br>
 	<!-- 固定費テーブル -->
 	<div>
 		<h2>固定費</h2>
 		<div id="table2">
 		<c:set var="fTotal" value="${0}" />
-
+		       <table id="list" border="1">
+         		<tr>
+				  <th width="115px">日付</th>
+				  <th width="145px">カテゴリー</th>
+				  <th width="170px">メモ</th>
+				  <th width="170px">金額</th>
+				  <th colspan="2" width="93px">その他</th>
+				 </tr>
+				</table>
 			<c:forEach var="flist" items="${fixedList}">
 			<c:set var="fTotal" value="${fTotal + flist.f_cost}" />
 			<form method="POST" action="/selfManagement/F_updateDeleteServlet">
 
                 <table id="list" border="1">
-				 <tr>
-				  <th>日付</th>
-				  <th>カテゴリー</th>
-				  <th>メモ</th>
-				  <th>金額</th>
-				  <th colspan="2">その他</th>
-				 </tr>
+
 					<tr>
-						<td>
+						<td width="115px">
 							<input type="hidden" name="f_id" value="${flist.f_id}">
 							<input type="date" name="f_date" value="${flist.f_date}">
 						</td>
-						<td>
+						<td width="145px">
 							<select name="f_category">
 								<option hidden>${flist.f_category}</option>
 								<option value="住居費">住居費</option>
@@ -171,6 +176,8 @@
 		固定費合計： ${fTotal}
 	</div>
 	合計支出: ${vTotal + fTotal}
+	<br>
+	<br>
 	  </div>
 	  </div>
 	  </div>
