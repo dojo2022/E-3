@@ -138,10 +138,8 @@ session.setAttribute("date1","0001-01-01");
 
 				<!-- 固定費合計を計算する  -->
 				<c:set var="fTotal" value="${0}" />
-
 				<c:forEach var="flist" items="${fixedList}">
 					<c:set var="fTotal" value="${fTotal + flist.f_cost}" />
-
 				</c:forEach>
 
 				<!-- deadline +1 する -->
