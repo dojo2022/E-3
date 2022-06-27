@@ -32,7 +32,7 @@
   <main>
 	<div class="container">
  	  <div class="contents">
-	    <form method="POST" action="/selfManagement/U_updateServlet">
+	    <form method="POST" action="/selfManagement/U_updateServlet" id="u_form">
 		    <input type="hidden" value="${user.user_id}">
             <br>
 			<h2>貯金理由</h2>
@@ -42,7 +42,7 @@
 		     <br>
              <br>
 		     <h2>達成期限</h2>
-		     <input type="date" value="${user.deadline}" readonly>
+		     <input id="today" type="date" value="${user.deadline}" readonly>
 		     &#9654;
 		     <input type="date" name="deadline" value="${user.deadline}"id="today">
 		     <br>
@@ -50,13 +50,13 @@
 			<h2>目標金額</h2>
 			<input type="text" value="${user.goal}" readonly>
 			&#9654;
-			<input type="text" name="goal" value="${user.goal}">
+			<input type="text" name="goal" value="${user.goal}" pattern="[0-9]">
 		    <br>
             <br>
 			<h2>給料</h2>
 			<input type="text" value="${user.salary}" readonly>
 			&#9654;
-			<input type="text" name="salary" value="${user.salary}">
+			<input type="text" name="salary" value="${user.salary}" pattern="[0-9]">
 		    <br>
             <br>
 		   	<h2>暑がり寒がり</h2>
@@ -74,7 +74,7 @@
 	    	 <input type=submit name="submit" value="更新">
 	    	</div>
  		</form>
-
+	    <span id="error_message"></span>
 	   </div>
   	</div>
  </main>
@@ -111,6 +111,17 @@
 
             document.getElementById("today").value = ymd;
         }
+        var formObj = document.getElementById('u_form');
+        var errorMessageObj = document.getElementById('error_message');
+        /* [更新]ボタンをクリックしたときの処理 */
+        formObj.onsubmit = function() {
+          /* 氏名を必須入力項目とします */
+          if (!formObj.deadline.value || !formObj.goal.value ) {
+            errorMessageObj.textContent = '※達成期限,目標金額,給料を入力してください！';
+            return false;
+          }
+          errorMessageObj.textContent = null;
+        };
     </script>
 
 </body>

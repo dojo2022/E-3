@@ -20,9 +20,9 @@
         <h2>新規登録してください</h2>
          <form method="POST" action="/selfManagement/U_registServlet" id="u_form">
          <div id="p">ID:
-          <input type="text" name="login_id" maxlength="15"></div>
+          <input type="text" name="login_id" maxlength="15" pattern="^([a-zA-Z0-9]{4,})$" placeholder="４文字以上の半角英数字"></div>
          <div id="p">PW:
-          <input type="password" name="password" maxlength="15"></div>
+          <input type="password" name="password" maxlength="15"  pattern="^([a-zA-Z0-9]{8,})$" placeholder="8文字以上の半角英数字"></div>
           <label for="kind">暑がり・寒がり:</label>
           <select id="kind" name="constitution">
           <option>暑がり</option>

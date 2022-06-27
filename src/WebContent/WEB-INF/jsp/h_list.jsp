@@ -98,9 +98,9 @@
 
 	<!-- 変動費テーブル -->
 	<div>
-		(例)2022-06-13
+		(例)2022-06-30 or 2022-06 or 2022
 		<form method="POST" action="/selfManagement/H_listServlet">
-			<input type="text" name="h_date" placeholder="検索したい日付を入力してください">
+			<input type="text" name="h_date" placeholder="検索したい日付を入力してください" pattern="\d{4}-?\d{0,2}-?\d{0,2}">
 			<input type="submit" name="submit" value="検索">
 		</form>
 
@@ -138,7 +138,7 @@
 							</select>
 						</td>
 						<td width="50px"><input type="text" name="v_memo" value="${vlist.v_memo}"></td>
-						<td><input type="text" name="v_cost" value="${vlist.v_cost}"></td>
+						<td><input type="text" name="v_cost" value="${vlist.v_cost}" pattern="[0-9]"></td>
 						<td width="50px"><input type="submit" name="submit" value="更新"></td>
 						<td width="50px"><input type="submit" name="submit" value="削除"></td>
 				    </tr>
@@ -191,7 +191,7 @@
 							</select>
 						</td>
 						<td width="50px"><input type="text" name="f_memo" value="${flist.f_memo}"></td>
-						<td><input type="text" name="f_cost" value="${flist.f_cost}"></td>
+						<td><input type="text" name="f_cost" value="${flist.f_cost}" pattern="[0-9]"></td>
 						<td width="50px"><input type="submit" name="submit" value="更新"></td>
 						<td width="50px"><input type="submit" name="submit" value="削除"></td>
 					</tr>

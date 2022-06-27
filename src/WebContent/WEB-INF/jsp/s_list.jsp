@@ -31,9 +31,9 @@
 	<main>
 	 <div class="container">
        <div class="contents">
-	<div class="kennsaku"><br>（例）日付で検索：2022-06-30 or 月で検索：2022-06
+	<div class="kennsaku"><br>（例）2022-06-30 or 2022-06 or 2022
 	 <form method="POST" action="/selfManagement/S_listServlet">
-		<input type="text" name="s_day" placeholder="検索したい日付を入力してください">
+		<input type="text" name="s_day" placeholder="検索したい日付を入力してください" pattern="\d{4}-?\d{0,2}-?\d{0,2}">
 		<input type="submit" name="submit" value="検索">
 	 </form>
    </div>
