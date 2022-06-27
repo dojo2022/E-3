@@ -98,7 +98,7 @@
 
 	<!-- 変動費テーブル -->
 	<div>
-		(例)2022/06/13
+		(例)2022-06-13
 		<form method="POST" action="/selfManagement/H_listServlet">
 			<input type="text" name="h_date" placeholder="検索したい日付を入力してください">
 			<input type="submit" name="submit" value="検索">
