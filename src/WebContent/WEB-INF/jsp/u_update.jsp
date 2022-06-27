@@ -44,19 +44,19 @@
 		     <h2>達成期限</h2>
 		     <input id="today" type="date" value="${user.deadline}" readonly>
 		     &#9654;
-		     <input type="date" name="deadline" value="${user.deadline}"id="today">
+		     <input type="date" name="deadline" value="${user.deadline}" id="today">
 		     <br>
              <br>
 			<h2>目標金額</h2>
 			<input type="text" value="${user.goal}" readonly>
 			&#9654;
-			<input type="text" name="goal" value="${user.goal}" pattern="[0-9]">
+			<input type="text" name="goal" value="${user.goal}" pattern="(0|[1-9][0-9]*)">
 		    <br>
             <br>
 			<h2>給料</h2>
 			<input type="text" value="${user.salary}" readonly>
 			&#9654;
-			<input type="text" name="salary" value="${user.salary}" pattern="[0-9]">
+			<input type="text" name="salary" value="${user.salary}" pattern="(0|[1-9][0-9]*)">
 		    <br>
             <br>
 		   	<h2>暑がり寒がり</h2>

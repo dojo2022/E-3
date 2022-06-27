@@ -56,7 +56,7 @@
 			</tr>
 			<tr>
 				<td>金額（必須）</td>
-				<td><input type="text" name="v_cost" pattern="[0-9]"></td>
+				<td><input type="text" name="v_cost" pattern="(0|[1-9][0-9]*)"></td>
 			</tr>
 			<tr>
 				<td colspan="2"><input type="submit" name="v_regist" value="登録">
