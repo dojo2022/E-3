@@ -32,7 +32,7 @@
 		<table>
 			<tr>
 				<td>日付（必須）</td>
-				<td><input id="today" type='date' min='1899-01-01' max='2000-13-13'></input></td>
+				<td><input id="today" type='date' name='f_date'></input></td>
 			</tr>
 			<tr>
 				<td>カテゴリー</td>
