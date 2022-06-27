@@ -76,18 +76,30 @@ public class H_listServlet extends HttpServlet {
 
 		String d3 = df2.format(date);
 
-		//残高を計算する
 		//変動費検索処理を行う
 		VariableDao vDao = new VariableDao();
 		List<Variable> variableAllList = vDao.variable(new Variable(0, d3, "", "", 0, user_id));
+
+		//変動費検索処理2
+		VariableDao vlDao = new VariableDao();
+		List<Variable> variableList = vlDao.variable(new Variable(0, d3, "", "", 0, user_id));
+
 		//検索結果をリクエストスコープに格納する
 		request.setAttribute("variableAllList", variableAllList);
+		request.setAttribute("variableList", variableList);
+
 
 		//固定費検索処理を行う
 		FixedDao fDao = new FixedDao();
 		List<Fixed> fixedAllList = fDao.fixed(new Fixed(0, d3, "", "", 0, user_id));
+
+		//固定費検索処理2
+		FixedDao flDao = new FixedDao();
+		List<Fixed> fixedList = flDao.fixed(new Fixed(0, d3, "", "", 0, user_id));
+
 		//検索結果をリクエストスコープに格納する
 		request.setAttribute("fixedAllList", fixedAllList);
+		request.setAttribute("fixedList", fixedList);
 
 		//検索結果をリクエストスコープに格納する
 		request.setAttribute("deadline", deadline);	//達成期限と今月の差
@@ -147,8 +159,8 @@ public class H_listServlet extends HttpServlet {
 		request.setAttribute("variableAllList", variableAllList);
 
 		//固定費検索処理を行う
-		FixedDao fsDao = new FixedDao();
-		List<Fixed> fixedAllList = fsDao.fixed(new Fixed(0, d3, "", "", 0, user_id));
+		FixedDao faDao = new FixedDao();
+		List<Fixed> fixedAllList = faDao.fixed(new Fixed(0, d3, "", "", 0, user_id));
 		//検索結果をリクエストスコープに格納する
 		request.setAttribute("fixedAllList", fixedAllList);
 
