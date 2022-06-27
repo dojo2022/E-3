@@ -25,9 +25,9 @@
           <input type="password" name="password"></div>
           <label for="kind">暑がり・寒がり:</label>
           <select id="kind" name="constitution">
-          <option value="heat">暑がり</option>
-          <option value="cold">寒がり</option>
-          <option value="neither">どちらでもない</option>
+          <option>暑がり</option>
+          <option>寒がり</option>
+          <option>どちらでもない</option>
           </select>
          <div id="p">全項目入力してください</div>
          <div class="button"><input type="submit" name="regist" value="登録">

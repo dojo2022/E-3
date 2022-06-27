@@ -62,11 +62,11 @@
 		   	<h2>暑がり寒がり</h2>
 			<input type="text" value="${user.constitution}" readonly>
 			&#9654;
-			<select name="constitution">
+			<select name="constitution" style="width:177px">
 				<option hidden> ${user.constitution}</option>
-				<option>普通</option>
 				<option>暑がり</option>
 				<option>寒がり</option>
+				<option>どちらでもない</option>
 			</select>
 	    	<br>
 	    	<br>
