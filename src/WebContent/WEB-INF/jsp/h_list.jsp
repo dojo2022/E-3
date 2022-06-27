@@ -65,13 +65,13 @@
 
 			<!-- 変動費の合計を計算する -->
 			<c:set var="vTotal" value="${0}" />
-			<c:forEach var="vlist" items="${variableList}">
+			<c:forEach var="vlist" items="${variableAllList}">
 			<c:set var="vTotal" value="${vTotal + vlist.v_cost}" />
 			</c:forEach>
 
 			<!-- 固定費の合計を計算する -->
 			<c:set var="fTotal" value="${0}" />
-			<c:forEach var="flist" items="${fixedList}">
+			<c:forEach var="flist" items="${fixedAllList}">
 			<c:set var="fTotal" value="${fTotal + flist.f_cost}" />
 			</c:forEach>
 

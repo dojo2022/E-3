@@ -79,15 +79,15 @@ public class H_listServlet extends HttpServlet {
 		//残高を計算する
 		//変動費検索処理を行う
 		VariableDao vDao = new VariableDao();
-		List<Variable> variableList = vDao.variable(new Variable(0, d3, "", "", 0, user_id));
+		List<Variable> variableAllList = vDao.variable(new Variable(0, d3, "", "", 0, user_id));
 		//検索結果をリクエストスコープに格納する
-		request.setAttribute("variableList", variableList);
+		request.setAttribute("variableAllList", variableAllList);
 
 		//固定費検索処理を行う
 		FixedDao fDao = new FixedDao();
-		List<Fixed> fixedList = fDao.fixed(new Fixed(0, d3, "", "", 0, user_id));
+		List<Fixed> fixedAllList = fDao.fixed(new Fixed(0, d3, "", "", 0, user_id));
 		//検索結果をリクエストスコープに格納する
-		request.setAttribute("fixedList", fixedList);
+		request.setAttribute("fixedAllList", fixedAllList);
 
 		//検索結果をリクエストスコープに格納する
 		request.setAttribute("deadline", deadline);	//達成期限と今月の差
@@ -114,11 +114,55 @@ public class H_listServlet extends HttpServlet {
 		}
 		int user_id = (int)sessionuser.getAttribute("user_id");
 
-		//検索処理
+		//------項目表示に必要なデータの取得-----------------------------------------------------------------
+		//今日の日付を取得
+		Date date = new Date();
+
+		//値の書式を指定
+		SimpleDateFormat df = new SimpleDateFormat("MM");
+		SimpleDateFormat df2 = new SimpleDateFormat("yyyy-MM");
+		SimpleDateFormat df3 = new SimpleDateFormat("yyyy");
+
+		//検索処理を行う
+		UserDao uDao = new UserDao();
+		User user = uDao.display(user_id);
+
+		//日付取得
+		Date date1 = uDao.deadline(user_id);
+		int d1 = Integer.parseInt(df.format(date1));	//達成期限（月）
+		int d2 = Integer.parseInt(df.format(date));	//今月
+		int y1 = Integer.parseInt(df3.format(date1));	//達成期限（年）
+		int y2 = Integer.parseInt(df3.format(date));	//今年
+
+		int deadline = d1 - d2;
+		int year = y1 - y2;
+
+		String d3 = df2.format(date);
+
+		//残高を計算する
+		//変動費検索処理を行う
+		VariableDao vsDao = new VariableDao();
+		List<Variable> variableAllList = vsDao.variable(new Variable(0, d3, "", "", 0, user_id));
+		//検索結果をリクエストスコープに格納する
+		request.setAttribute("variableAllList", variableAllList);
+
+		//固定費検索処理を行う
+		FixedDao fsDao = new FixedDao();
+		List<Fixed> fixedAllList = fsDao.fixed(new Fixed(0, d3, "", "", 0, user_id));
+		//検索結果をリクエストスコープに格納する
+		request.setAttribute("fixedAllList", fixedAllList);
+
+		//検索結果をリクエストスコープに格納する
+		request.setAttribute("deadline", deadline);	//達成期限と今月の差
+		request.setAttribute("year", year);			//達成期限（年）
+		request.setAttribute("date1", date1);       //達成期限(月)
+		request.setAttribute("user", user);			//ユーザーデータ
+
+
+		//-----検索処理---------------------------------------------------------------------------------------------
 		//検索内容の取得
 		request.setCharacterEncoding("UTF-8");
 		String h_date = request.getParameter("h_date");
-
 
 		//変動費検索処理を行う
 		VariableDao vDao = new VariableDao();
