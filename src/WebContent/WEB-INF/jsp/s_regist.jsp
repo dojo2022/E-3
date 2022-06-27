@@ -29,7 +29,7 @@
 		<hr>
 	</header>
 	<!--ヘッダーここまで-->
-	<form method="POST" action="/selfManagement/S_registServlet">
+	<form method="POST" action="/selfManagement/S_registServlet"id="s_form">
 		<table>
 			<tr>
 				<td>日付</td><td><input type="date" id="today" name="s_date"></input></td></tr>
@@ -58,6 +58,7 @@
 				</td>
 			</tr>
 		</table>
+		<span id="error_message"></span>
 	</form>
 	<!--フッター-->
 	<hr>
@@ -90,6 +91,17 @@
 
             document.getElementById("today").value = ymd;
         }
+        var formObj = document.getElementById('s_form');
+        var errorMessageObj = document.getElementById('error_message');
+        /* [実行]ボタンをクリックしたときの処理 */
+        formObj.onsubmit = function() {
+          /* 氏名を必須入力項目とします */
+          if (!formObj.s_date.value) {
+            errorMessageObj.textContent = '※日付を入力してください！';
+            return false;
+          }
+          errorMessageObj.textContent = null;
+        };
 </script>
 </body>
 </html>

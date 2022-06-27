@@ -101,8 +101,8 @@
         /* [実行]ボタンをクリックしたときの処理 */
         formObj.onsubmit = function() {
           /* 氏名を必須入力項目とします */
-          if (!formObj.v_cost.value) {
-            errorMessageObj.textContent = '※金額を入力してください！';
+           if (!formObj.v_date.value || !formObj.v_cost.value) {
+            errorMessageObj.textContent = '※日付と金額を入力してください！';
             return false;
           }
           errorMessageObj.textContent = null;
