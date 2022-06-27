@@ -32,7 +32,7 @@
 		<table>
 			<tr>
 				<td>日付（必須）</td>
-				<td><input id="datefield" type='date' min='1899-01-01' max='2000-13-13'></input></td>
+				<td><input id="today" type='date' min='1899-01-01' max='2000-13-13'></input></td>
 			</tr>
 			<tr>
 				<td>カテゴリー</td>
@@ -93,7 +93,7 @@
             var dd = toTwoDigits(day, 2)
             var ymd = yyyy + "-" + mm + "-" + dd;
 
-            document.getElementById("datefield").value = ymd;
+            document.getElementById("today").value = ymd;
         }
         var today = new Date();
         var dd = today.getDate();
@@ -107,7 +107,7 @@
             }
 
         today = yyyy+'-'+mm+'-'+dd;
-        document.getElementById("datefield").setAttribute("max", today);
+        document.getElementById("today").setAttribute("max", today);
         var formObj = document.getElementById('f_form');
         var errorMessageObj = document.getElementById('error_message');
         /* [実行]ボタンをクリックしたときの処理 */

@@ -118,7 +118,7 @@
 		 </table>
 		<c:forEach var="vlist" items="${variableList}">
 			<c:set var="vTotal" value="${vTotal + vlist.v_cost}" />
-			<form method="POST" action="/selfManagement/V_updateDeleteServlet">
+			<form method="POST" action="/selfManagement/V_updateDeleteServlet"id ="v_form">
 				<table id="list" border="1">
 				 <tr>
 						<td width="122px"><input type="hidden" name="v_id" value="${vlist.v_id}">
@@ -143,6 +143,7 @@
 						<td><input type="submit" name="submit" value="削除"></td>
 				    </tr>
 				</table>
+				<span id="error_message"></span>
 			</form>
 		</c:forEach>
 	</div>
@@ -223,6 +224,17 @@
 		function fRedirectClick() {
 			document.location.href = "/selfManagement/F_registServlet";
 		}
+		 var formObj = document.getElementById('v_form');
+	        var errorMessageObj = document.getElementById('error_message');
+	        /* [実行]ボタンをクリックしたときの処理 */
+	        formObj.onsubmit = function() {
+	          /* 氏名を必須入力項目とします */
+	           if (!formObj.v_date.value || !formObj.v_cost.value) {
+	            errorMessageObj.textContent = '※日付と金額を入力してください！';
+	            return false;
+	          }
+	          errorMessageObj.textContent = null;
+	        };
 	</script>
 </body>
 </html>
