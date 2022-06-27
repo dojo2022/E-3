@@ -18,7 +18,7 @@
 	  <div class="container">
 	   <div class="contents">
         <h2>新規登録してください</h2>
-         <form method="POST" action="/selfManagement/U_registServlet">
+         <form method="POST" action="/selfManagement/U_registServlet" id="u_form">
          <div id="p">ID:
           <input type="text" name="login_id" maxlength="15"></div>
          <div id="p">PW:
@@ -29,7 +29,8 @@
           <option>寒がり</option>
           <option>どちらでもない</option>
           </select>
-         <div id="p">全項目入力してください</div>
+         <br>
+        <span id="error_message"></span>
          <div class="button"><input type="submit" name="regist" value="登録">
          <input type="button" onclick="location.href='/selfManagement/LoginServlet'" value="ログインへ"></div>
          </form>
@@ -43,5 +44,19 @@
 		<p>&copy;Copyright 川崎.java. All rights reserved.</p>
 	 </footer>
 	 </div>
+	 <!-- ここからjs -->
+	 	<script type="text/javascript">
+	        var formObj = document.getElementById('u_form');
+	        var errorMessageObj = document.getElementById('error_message');
+	        /* [実行]ボタンをクリックしたときの処理 */
+	        formObj.onsubmit = function() {
+	          /* 氏名を必須入力項目とします */
+	           if (!formObj.login_id.value || !formObj.password.value) {
+	            errorMessageObj.textContent = '※全項目入力してください！';
+	            return false;
+	          }
+	          errorMessageObj.textContent = null;
+	        };
+		</script>
   </body>
 </html>
