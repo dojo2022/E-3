@@ -162,7 +162,7 @@
 				  <th width="145px">カテゴリー</th>
 				  <th width="170px">メモ</th>
 				  <th width="175px">金額</th>
-				  <th colspan="2" width="94px">その他</th>
+				  <th colspan="2" width="110px">その他</th>
 				 </tr>
 				</table>
 		   <div id="table4">

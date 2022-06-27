@@ -140,12 +140,12 @@ th {
 }
 #table4 {
   height: 250px;
-  width: 98%;
+  width: 100%;
   overflow-x: hidden;
   overflow-y: scroll;
   position:relative;
   top: 0px;
-  left:10px;
+  left:5px;
 }
 #list1 th {
   background-color: #2f4f4f;
@@ -154,7 +154,7 @@ th {
   color:#FFF;
   position:relative;
   top: 0px;
-  left:-6px;
+  left:-8px;
   font-size: 16px;
 }
 #list2 th {
@@ -164,7 +164,7 @@ th {
   color:#FFF;
   position:relative;
   top: 0px;
-  left:-8px;
+  left:-2px;
   font-size: 16px;
 }
 #list th {

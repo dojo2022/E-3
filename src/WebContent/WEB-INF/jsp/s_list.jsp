@@ -40,7 +40,7 @@
 
     		<table id="list">
 			 <tr>
-			  <th width="115px" height="45px">日付</th><th width="97px">カテゴリ</th><th width="175px">メモ</th><th colspan="2" width="95px">機能</th>
+			  <th width="115px" height="45px">日付</th><th width="95px">カテゴリー</th><th width="175px">メモ</th><th colspan="2" width="95px">その他</th>
 		     </tr>
 		    </table>
 		   <div id="table2">
