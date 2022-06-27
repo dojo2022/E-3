@@ -22,10 +22,9 @@
       <div id="p">ID:<input type="text" class="textbox" name="ID"></div>
 	  <div id="p">PW:<input type="password" class="textbox" name="PW"></div>
 		<div class="button"><input type="submit" name="login" value="ログイン">
-		<span id="error_message"></span>
 		<a href="/selfManagement/U_registServlet">新規登録</a></div>
+		<span id="error_message"></span>
 	</form>
-	</div>
 	</div>
 	<hr>
 	<footer>
