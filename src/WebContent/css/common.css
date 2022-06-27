@@ -121,26 +121,61 @@ th {
 	text-align: center;
 }
 #table2 {
-  height:300px;
-  width: 100%;
+  height:250px;
+  width: 68%;
   overflow-x: hidden;
   overflow-y: scroll;
+  position:relative;
+  top: 0px;
+  left:130px;
 }
-#table2#list th, #table2#list td {
-  border-bottom-width: 1px;	/* 黒色でドットの下線を付ける */
-  border-bottom-style: dotted;
-  border-bottom-color: black;
-  padding: 4px 16px 4px 0;
-  text-align: left;
-  white-space: nowrap;		/* 折り返さない */
-  width: 100%;
-  table-layout: fixed;
+#table3 {
+  height: 250px;
+  width: 98%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  position:relative;
+  top: 0px;
+  left:10px;
+}
+#table4 {
+  height: 250px;
+  width: 98%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  position:relative;
+  top: 0px;
+  left:10px;
+}
+#list1 th {
+  background-color: #2f4f4f;
+  vertical-align: middle;
+  left: auto;
+  color:#FFF;
+  position:relative;
+  top: 0px;
+  left:-6px;
+  font-size: 16px;
+}
+#list2 th {
+  background-color: #2f4f4f;
+  vertical-align: middle;
+  left: auto;
+  color:#FFF;
+  position:relative;
+  top: 0px;
+  left:-8px;
+  font-size: 16px;
 }
 #list th {
   background-color: #2f4f4f;
-  color: #FFF;
-  text-align: center;
   vertical-align: middle;
+  left: auto;
+  color:#FFF;
+  position:relative;
+  top: 0px;
+  left:0px;
+  font-size: 16px;
 }
 
 .wrapper {
