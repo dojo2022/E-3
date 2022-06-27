@@ -31,7 +31,7 @@
 	<form method="POST" action="/selfManagement/V_registServlet" id ="v_form">
 		<table>
 			<tr>
-				<td>日付</td>
+				<td>日付（必須）</td>
 				<td><input type="date" id="today" name="v_date"></td>
 			</tr>
 			<tr>
@@ -52,7 +52,7 @@
 			</tr>
 			<tr>
 				<td>メモ</td>
-				<td><input type="text" name="v_memo"></td>
+				<td><input type="text" name="v_memo" maxlength="100"></td>
 			</tr>
 			<tr>
 				<td>金額（必須）</td>

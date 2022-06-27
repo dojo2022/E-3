@@ -32,7 +32,7 @@
 	<form method="POST" action="/selfManagement/S_registServlet"id="s_form">
 		<table>
 			<tr>
-				<td>日付</td><td><input type="date" id="today" name="s_date"></input></td></tr>
+				<td>日付（必須）</td><td><input type="date" id="today" name="s_date"></input></td></tr>
 			<tr>
 			<td>カテゴリー</td>
 			<td>
@@ -50,7 +50,7 @@
 			</tr>
 			<tr>
 				<td>メモ</td>
-				<td><input type="text" name="s_memo"></td>
+				<td><input type="text" name="s_memo" maxlength="100"></td>
 			</tr>
 			<tr>
 				<td colspan="2"><input type="submit" name="s_regist" value="登録">

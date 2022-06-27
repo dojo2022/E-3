@@ -31,7 +31,7 @@
 	<form method="POST" action="/selfManagement/F_registServlet" id="f_form">
 		<table>
 			<tr>
-				<td>日付</td>
+				<td>日付（必須）</td>
 				<td><input id="datefield" type='date' min='1899-01-01' max='2000-13-13'></input></td>
 			</tr>
 			<tr>
@@ -51,7 +51,7 @@
 			</tr>
 			<tr>
 				<td>メモ</td>
-				<td><input type="text" name="f_memo"></td>
+				<td><input type="text" name="f_memo" maxlength="100"></td>
 			</tr>
 			<tr>
 				<td>金額（必須）</td>
