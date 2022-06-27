@@ -67,7 +67,7 @@ public class F_updateDeleteServlet extends HttpServlet {
 				response.sendRedirect( "/selfManagement/H_listServlet");
 			} else { // 更新失敗
 				request.setAttribute("result",
-						new Result("レコードを更新できませんでした。", "", "", "", ""));
+						new Result("レコードを更新できませんでした。", "", "", "/selfManagement/H_listServlet", "家計簿一覧へ"));
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/result.jsp");
 				dispatcher.forward(request, response);
 			}
@@ -76,7 +76,7 @@ public class F_updateDeleteServlet extends HttpServlet {
 				response.sendRedirect( "/selfManagement/H_listServlet");
 			} else { // 削除失敗
 				request.setAttribute("result",
-						new Result("レコードを削除できませんでした。", "", "", "", ""));
+						new Result("レコードを削除できませんでした。", "", "", "/selfManagement/H_listServlet", "家計簿一覧へ"));
 				// 結果ページにフォワードする
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/result.jsp");
 				dispatcher.forward(request, response);
