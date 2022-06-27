@@ -37,19 +37,20 @@
 		<input type="submit" name="submit" value="検索">
 	 </form>
    </div>
-    <div id="table2">
-    		<table id="list" border="1">
+
+    		<table id="list">
 			 <tr>
-			  <th width="115px">日付</th><th width="97px">カテゴリ</th><th width="175px">メモ</th><th colspan="2" width="90px">機能</th>
+			  <th width="115px" height="45px">日付</th><th width="97px">カテゴリ</th><th width="175px">メモ</th><th colspan="2" width="95px">機能</th>
 		     </tr>
 		    </table>
+		   <div id="table2">
 	<c:forEach var="slist" items="${scheduleList}">
 
 		<form method="POST" action="/selfManagement/S_updateDeleteServlet"id="s_form">
 			<table id="list" border="1">
 			 <tr>
-				<td width="105px"><input type="hidden" name="s_id" value="${slist.s_id}"></input><input type="date" name="s_date" value="${slist.s_date}"></input></td>
-				<td width="97px"><select name="s_category">
+				<td width="111px" height="40px"><input type="hidden" name="s_id" value="${slist.s_id}"></input><input type="date" name="s_date" value="${slist.s_date}"></input></td>
+				<td width="100px"><select name="s_category">
 				    		<option value="${slist.s_category}" hidden>${slist.s_category}</option>
 				    		<option value="遊び">遊び</option>
 							<option value="休み">休み</option>
