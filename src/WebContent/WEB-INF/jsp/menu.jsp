@@ -20,7 +20,7 @@ session.setAttribute("date1","0001-01-01");
 <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
 <script src="/selfManagement/js/weather.js"></script>
 </head>
-<body>
+<body onload="weatherInit('${constitution}')">
 	<!--ヘッダー-->
 	<div class="wrapper">
 	<header class="header">
@@ -81,6 +81,7 @@ session.setAttribute("date1","0001-01-01");
 			<div id="weather-discription" class="weather-discription"></div>
 			<img id="weather-icon" src="img/01d.png">
 			<div id="weather-cloth" class="weather-cloth"></div>
+			<div class="text">服装指数</div>
 			<div id="cons" title="${user.constitution }"></div>
 		</div>
         </div>
@@ -137,10 +138,8 @@ session.setAttribute("date1","0001-01-01");
 
 				<!-- 固定費合計を計算する  -->
 				<c:set var="fTotal" value="${0}" />
-
 				<c:forEach var="flist" items="${fixedList}">
 					<c:set var="fTotal" value="${fTotal + flist.f_cost}" />
-
 				</c:forEach>
 
 				<!-- deadline +1 する -->

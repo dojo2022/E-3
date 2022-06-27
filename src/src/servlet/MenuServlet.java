@@ -78,6 +78,9 @@ public class MenuServlet extends HttpServlet {
 
 		String d3 = df2.format(date);
 
+		//体質取得
+		String constitution = uDao.constitution(user_id);
+
 		//残高を計算する
 		//固定費検索処理を行う
 		FixedDao fDao = new FixedDao();
@@ -112,7 +115,7 @@ public class MenuServlet extends HttpServlet {
 		request.setAttribute("year", year);			//達成期限(年)
 		request.setAttribute("date1", date1);       //達成期限(月)
 		request.setAttribute("user", user);			//ユーザデータ
-		//request.setAttribute(constitution, constitution);
+		request.setAttribute("constitution", constitution);
 
 		// メニューページにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/menu.jsp");
