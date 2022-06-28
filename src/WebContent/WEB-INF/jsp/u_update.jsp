@@ -42,7 +42,7 @@
 		     <br>
              <br>
 		     <h2>達成期限</h2>
-		     <input id="today" type="date" value="${user.deadline}" readonly>
+		     <input type="date" value="${user.deadline}" readonly>
 		     &#9654;
 		     <input type="date" name="deadline" value="${user.deadline}" id="today">
 		     <br>
