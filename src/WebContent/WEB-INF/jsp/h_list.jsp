@@ -175,7 +175,7 @@
 					<tr>
 						<td width="115px" height="35px">
 							<input type="hidden" name="f_id" value="${flist.f_id}">
-							<input type="date" name="f_dheight="35px"ate" value="${flist.f_date}">
+							<input type="date" name="f_date" height="35px" value="${flist.f_date}">
 						</td>
 						<td width="145px">
 							<select name="f_category">
