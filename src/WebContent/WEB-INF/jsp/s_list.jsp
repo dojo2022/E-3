@@ -49,7 +49,7 @@
 		<form method="POST" action="/selfManagement/S_updateDeleteServlet"id="s_form">
 			<table id="list" border="1">
 			 <tr>
-				<td width="111px" height="40px"><input type="hidden" name="s_id" value="${slist.s_id}"></input><input type="date" name="s_date" value="${slist.s_date}"></input></td>
+				<td width="111px" height="40px"><input type="hidden" name="s_id" value="${slist.s_id}"></input><input type="date" name="s_date" value="${slist.s_date}" required="required"></input></td>
 				<td width="100px"><select name="s_category">
 				    		<option value="${slist.s_category}" hidden>${slist.s_category}</option>
 				    		<option value="遊び">遊び</option>
@@ -91,17 +91,7 @@
     	function OnRedirectClick() {
     		document.location.href = "/selfManagement/S_registServlet";
 		}
-    	var formObj = document.getElementById('s_form');
-        var errorMessageObj = document.getElementById('error_message');
-        /* [実行]ボタンをクリックしたときの処理 */
-        formObj.onsubmit = function() {
-          /* 氏名を必須入力項目とします */
-          if (!formObj.s_date.value) {
-            errorMessageObj.textContent = '※日付を入力してください！';
-            return false;
-          }
-          errorMessageObj.textContent = null;
-        };
+
 	</script>
 </body>
 </html>

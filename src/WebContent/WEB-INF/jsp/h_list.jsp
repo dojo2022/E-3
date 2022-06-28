@@ -122,7 +122,7 @@
 				<table id="list1" border="1">
 				 <tr>
 						<td width="122px" height="35px"><input type="hidden" name="v_id" value="${vlist.v_id}">
-							<input type="date" name="v_date" value="${vlist.v_date}"></td>
+							<input type="date" name="v_date" value="${vlist.v_date}" required="required"></td>
 						<td width="115px">
 							<select name="v_category">
 								<option hidden>${vlist.v_category}</option>
@@ -138,7 +138,7 @@
 							</select>
 						</td>
 						<td width="50px"><input type="text" name="v_memo" value="${vlist.v_memo}"></td>
-						<td><input type="text" name="v_cost" value="${vlist.v_cost}" pattern="(0|[1-9][0-9]*)"></td>
+						<td><input type="text" name="v_cost" value="${vlist.v_cost}" pattern="(0|[1-9][0-9]*)" required="required"></td>
 						<td width="50px"><input type="submit" name="submit" value="更新"></td>
 						<td width="50px"><input type="submit" name="submit" value="削除"></td>
 				    </tr>
@@ -175,7 +175,7 @@
 					<tr>
 						<td width="115px" height="35px">
 							<input type="hidden" name="f_id" value="${flist.f_id}">
-							<input type="date" name="f_date" height="35px" value="${flist.f_date}">
+							<input type="date" name="f_date" height="35px" value="${flist.f_date}" required="required">
 						</td>
 						<td width="145px">
 							<select name="f_category">
@@ -191,7 +191,7 @@
 							</select>
 						</td>
 						<td width="50px"><input type="text" name="f_memo" value="${flist.f_memo}"></td>
-						<td><input type="text" name="f_cost" value="${flist.f_cost}" pattern="(0|[1-9][0-9]*)"></td>
+						<td><input type="text" name="f_cost" value="${flist.f_cost}" pattern="(0|[1-9][0-9]*)" required="required"></td>
 						<td width="50px"><input type="submit" name="submit" value="更新"></td>
 						<td width="50px"><input type="submit" name="submit" value="削除"></td>
 					</tr>
@@ -225,17 +225,6 @@
 		function fRedirectClick() {
 			document.location.href = "/selfManagement/F_registServlet";
 		}
-		 var formObj = document.getElementById('v_form');
-	        var errorMessageObj = document.getElementById('error_message');
-	        /* [実行]ボタンをクリックしたときの処理 */
-	        formObj.onsubmit = function() {
-	          /* 氏名を必須入力項目とします */
-	           if (!formObj.v_date.value || !formObj.v_cost.value) {
-	            errorMessageObj.textContent = '※日付と金額を入力してください！';
-	            return false;
-	          }
-	          errorMessageObj.textContent = null;
-	        };
 	</script>
 </body>
 </html>
