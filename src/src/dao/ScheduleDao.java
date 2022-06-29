@@ -23,7 +23,7 @@ public class ScheduleDao {
 			Class.forName("org.h2.Driver");
 
 			// データベースに接続する
-			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/SM", "sa", "kawasaki");
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6/E-3/SM","sa","kawasaki");
 
 			// SQL文を準備する
 			String sql = "SELECT s_id, s_date, s_category, s_memo FROM Schedule WHERE (s_date >= CURDATE()) AND (user_id = ?) ORDER BY s_date ";
@@ -75,7 +75,7 @@ public class ScheduleDao {
 				Class.forName("org.h2.Driver");
 
 				// データベースに接続する
-				conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/SM", "sa", "kawasaki");
+				conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6/E-3/SM","sa","kawasaki");
 
 				// SQL文を準備する
 				String sql = "SELECT s_id, s_date,s_category,s_memo FROM Schedule WHERE (s_date >= CURDATE()) AND (user_id = ?) ORDER BY s_date LIMIT 5";
@@ -133,7 +133,7 @@ public class ScheduleDao {
 				Class.forName("org.h2.Driver");
 
 				// データベースに接続する
-				conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/SM", "sa", "kawasaki");
+				conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6/E-3/SM","sa","kawasaki");
 
 				// SQL文を準備する
 				String sql = "SELECT s_id, s_date,s_category,s_memo FROM Schedule WHERE (s_date LIKE ?) AND (user_id = ?) ORDER BY s_date";
@@ -195,7 +195,7 @@ public class ScheduleDao {
 			Class.forName("org.h2.Driver");
 
 			// データベースに接続する
-			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/SM", "sa", "kawasaki");
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6/E-3/SM","sa","kawasaki");
 
 			// SQL文を準備する
 			String sql = "INSERT INTO Schedule(s_date, s_category, s_memo, user_id) VALUES(?,?,?,?)";
@@ -252,7 +252,7 @@ public class ScheduleDao {
 			Class.forName("org.h2.Driver");
 
 			// データベースに接続する
-			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/SM", "sa", "kawasaki");
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6/E-3/SM","sa","kawasaki");
 
 
 			// SQL文を準備する
@@ -313,7 +313,7 @@ public class ScheduleDao {
 			Class.forName("org.h2.Driver");
 
 			// データベースに接続する
-			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/SM", "sa", "kawasaki");
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6/E-3/SM","sa","kawasaki");
 
 
 			// SQL文を準備する

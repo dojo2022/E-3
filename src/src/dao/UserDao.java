@@ -21,7 +21,7 @@ public class UserDao {
 			Class.forName("org.h2.Driver");
 
 			// データベースに接続する
-			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/SM", "sa", "kawasaki");
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6/E-3/SM","sa","kawasaki");
 
 			// SELECT文を準備する
 			String sql = "select count(*) from User where login_id = ? and password = ?";
@@ -69,7 +69,7 @@ public class UserDao {
 			Class.forName("org.h2.Driver");
 
 			// データベースに接続する
-			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/SM", "sa", "kawasaki");
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6/E-3/SM","sa","kawasaki");
 
 			// SQL文を準備する
 			String sql = "SELECT user_id,reason,goal,deadline,savings,salary,constitution FROM User WHERE user_id = ?";
@@ -121,7 +121,7 @@ public class UserDao {
 			Class.forName("org.h2.Driver");
 
 			// データベースに接続する
-			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/SM", "sa", "kawasaki");
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6/E-3/SM","sa","kawasaki");
 
 			// SQL文を準備する
 			String sql = "SELECT deadline FROM User WHERE user_id = ?";
@@ -164,7 +164,7 @@ public class UserDao {
 			Class.forName("org.h2.Driver");
 
 			// データベースに接続する
-			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/SM", "sa", "kawasaki");
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6/E-3/SM","sa","kawasaki");
 
 			// SQL文を準備する
 			String sql = "SELECT constitution FROM User WHERE user_id = ?";
@@ -207,7 +207,7 @@ public class UserDao {
 			Class.forName("org.h2.Driver");
 
 			// データベースに接続する
-			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/SM", "sa", "kawasaki");
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6/E-3/SM","sa","kawasaki");
 
 			// SQL文を準備する
 			String sql = "insert into user (login_id, password, constitution) values (?, ?, ?)";
@@ -263,7 +263,7 @@ public class UserDao {
 			Class.forName("org.h2.Driver");
 
 			// データベースに接続する
-			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/SM", "sa", "kawasaki");
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6/E-3/SM","sa","kawasaki");
 
 			// SQL文を準備する
 			String sql = "UPDATE User SET reason=?, deadline=?, goal=? ,salary=?, constitution=? WHERE user_id=?";
@@ -331,7 +331,7 @@ public class UserDao {
 			Class.forName("org.h2.Driver");
 
 			// データベースに接続する
-			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/SM", "sa", "kawasaki");
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6/E-3/SM","sa","kawasaki");
 
 			// SQL文を準備する
 			String sql = "SELECT user_id FROM User WHERE login_id= ? and password= ?";

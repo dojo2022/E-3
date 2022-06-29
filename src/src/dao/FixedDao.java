@@ -32,7 +32,7 @@ public class FixedDao {
 			Class.forName("org.h2.Driver");
 
 			// データベースに接続する
-			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/SM", "sa", "kawasaki");
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6/E-3/SM", "sa", "kawasaki");
 
 			// SQL文を準備する
 			String sql = "SELECT * FROM Fixed WHERE (f_date LIKE ?) AND (user_id = ?) ORDER BY f_date DESC ";
@@ -106,7 +106,7 @@ public class FixedDao {
 			Class.forName("org.h2.Driver");
 
 			// データベースに接続する
-			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/SM", "sa", "kawasaki");
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6/E-3/SM","sa","kawasaki");
 
 			// SQL文を準備する
 			String sql = "SELECT * FROM Fixed WHERE (f_date LIKE ?) AND (f_date NOT LIKE ?) AND (user_id = ?)";
@@ -166,7 +166,7 @@ public class FixedDao {
 			Class.forName("org.h2.Driver");
 
 			// データベースに接続する
-			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/SM", "sa", "kawasaki");
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6/E-3/SM","sa","kawasaki");
 
 			// SQL文を準備する
 			String sql = "INSERT INTO Fixed(f_date, f_category, f_memo, f_cost, user_id) VALUES(?,?,?,?,?)";
@@ -233,7 +233,7 @@ public class FixedDao {
 				Class.forName("org.h2.Driver");
 
 				// データベースに接続する
-				conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/SM", "sa", "kawasaki");
+				conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6/E-3/SM","sa","kawasaki");
 
 				// SQL文を準備する
 				String sql = "INSERT INTO Fixed(f_date, f_category, f_memo, f_cost, user_id) VALUES(ADD_MONTHS(?, 1),?,?,?,?)";
@@ -298,7 +298,7 @@ public class FixedDao {
 			Class.forName("org.h2.Driver");
 
 			// データベースに接続する
-			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/SM", "sa", "kawasaki");
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6/E-3/SM","sa","kawasaki");
 
 			// SQL文を準備する
 			String sql = "UPDATE Fixed SET f_date=?, f_category=?, f_memo=?,f_cost=? WHERE f_id=?";
@@ -365,7 +365,7 @@ public class FixedDao {
 				Class.forName("org.h2.Driver");
 
 				// データベースに接続する
-				conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/SM", "sa", "kawasaki");
+				conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6/E-3/SM","sa","kawasaki");
 
 				// SQL文を準備する
 				String sql = "delete from Fixed where f_id=?";
